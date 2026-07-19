@@ -863,7 +863,7 @@ async function setupVenueMap() {
     return;
   }
 
-  if (!window.kakao?.maps?.load || !window.kakao?.maps?.services?.Geocoder) {
+  if (!window.kakao?.maps?.load) {
     console.error('Kakao Maps SDK loaded but initialization APIs are unavailable.', {
       currentOrigin,
       hasKakao: Boolean(window.kakao),
@@ -871,11 +871,24 @@ async function setupVenueMap() {
       hasLoad: Boolean(window.kakao?.maps?.load),
       hasGeocoder: Boolean(window.kakao?.maps?.services?.Geocoder)
     });
-    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다. REST API 키가 아니라 JavaScript 키인지, 카카오맵 사용 설정이 켜져 있는지, 그리고 현재 도메인이 Web 플랫폼에 등록되어 있는지 확인해 주세요.');
+    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다. JavaScript 키와 카카오맵 사용 설정을 다시 확인해 주세요.');
     return;
   }
 
   window.kakao.maps.load(() => {
+    if (!window.kakao?.maps?.services?.Geocoder) {
+      console.error('Kakao Maps services library is unavailable after kakao.maps.load.', {
+        currentOrigin,
+        hasKakao: Boolean(window.kakao),
+        hasMaps: Boolean(window.kakao?.maps),
+        hasLoad: Boolean(window.kakao?.maps?.load),
+        hasServices: Boolean(window.kakao?.maps?.services),
+        hasGeocoder: Boolean(window.kakao?.maps?.services?.Geocoder)
+      });
+      setVenueMapFallback('카카오맵 서비스 라이브러리를 불러오지 못했습니다. 잠시 후 다시 새로고침해 보시고, 계속되면 브라우저 확장 프로그램이나 네트워크 차단 여부를 확인해 주세요.');
+      return;
+    }
+
     const geocoder = new window.kakao.maps.services.Geocoder();
 
     geocoder.addressSearch(invitationConfig.venue.address, (result, status) => {
