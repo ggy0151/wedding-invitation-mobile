@@ -679,6 +679,14 @@ button {
   font-size: 16px;
 }
 
+.transport-title {
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
 .story-caption strong,
 .gallery-caption strong {
   margin-top: 0;
