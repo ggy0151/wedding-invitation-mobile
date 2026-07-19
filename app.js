@@ -17,7 +17,7 @@ const invitationConfig = {
     venueShort: '더블트리 바이 힐튼 서울 판교',
     venueEnglish: 'DOUBLETREE BY HILTON SEOUL PANGYO',
     address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
-    intro: '소중한 분들을 모시고 저희의 새로운 시작을 함께 나누고자 합니다.'
+    intro: '소중한 분들을 모시고\n저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
     src: './assets/cover-wedding-photo-01.jpg',
@@ -42,12 +42,12 @@ const invitationConfig = {
   letters: [
     {
       title: '신랑 신부 인사',
-      body: '함께 보낼 나날들을 약속하며\n소중한 분들께 가장 먼저 소식을 전합니다.\n따스한 축복으로 함께해 주세요.',
+      body: '오래도록 아껴온 마음으로\n저희 두 사람이 한날의 약속을 하게 되었습니다.\n귀한 걸음으로 함께해 주시면 감사하겠습니다.',
       signature: '윤찬 ♥ 지윤 드림'
     },
     {
       title: '양가 부모님 마음',
-      body: '바르게 자라준 두 아이가 결혼을 맞이합니다.\n귀한 걸음 해주시는 마음을 오래도록 감사히 간직하겠습니다.',
+      body: '정성으로 키운 두 아이가\n이제 한 가정을 이루려 합니다.\n함께 축복해 주시면 감사하겠습니다.',
       signature: '양가 부모님 일동'
     }
   ],
@@ -61,13 +61,24 @@ const invitationConfig = {
     title: '더블트리 바이 힐튼 서울 판교',
     hall: '1층 그랜드볼룸홀',
     badge: 'Grand Ballroom / 1F',
-    description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다. 실제 위치를 확인할 수 있도록 카카오맵 기반 지도를 연결할 수 있게 준비했습니다.',
+    description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다.\n실제 위치를 쉽게 확인하실 수 있도록 지도를 함께 준비했습니다.',
     address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교',
     roadAddress: '26 Baekhyeon-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13553',
     placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     map: {
       provider: 'kakao',
       javascriptKey: 'de98b2bb05ceb24f4e9d304652a40ecb',
+      allowedOrigins: [
+        'https://ggy0151.github.io',
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+        'http://localhost:8080',
+        'http://127.0.0.1:8080'
+      ],
       fallbackMessage: '카카오맵 JavaScript 키를 넣으면 이 영역에 실제 지도가 표시됩니다.'
     },
     transport: [
@@ -108,8 +119,8 @@ const invitationConfig = {
     mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
-    helper: '한 분 한 분을 소중히 모실 수 있도록 참석 의사를 미리 남겨주시면 감사하겠습니다.',
-    mealNotice: '식사는 동시 예식으로 참석 인원수에 맞게 준비됩니다.'
+    helper: '한 분 한 분을 정성껏 모시고 싶습니다.\n참석 여부를 미리 남겨주시면 감사하겠습니다.',
+    mealNotice: '식사는 참석 인원에 맞춰 준비됩니다.'
   },
   accounts: [
     {
@@ -125,7 +136,7 @@ const invitationConfig = {
       items: [{ name: '신부 김지윤', bank: '신한은행', number: '110455998600' }]
     }
   ],
-  notice: '예식 구조상 화환은 정중히 사양하며, 보내주시는 축하의 마음만 감사히 받겠습니다.'
+  notice: '예식장 안내에 따라 화환은 정중히 사양합니다.\n보내주시는 축하의 마음만 감사히 받겠습니다.'
 };
 
 const app = document.querySelector('#app');
@@ -391,7 +402,7 @@ function renderApp() {
         <section class="section reply-first reveal" id="reply-first">
           <span class="mini-label">RSVP FIRST</span>
           <h2 class="reply-title">참석 여부를 먼저 알려주세요</h2>
-          <p class="reply-copy">좌석과 식순 안내를 위해 가장 먼저 답변을 받을 수 있도록 상단에 배치했습니다.</p>
+          <p class="reply-copy">${nl2br('소중한 걸음을 더 정성스럽게 준비할 수 있도록\n참석 여부를 먼저 여쭙습니다.')}</p>
           <div class="reply-actions">
             <button class="button primary" type="button" data-open-rsvp>${rsvpLabel}</button>
           </div>
@@ -509,7 +520,7 @@ function renderApp() {
           <span class="mini-label">HEART</span>
           <h2 class="section-title">마음 전하실 곳</h2>
           <div class="account-wrap">${buildAccounts()}</div>
-          <p class="notice-copy">${escapeHtml(invitationConfig.notice)}</p>
+          <p class="notice-copy">${nl2br(invitationConfig.notice)}</p>
         </section>
 
         <footer class="footer reveal">
@@ -543,7 +554,7 @@ function renderApp() {
             </div>
             <button class="close-button" type="button" data-close-modal="rsvpModal" aria-label="닫기">×</button>
           </div>
-          <p class="rsvp-copy">${escapeHtml(invitationConfig.rsvp.helper)}</p>
+          <p class="rsvp-copy">${nl2br(invitationConfig.rsvp.helper)}</p>
           <p class="form-note">${escapeHtml(rsvpStatus)}</p>
           <form id="rsvpForm" class="rsvp-form">
             <section class="rsvp-block">
@@ -800,13 +811,25 @@ async function setupVenueMap() {
   if (!mapNode) return;
 
   const { map } = invitationConfig.venue;
+  const currentOrigin = window.location.origin;
+
   if (map.provider !== 'kakao') {
     setVenueMapFallback('현재는 카카오맵 연동만 준비되어 있습니다.');
     return;
   }
 
+  if (window.location.protocol === 'file:') {
+    setVenueMapFallback('카카오맵은 file:// 환경에서 초기화되지 않습니다. GitHub Pages 주소나 localhost 개발 서버에서 확인해 주세요.');
+    return;
+  }
+
   if (!map.javascriptKey) {
     setVenueMapFallback('카카오맵 JavaScript 키를 invitationConfig.venue.map.javascriptKey에 넣으면 실제 지도가 표시됩니다.');
+    return;
+  }
+
+  if (Array.isArray(map.allowedOrigins) && map.allowedOrigins.length > 0 && !map.allowedOrigins.includes(currentOrigin)) {
+    setVenueMapFallback(`현재 접속 주소 ${currentOrigin} 이(가) 카카오맵 허용 도메인에 등록되어 있지 않습니다. Kakao Developers > 플랫폼 > Web에 이 도메인을 추가해 주세요.`);
     return;
   }
 
@@ -820,7 +843,7 @@ async function setupVenueMap() {
   }
 
   if (!window.kakao?.maps?.load || !window.kakao?.maps?.services?.Geocoder) {
-    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다.');
+    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다. JavaScript 키인지, 그리고 현재 도메인이 Web 플랫폼에 등록되어 있는지 확인해 주세요.');
     return;
   }
 
