@@ -440,6 +440,7 @@ button {
 .wedding-day-address {
   font-size: 13px;
   line-height: 1.8;
+  white-space: normal;
 }
 
 .wedding-day-place-hall {
@@ -826,6 +827,21 @@ button {
 .venue-address {
   margin-top: 20px;
   color: var(--text);
+  line-height: 1.9;
+  word-break: keep-all;
+}
+
+.venue-hall,
+.venue-line {
+  display: inline-block;
+}
+
+.venue-hall {
+  color: var(--accent-strong);
+}
+
+.venue-line {
+  color: var(--muted);
 }
 
 .venue-links {
@@ -842,6 +858,10 @@ button {
 .transport-item {
   padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
+}
+
+.transport-item small {
+  font-size: 12px;
 }
 
 .transport-item:last-child {

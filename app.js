@@ -16,7 +16,7 @@ const invitationConfig = {
     dateKorean: '2026년 12월 20일 일요일 오후 12시 30분',
     venueShort: '더블트리 바이 힐튼 서울 판교',
     venueEnglish: 'DOUBLETREE BY HILTON SEOUL PANGYO',
-    address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
+    address: '경기 성남시 분당구 백현로 26\n더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     intro: '소중한 분들을 모시고\n저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
@@ -62,8 +62,8 @@ const invitationConfig = {
     hall: '1층 그랜드볼룸홀',
     badge: 'Grand Ballroom / 1F',
     description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다.\n실제 위치를 쉽게 확인하실 수 있도록 지도를 함께 준비했습니다.',
-    address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교',
-    roadAddress: '26 Baekhyeon-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13553',
+    address: '경기 성남시 분당구 백현로 26',
+    addressDetail: '더블트리 바이 힐튼 서울 판교',
     placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     map: {
       provider: 'kakao',
@@ -79,33 +79,33 @@ const invitationConfig = {
         'http://localhost:8080',
         'http://127.0.0.1:8080'
       ],
-      fallbackMessage: '카카오맵 JavaScript 키를 넣으면 이 영역에 실제 지도가 표시됩니다.'
+      fallbackMessage: '카카오맵 JavaScript 키와 Web 플랫폼 도메인을 설정하면 이 영역에 실제 지도가 표시됩니다.'
     },
     transport: [
       {
-        label: 'Bus',
-        title: '220, 310, 370, 누리4, 117 (마을)',
+        label: '버스 Bus',
+        title: '220, 310, 370, 누리4, 117번(마을)',
         copy: '버스 이용 시 위 노선을 통해 호텔 인근 정류장으로 오실 수 있습니다.'
       },
       {
-        label: 'Subway',
+        label: '지하철 Subway',
         title: '수인분당선 서현역 3번 출구',
         copy: '지하철 이용 시 서현역 3번 출구에서 이동하시면 됩니다.'
       },
       {
-        label: 'Parking',
-        title: '웨딩홀 건물 지하 및 야외 주차 이용 가능',
+        label: '주차 Parking',
+        title: '웨딩홀 건물 지하 및 야외 주차장 이용 가능',
         copy: '건물 지하 주차장과 야외 주차장을 모두 이용하실 수 있습니다.'
       },
       {
-        label: 'Shuttle',
+        label: '셔틀 Shuttle',
         title: '정자역 2번 출구',
         copy: '11:30 ~ 14:30 15분 간격 운행 (25인승)'
       },
       {
-        label: 'Address',
-        title: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
-        copy: '주소: 경기 성남시 분당구 백현로 26'
+        label: '주소 Address',
+        title: '경기 성남시 분당구 백현로 26',
+        copy: '더블트리 바이 힐튼 서울 판교'
       }
     ],
     links: [
@@ -343,6 +343,15 @@ function buildTransport() {
     .join('');
 }
 
+function buildVenueAddress() {
+  return `
+    <strong class="venue-title">${escapeHtml(invitationConfig.venue.title)}</strong><br>
+    <span class="venue-hall">${escapeHtml(invitationConfig.venue.hall)}</span><br>
+    <span class="venue-line">${escapeHtml(invitationConfig.venue.address)}</span><br>
+    <span class="venue-line">${escapeHtml(invitationConfig.venue.addressDetail)}</span>
+  `;
+}
+
 function buildMapFallback(message) {
   return `
     <div class="map-fallback">
@@ -439,7 +448,7 @@ function renderApp() {
             <span class="wedding-day-place-dot">·</span>
             <span class="wedding-day-place-hall">${escapeHtml(invitationConfig.venue.hall)}</span>
           </p>
-          <p class="wedding-day-address">${escapeHtml(invitationConfig.event.address)}</p>
+          <p class="wedding-day-address">${nl2br(invitationConfig.event.address)}</p>
           ${buildWeddingCalendar(invitationConfig.event.dateIso)}
           <div class="countdown-grid" id="countdownGrid">
             <article class="countdown-card">
@@ -505,12 +514,11 @@ function renderApp() {
               <div class="map-badge">
                 <small>${escapeHtml(invitationConfig.venue.badge)}</small>
               </div>
-              <div class="map-canvas" id="venueMap">
-                ${buildMapFallback(invitationConfig.venue.map.fallbackMessage)}
-              </div>
+            <div class="map-canvas" id="venueMap">
+              ${buildMapFallback(invitationConfig.venue.map.fallbackMessage)}
             </div>
-            <p class="venue-address"><strong class="venue-title">${escapeHtml(invitationConfig.venue.title)}</strong><br>${escapeHtml(invitationConfig.venue.hall)}<br>${escapeHtml(invitationConfig.venue.address)}</p>
-            <p class="section-copy">${escapeHtml(invitationConfig.venue.roadAddress)}</p>
+          </div>
+            <p class="venue-address">${buildVenueAddress()}</p>
             <div class="venue-links">${buildVenueLinks()}</div>
             <div class="transport-list">${buildTransport()}</div>
           </div>
@@ -838,12 +846,12 @@ async function setupVenueMap() {
   try {
     await loadExternalScript(sdkUrl);
   } catch (error) {
-    setVenueMapFallback('카카오맵 SDK를 불러오지 못했습니다. 도메인 등록과 키 설정을 확인해 주세요.');
+    setVenueMapFallback('카카오맵 SDK를 불러오지 못했습니다. JavaScript 키, 카카오맵 사용 설정, Web 플랫폼 도메인 등록을 확인해 주세요.');
     return;
   }
 
   if (!window.kakao?.maps?.load || !window.kakao?.maps?.services?.Geocoder) {
-    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다. JavaScript 키인지, 그리고 현재 도메인이 Web 플랫폼에 등록되어 있는지 확인해 주세요.');
+    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다. REST API 키가 아니라 JavaScript 키인지, 카카오맵 사용 설정이 켜져 있는지, 그리고 현재 도메인이 Web 플랫폼에 등록되어 있는지 확인해 주세요.');
     return;
   }
 
