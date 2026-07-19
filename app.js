@@ -786,7 +786,11 @@ function loadExternalScript(src) {
     const existing = document.querySelector(`script[data-src="${src}"]`);
     if (existing) {
       existing.addEventListener('load', resolve, { once: true });
-      existing.addEventListener('error', reject, { once: true });
+      existing.addEventListener(
+        'error',
+        () => reject(new Error(`Failed to load external script: ${src}`)),
+        { once: true }
+      );
       if (existing.dataset.loaded === 'true') resolve();
       return;
     }
@@ -803,7 +807,11 @@ function loadExternalScript(src) {
       },
       { once: true }
     );
-    script.addEventListener('error', reject, { once: true });
+    script.addEventListener(
+      'error',
+      () => reject(new Error(`Failed to load external script: ${src}`)),
+      { once: true }
+    );
     document.head.appendChild(script);
   });
 }
@@ -846,11 +854,23 @@ async function setupVenueMap() {
   try {
     await loadExternalScript(sdkUrl);
   } catch (error) {
-    setVenueMapFallback('카카오맵 SDK를 불러오지 못했습니다. JavaScript 키, 카카오맵 사용 설정, Web 플랫폼 도메인 등록을 확인해 주세요.');
+    console.error('Kakao Maps SDK load failed.', {
+      currentOrigin,
+      sdkUrl,
+      message: error instanceof Error ? error.message : String(error)
+    });
+    setVenueMapFallback('카카오맵 SDK를 불러오지 못했습니다. 브라우저 확장 프로그램, 광고 차단, 네트워크 차단 여부와 함께 JavaScript 키 및 Web 플랫폼 도메인을 확인해 주세요.');
     return;
   }
 
   if (!window.kakao?.maps?.load || !window.kakao?.maps?.services?.Geocoder) {
+    console.error('Kakao Maps SDK loaded but initialization APIs are unavailable.', {
+      currentOrigin,
+      hasKakao: Boolean(window.kakao),
+      hasMaps: Boolean(window.kakao?.maps),
+      hasLoad: Boolean(window.kakao?.maps?.load),
+      hasGeocoder: Boolean(window.kakao?.maps?.services?.Geocoder)
+    });
     setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다. REST API 키가 아니라 JavaScript 키인지, 카카오맵 사용 설정이 켜져 있는지, 그리고 현재 도메인이 Web 플랫폼에 등록되어 있는지 확인해 주세요.');
     return;
   }
