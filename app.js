@@ -1,4 +1,9 @@
 const invitationConfig = {
+  site: {
+    liveUrl: 'https://ggy0151.github.io/wedding-invitation-mobile/',
+    shareTitle: '신윤찬 · 김지윤 결혼합니다',
+    shareText: '2026년 12월 20일 일요일 오후 12시 30분, 더블트리 바이 힐튼 서울 판교에서 뵙겠습니다.'
+  },
   couple: {
     groomFull: '신윤찬',
     brideFull: '김지윤',
@@ -78,10 +83,10 @@ const invitationConfig = {
   },
   rsvp: {
     endpoint: '',
-    mode: 'cors',
+    mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
-    helper: '참석 여부를 먼저 받아야 하는 흐름에 맞춰 상단에서 바로 응답할 수 있게 두었습니다.'
+    helper: '참석 여부를 가장 먼저 남길 수 있도록 위쪽에서 바로 응답하는 흐름으로 정리했습니다.'
   },
   accounts: [
     {
@@ -116,6 +121,14 @@ function escapeHtml(value) {
 
 function nl2br(value) {
   return escapeHtml(value).replace(/\n/g, '<br>');
+}
+
+function normalizeUrl(value) {
+  return String(value || '').trim();
+}
+
+function getInvitationUrl() {
+  return normalizeUrl(invitationConfig.site.liveUrl) || window.location.href;
 }
 
 function countdownLabel(dateIso) {
@@ -264,8 +277,12 @@ function buildAccounts() {
 }
 
 function renderApp() {
+  const invitationUrl = getInvitationUrl();
   const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
   const rsvpLabel = responded ? '응답 다시 보기' : '참석 여부 남기기';
+  const rsvpStatus = invitationConfig.rsvp.endpoint
+    ? '응답은 연결된 구글 스프레드시트로 바로 전송됩니다.'
+    : '아직 RSVP 웹앱이 연결되지 않아 이 기기 안에만 임시 저장됩니다.';
 
   app.innerHTML = `
     <div class="page-shell">
@@ -348,6 +365,20 @@ function renderApp() {
           </div>
         </section>
 
+        <section class="section section--spaced reveal" id="share">
+          <span class="mini-label">SHARE</span>
+          <h2 class="section-title">청첩장 공유하기</h2>
+          <p class="section-copy">실물 청첩장에 넣을 QR 이미지는 별도 파일로 준비하고, 이 화면에서는 모바일 링크 공유와 주소 복사를 바로 할 수 있게 두었습니다.</p>
+          <div class="share-panel">
+            <strong>공유 주소</strong>
+            <p class="share-url copy">${escapeHtml(invitationUrl)}</p>
+            <div class="share-actions">
+              <button class="button primary" type="button" data-share>청첩장 공유하기</button>
+              <button class="button outline" type="button" data-copy="${escapeHtml(invitationUrl)}">주소 복사하기</button>
+            </div>
+          </div>
+        </section>
+
         <section class="section section--spaced reveal" id="venue">
           <span class="mini-label">LOCATION</span>
           <h2 class="section-title">오시는 길</h2>
@@ -373,10 +404,6 @@ function renderApp() {
           <span class="mini-label">HEART</span>
           <h2 class="section-title">마음 전하실 곳</h2>
           <div class="account-wrap">${buildAccounts()}</div>
-          <div class="share-actions">
-            <button class="button primary" type="button" data-share>카카오톡으로 공유하기</button>
-            <button class="button outline" type="button" data-copy="${escapeHtml(window.location.href)}">청첩장 주소 복사하기</button>
-          </div>
           <p class="notice-copy">${escapeHtml(invitationConfig.notice)}</p>
         </section>
 
@@ -412,6 +439,7 @@ function renderApp() {
             <button class="close-button" type="button" data-close-modal="rsvpModal" aria-label="닫기">×</button>
           </div>
           <p class="rsvp-copy">${escapeHtml(invitationConfig.rsvp.helper)}</p>
+          <p class="form-note">${escapeHtml(rsvpStatus)}</p>
           <form id="rsvpForm" class="form-grid">
             <div>
               <label class="field-label">참석 여부</label>
@@ -556,6 +584,14 @@ function syncRsvpLabel() {
   });
 }
 
+function buildSharePayload() {
+  return {
+    title: invitationConfig.site.shareTitle,
+    text: invitationConfig.site.shareText,
+    url: getInvitationUrl()
+  };
+}
+
 function bindActions() {
   document.querySelectorAll('[data-open-rsvp]').forEach((button) => {
     button.addEventListener('click', () => openModal('rsvpModal'));
@@ -584,17 +620,13 @@ function bindActions() {
 
   document.querySelectorAll('[data-share]').forEach((button) => {
     button.addEventListener('click', async () => {
-      const payload = {
-        title: '신윤찬 · 김지윤 결혼합니다',
-        text: '2026년 12월 20일 일요일 오후 12시 30분, 더블트리 바이 힐튼 서울 판교에서 뵙겠습니다.',
-        url: window.location.href
-      };
+      const payload = buildSharePayload();
 
       try {
         if (navigator.share) {
           await navigator.share(payload);
         } else {
-          await copyText(window.location.href);
+          await copyText(payload.url);
         }
       } catch (error) {
         if (error?.name !== 'AbortError') {
@@ -643,6 +675,46 @@ function setupAccounts() {
   });
 }
 
+function buildRsvpPayload(form) {
+  const raw = Object.fromEntries(new FormData(form).entries());
+
+  return {
+    attendance: String(raw.attendance || ''),
+    side: String(raw.side || ''),
+    name: String(raw.name || '').trim(),
+    count: String(raw.count || '1'),
+    meal: String(raw.meal || ''),
+    message: String(raw.message || '').trim(),
+    createdAt: new Date().toISOString(),
+    invitationUrl: getInvitationUrl(),
+    pageUrl: window.location.href,
+    userAgent: navigator.userAgent
+  };
+}
+
+async function submitRsvp(payload) {
+  if (!invitationConfig.rsvp.endpoint) {
+    const drafts = JSON.parse(localStorage.getItem(invitationConfig.rsvp.draftsKey) || '[]');
+    drafts.push(payload);
+    localStorage.setItem(invitationConfig.rsvp.draftsKey, JSON.stringify(drafts));
+    return 'local';
+  }
+
+  const response = await fetch(invitationConfig.rsvp.endpoint, {
+    method: 'POST',
+    mode: invitationConfig.rsvp.mode,
+    cache: 'no-store',
+    // Apps Script 웹앱에 preflight 없이 전달되도록 form payload를 사용합니다.
+    body: new URLSearchParams(payload)
+  });
+
+  if (invitationConfig.rsvp.mode !== 'no-cors' && response && !response.ok) {
+    throw new Error('RSVP request failed');
+  }
+
+  return 'remote';
+}
+
 function setupRsvp() {
   const form = document.getElementById('rsvpForm');
   const submitButton = document.getElementById('rsvpSubmitButton');
@@ -650,34 +722,18 @@ function setupRsvp() {
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const payload = Object.fromEntries(new FormData(form).entries());
-    payload.createdAt = new Date().toISOString();
+    const payload = buildRsvpPayload(form);
 
     submitButton.disabled = true;
     submitButton.textContent = '전송 중...';
 
     try {
-      if (invitationConfig.rsvp.endpoint) {
-        const response = await fetch(invitationConfig.rsvp.endpoint, {
-          method: 'POST',
-          mode: invitationConfig.rsvp.mode,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        if (invitationConfig.rsvp.mode !== 'no-cors' && response && !response.ok) {
-          throw new Error('RSVP request failed');
-        }
-      } else {
-        const drafts = JSON.parse(localStorage.getItem(invitationConfig.rsvp.draftsKey) || '[]');
-        drafts.push(payload);
-        localStorage.setItem(invitationConfig.rsvp.draftsKey, JSON.stringify(drafts));
-      }
-
+      const result = await submitRsvp(payload);
       localStorage.setItem(invitationConfig.rsvp.doneKey, 'true');
       syncRsvpLabel();
       closeModal('rsvpModal');
       form.reset();
-      showToast(invitationConfig.rsvp.endpoint ? '응답이 접수되었습니다.' : '기기 내 임시 저장이 완료되었습니다.');
+      showToast(result === 'remote' ? '응답이 접수되었습니다.' : '기기 내 임시 저장이 완료되었습니다.');
     } catch (error) {
       showToast('응답을 보내지 못했습니다.');
     } finally {

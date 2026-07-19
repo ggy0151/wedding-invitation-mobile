@@ -623,6 +623,30 @@ button {
   margin-top: 18px;
 }
 
+.share-panel {
+  margin-top: 28px;
+  padding: 24px 20px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top, rgba(241, 147, 181, 0.12), transparent 38%),
+    rgba(255, 255, 255, 0.03);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.share-panel strong {
+  display: block;
+  font-family: "Baskerville", "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.share-url {
+  margin: 10px 0 0;
+  word-break: break-all;
+}
+
 .transport-list {
   margin-top: 22px;
   display: grid;
@@ -883,6 +907,11 @@ button {
 
 .rsvp-copy {
   margin: 12px 0 0;
+}
+
+.form-note {
+  margin: 6px 0 0;
+  font-size: 13px;
 }
 
 .lightbox-visual {
