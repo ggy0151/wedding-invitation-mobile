@@ -1,12 +1,14 @@
 :root {
-  --bg: #040404;
-  --bg-soft: #0b0b0b;
+  --bg: #050506;
+  --bg-soft: #0d0e0c;
   --text: #f5efe8;
-  --muted: #d0c4bb;
+  --muted: #d2c8c0;
   --line: rgba(255, 255, 255, 0.12);
-  --line-strong: rgba(241, 147, 181, 0.36);
-  --accent: #f193b5;
-  --accent-strong: #ffd1de;
+  --line-strong: rgba(210, 176, 126, 0.34);
+  --accent: #e6c6cf;
+  --accent-strong: #f8e8de;
+  --olive: #a8b97b;
+  --olive-deep: #6e7b4d;
   --surface: rgba(255, 255, 255, 0.04);
   --surface-soft: rgba(255, 255, 255, 0.06);
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
@@ -26,8 +28,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(241, 147, 181, 0.12), transparent 20%),
-    linear-gradient(180deg, #0a0a0a 0%, #030303 35%, #090909 100%);
+    radial-gradient(circle at top, rgba(230, 198, 207, 0.12), transparent 22%),
+    radial-gradient(circle at 20% 20%, rgba(168, 185, 123, 0.12), transparent 18%),
+    linear-gradient(180deg, #0c0a0b 0%, #050506 40%, #09090b 100%);
   color: var(--text);
   font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
 }
@@ -118,7 +121,8 @@ button {
 .section-title,
 .modal-title,
 .account-title,
-.venue-title {
+.venue-title,
+.calendar-month {
   font-family: "Baskerville", "Times New Roman", serif;
   letter-spacing: -0.03em;
 }
@@ -131,7 +135,6 @@ button {
 
 .reply-actions,
 .cover-actions,
-.share-actions,
 .venue-links,
 .sticky-grid {
   display: flex;
@@ -149,7 +152,7 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
+  min-height: 52px;
   padding: 0 22px;
   border-radius: 999px;
   text-decoration: none;
@@ -163,8 +166,8 @@ button {
 
 .button.primary,
 .button-link.primary {
-  background: var(--accent);
-  color: #1c0c12;
+  background: linear-gradient(135deg, #d4b488, #efe1d1);
+  color: #211410;
 }
 
 .button.outline,
@@ -199,8 +202,8 @@ button {
   overflow: hidden;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.74)),
-    radial-gradient(circle at top, rgba(241, 147, 181, 0.18), transparent 36%),
-    linear-gradient(145deg, #24201f, #0e0e0e 70%);
+    radial-gradient(circle at top, rgba(230, 198, 207, 0.16), transparent 36%),
+    linear-gradient(145deg, #252121, #0e0e0f 70%);
 }
 
 .cover-visual img,
@@ -265,7 +268,9 @@ button {
 .form-note,
 .rsvp-copy,
 .account-copy,
-.footer-copy {
+.footer-copy,
+.countdown-copy,
+.calendar-summary {
   color: var(--muted);
   line-height: 1.8;
 }
@@ -301,7 +306,7 @@ button {
 
 .cover-overline {
   margin: 0 0 10px;
-  color: rgba(255, 209, 222, 0.82);
+  color: rgba(248, 232, 222, 0.82);
   font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -336,34 +341,141 @@ button {
   margin-top: 18px;
 }
 
-.save-date {
-  margin-top: 34px;
+.wedding-day {
+  margin-top: 36px;
 }
 
-.date-pill {
+.wedding-day .section-copy {
+  max-width: 320px;
+}
+
+.calendar-card {
+  margin-top: 28px;
+  padding: 24px 18px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+    linear-gradient(145deg, rgba(168, 185, 123, 0.08), rgba(0, 0, 0, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.calendar-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.calendar-month {
+  display: block;
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.calendar-summary {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+.calendar-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 0 24px;
+  min-width: 74px;
+  min-height: 38px;
+  padding: 0 14px;
   border-radius: 999px;
-  border: 1px solid var(--line-strong);
-  color: var(--accent-strong);
-  font-family: "Baskerville", "Times New Roman", serif;
+  background: rgba(168, 185, 123, 0.18);
+  color: #dce8be;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px 6px;
+}
+
+.calendar-weekday,
+.calendar-cell {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
   font-size: 18px;
 }
 
-.date-lines {
+.calendar-weekday {
+  color: rgba(245, 239, 232, 0.92);
+  font-weight: 500;
+}
+
+.calendar-weekday.is-sunday,
+.calendar-cell.is-sunday {
+  color: #e6b5bc;
+}
+
+.calendar-weekday.is-saturday,
+.calendar-cell.is-saturday {
+  color: #d7d0cb;
+}
+
+.calendar-cell span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+}
+
+.calendar-cell.is-event span {
+  background: linear-gradient(135deg, var(--olive), #c9d7a0);
+  color: #18200d;
+  box-shadow: 0 10px 26px rgba(168, 185, 123, 0.34);
+}
+
+.calendar-cell.is-empty {
+  visibility: hidden;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
   margin-top: 18px;
 }
 
-.date-lines p {
-  margin: 6px 0 0;
+.countdown-card {
+  padding: 22px 10px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow);
 }
 
-.date-main {
+.countdown-card strong {
+  display: block;
+  font-size: clamp(28px, 8vw, 40px);
+  font-weight: 300;
   color: var(--text);
-  font-size: 18px;
+}
+
+.countdown-card span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+}
+
+.countdown-copy {
+  margin: 18px auto 0;
+  max-width: 320px;
+  font-size: 17px;
 }
 
 .envelope-visual,
@@ -479,7 +591,7 @@ button {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 209, 222, 0.84);
+  color: rgba(248, 232, 222, 0.84);
 }
 
 .story-caption strong,
@@ -562,56 +674,70 @@ button {
 
 .map-visual {
   position: relative;
-  aspect-ratio: 1 / 1.15;
+  min-height: 320px;
   background:
-    radial-gradient(circle at top, rgba(241, 147, 181, 0.18), transparent 28%),
+    radial-gradient(circle at top, rgba(230, 198, 207, 0.18), transparent 28%),
     linear-gradient(180deg, #171214, #0f0f10 72%);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
 
-.map-visual::before,
-.map-visual::after {
-  content: "";
+.map-badge {
   position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 12px;
   border-radius: 999px;
-  border: 1px solid rgba(241, 147, 181, 0.14);
+  background: rgba(7, 7, 7, 0.72);
+  backdrop-filter: blur(8px);
 }
 
-.map-visual::before {
-  width: 120px;
-  height: 120px;
-  top: 16px;
-  right: 16px;
+.map-badge small {
+  color: var(--accent-strong);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.map-visual::after {
-  width: 170px;
-  height: 170px;
-  bottom: -50px;
-  left: -40px;
+.map-canvas {
+  min-height: 320px;
 }
 
-.map-copy {
-  position: absolute;
-  inset: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
+.map-fallback {
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
 }
 
-.map-copy strong {
-  font-family: "Snell Roundhand", "Apple Chancery", "Baskerville", serif;
-  font-size: 56px;
+.map-fallback strong {
+  display: block;
+  font-family: "Baskerville", "Times New Roman", serif;
+  color: var(--accent-strong);
+  font-size: 30px;
   font-weight: 400;
-  font-style: italic;
-  color: var(--accent);
 }
 
-.map-copy p {
+.map-fallback p {
   margin: 10px 0 0;
-  max-width: 220px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.map-info-window {
+  padding: 10px 14px;
+  color: #1f1717;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.map-info-window strong {
+  font-family: "Baskerville", "Times New Roman", serif;
+  font-size: 15px;
 }
 
 .venue-address {
@@ -621,30 +747,6 @@ button {
 
 .venue-links {
   margin-top: 18px;
-}
-
-.share-panel {
-  margin-top: 28px;
-  padding: 24px 20px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at top, rgba(241, 147, 181, 0.12), transparent 38%),
-    rgba(255, 255, 255, 0.03);
-  box-shadow: var(--shadow);
-  text-align: left;
-}
-
-.share-panel strong {
-  display: block;
-  font-family: "Baskerville", "Times New Roman", serif;
-  font-size: 24px;
-  font-weight: 400;
-}
-
-.share-url {
-  margin: 10px 0 0;
-  word-break: break-all;
 }
 
 .transport-list {
@@ -740,10 +842,6 @@ button {
   color: var(--accent-strong);
 }
 
-.share-actions {
-  margin-top: 28px;
-}
-
 .notice-copy {
   margin: 24px auto 0;
   max-width: 320px;
@@ -817,9 +915,11 @@ button {
   width: min(100%, var(--content-width));
   max-height: min(92vh, 760px);
   overflow: auto;
-  padding: 24px 20px;
+  padding: 24px 20px 28px;
   border-radius: 28px;
-  background: #0d0c0d;
+  background:
+    radial-gradient(circle at top, rgba(168, 185, 123, 0.1), transparent 20%),
+    #0f0e0e;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
 }
@@ -844,33 +944,58 @@ button {
   border: 1px solid var(--line);
 }
 
-.form-grid {
+.rsvp-copy {
+  margin: 12px 0 0;
+}
+
+.form-note {
+  margin: 6px 0 0;
+  font-size: 13px;
+}
+
+.rsvp-form {
   display: grid;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.rsvp-block {
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .field-label {
   display: block;
-  margin-bottom: 8px;
-  color: var(--muted);
-  font-size: 13px;
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 17px;
+  text-align: left;
 }
 
 .field-input,
 .field-select,
 .field-textarea {
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.05);
   color: var(--text);
 }
 
-.field-textarea {
-  min-height: 120px;
-  resize: vertical;
+.field-input::placeholder,
+.field-textarea::placeholder {
+  color: rgba(210, 200, 192, 0.72);
+}
+
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+  outline: none;
+  border-color: rgba(168, 185, 123, 0.7);
+  box-shadow: 0 0 0 4px rgba(168, 185, 123, 0.12);
 }
 
 .choice-grid {
@@ -893,25 +1018,24 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
+  min-height: 58px;
+  padding: 0 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5efe8;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
 }
 
 .choice-card input:checked + span {
-  border-color: var(--line-strong);
-  background: rgba(241, 147, 181, 0.16);
-  color: var(--accent-strong);
+  border-color: rgba(168, 185, 123, 0.5);
+  background: linear-gradient(135deg, rgba(168, 185, 123, 0.88), rgba(198, 210, 158, 0.92));
+  color: #161b0d;
 }
 
-.rsvp-copy {
-  margin: 12px 0 0;
-}
-
-.form-note {
-  margin: 6px 0 0;
-  font-size: 13px;
+.rsvp-submit {
+  width: 100%;
+  margin-top: 4px;
 }
 
 .lightbox-visual {
@@ -937,7 +1061,7 @@ button {
   max-width: calc(100% - 40px);
   padding: 14px 18px;
   border-radius: 999px;
-  background: rgba(241, 147, 181, 0.94);
+  background: rgba(230, 198, 207, 0.94);
   color: #180b10;
   text-align: center;
   opacity: 0;
@@ -969,8 +1093,12 @@ button {
   }
 
   .reply-actions,
-  .share-actions,
-  .venue-links {
+  .venue-links,
+  .cover-actions {
+    flex-direction: column;
+  }
+
+  .calendar-head {
     flex-direction: column;
   }
 }

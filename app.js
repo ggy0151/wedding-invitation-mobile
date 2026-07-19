@@ -1,11 +1,11 @@
 const invitationConfig = {
   site: {
     liveUrl: 'https://ggy0151.github.io/wedding-invitation-mobile/',
-    shareTitle: '신윤찬 · 김지윤 결혼합니다',
+    shareTitle: '윤찬 ♥ 지윤 결혼합니다',
     shareText: '2026년 12월 20일 일요일 오후 12시 30분, 더블트리 바이 힐튼 서울 판교에서 뵙겠습니다.'
   },
   couple: {
-    groomFull: '신윤찬',
+    groomFull: '유윤찬',
     brideFull: '김지윤',
     groomShort: '윤찬',
     brideShort: '지윤'
@@ -16,8 +16,8 @@ const invitationConfig = {
     dateKorean: '2026년 12월 20일 일요일 오후 12시 30분',
     venueShort: '더블트리 바이 힐튼 서울 판교',
     venueEnglish: 'DOUBLETREE BY HILTON SEOUL PANGYO',
-    address: '상세 주소는 추후 업데이트 예정입니다.',
-    intro: '소중한 분들을 모시고 두 사람의 새로운 시작을 함께 나누고자 합니다.'
+    address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교',
+    intro: '소중한 분들을 모시고 저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
     src: '',
@@ -26,53 +26,60 @@ const invitationConfig = {
   story: [
     {
       label: 'Groom',
-      name: '소년 신윤찬',
-      note: '신랑의 어린 시절 혹은 단독 사진을 이 자리에 넣어주세요.',
+      name: '신랑 유윤찬',
+      note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
       imageLabel: 'Yoon Chan',
       src: ''
     },
     {
       label: 'Bride',
-      name: '소녀 김지윤',
-      note: '신부의 어린 시절 혹은 단독 사진을 이 자리에 넣어주세요.',
+      name: '신부 김지윤',
+      note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
       imageLabel: 'Ji Yoon',
       src: ''
     }
   ],
   letters: [
     {
-      title: '신랑 · 신부의 인사',
-      body: '함께 보낼 날들에 대한 설렘을 안고\n따뜻한 가정을 이루겠습니다.\n저희의 첫걸음을 축복해 주세요.',
-      signature: '윤찬 · 지윤 올림'
+      title: '신랑 신부 인사',
+      body: '함께 보낼 나날들을 약속하며\n소중한 분들께 가장 먼저 소식을 전합니다.\n따스한 축복으로 함께해 주세요.',
+      signature: '윤찬 ♥ 지윤 드림'
     },
     {
-      title: '양가 부모님의 마음',
-      body: '바르게 자라준 두 아이가 결실을 맺습니다.\n귀한 걸음 하셔서 자리를 빛내주시면\n더없는 기쁨으로 간직하겠습니다.',
+      title: '양가 부모님 마음',
+      body: '바르게 자라준 두 아이가 결혼을 맞이합니다.\n귀한 걸음 해주시는 마음을 오래도록 감사히 간직하겠습니다.',
       signature: '양가 부모님 일동'
     }
   ],
   gallery: [
-    { title: 'Main Portrait', caption: '대표 사진이나 첫 장을 넣기 좋은 자리입니다.', imageLabel: 'Photo 01', src: '' },
-    { title: 'A Warm Scene', caption: '잔잔한 감성의 세로 사진이 잘 어울립니다.', imageLabel: 'Photo 02', src: '' },
-    { title: 'Our Mood', caption: '둘만의 분위기가 잘 드러나는 컷을 권장합니다.', imageLabel: 'Photo 03', src: '' },
-    { title: 'The Day', caption: '베뉴, 부케, 반지 컷을 넣어도 예쁘게 이어집니다.', imageLabel: 'Photo 04', src: '' }
+    { title: 'Main Portrait', caption: '대표 사진이나 메인 컷을 넣기 좋은 자리입니다.', imageLabel: 'Photo 01', src: '' },
+    { title: 'A Warm Scene', caption: '잔잔한 감성의 서브 컷을 채워 넣어보세요.', imageLabel: 'Photo 02', src: '' },
+    { title: 'Our Mood', caption: '두 분의 분위기가 잘 느껴지는 장면을 권합니다.', imageLabel: 'Photo 03', src: '' },
+    { title: 'The Day', caption: '베뉴, 부케, 반지 컷 등을 이어서 배치할 수 있습니다.', imageLabel: 'Photo 04', src: '' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
-    hall: '예식 세부 홀 정보 업데이트 예정',
-    badge: 'Pangyo / Seongnam',
-    description: '상세 교통편과 홀 정보는 확인되는 대로 이어서 업데이트하겠습니다.',
-    address: '상세 주소는 추후 업데이트 예정입니다.',
+    hall: '1층 그랜드볼룸',
+    badge: 'Grand Ballroom / 1F',
+    description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다. 실제 위치를 확인할 수 있도록 카카오맵 기반 지도를 연결할 수 있게 준비했습니다.',
+    address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교',
+    roadAddress: '26 Baekhyeon-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13553',
+    placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸',
+    map: {
+      provider: 'kakao',
+      javascriptKey: '',
+      fallbackMessage: '카카오맵 JavaScript 키를 넣으면 이 영역에 실제 지도가 표시됩니다.'
+    },
     transport: [
       {
         label: 'Venue',
-        title: '더블트리 바이 힐튼 서울 판교',
-        copy: '세부 홀 위치와 층수 정보는 확인 후 반영해 주세요.'
+        title: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸',
+        copy: '공식 웨딩 안내 기준으로 Grand Ballroom은 1층에 있습니다.'
       },
       {
         label: 'Guide',
-        title: '교통 정보 업데이트 예정',
-        copy: '주소와 대중교통 안내가 준비되면 이 영역에 바로 연결할 수 있습니다.'
+        title: '경기 성남시 분당구 백현로 26',
+        copy: '호텔 정문 입장 후 1층 그랜드볼룸 방향 안내를 따라 이동하시면 됩니다.'
       }
     ],
     links: [
@@ -86,14 +93,14 @@ const invitationConfig = {
     mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
-    helper: '참석 여부를 가장 먼저 남길 수 있도록 위쪽에서 바로 응답하는 흐름으로 정리했습니다.'
+    helper: '한 분 한 분을 소중히 모실 수 있도록 참석 의사를 미리 남겨주시면 감사하겠습니다.'
   },
   accounts: [
     {
       group: '신랑측 마음 전하실 곳',
-      hint: '신랑 신윤찬',
+      hint: '신랑 유윤찬',
       open: true,
-      items: [{ name: '신랑 신윤찬', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
+      items: [{ name: '신랑 유윤찬', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
     },
     {
       group: '신부측 마음 전하실 곳',
@@ -102,11 +109,12 @@ const invitationConfig = {
       items: [{ name: '신부 김지윤', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
     }
   ],
-  notice: '식장 구조상 생화 화환은 반입이 정중히 제한되오니, 보내주시는 축복의 마음만 감사히 받겠습니다.'
+  notice: '예식 구조상 화환은 정중히 사양하며, 보내주시는 축하의 마음만 감사히 받겠습니다.'
 };
 
 const app = document.querySelector('#app');
 const state = {
+  countdownTimer: null,
   toastTimer: null
 };
 
@@ -143,17 +151,86 @@ function countdownLabel(dateIso) {
   return `D+${Math.abs(diff)}`;
 }
 
-function englishWeddingDate(dateIso) {
+function formatEnglishDate(dateIso) {
   const date = new Date(dateIso);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(date).toUpperCase();
+  const dateText = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
   const hour = date.getHours();
   const minute = String(date.getMinutes()).padStart(2, '0');
   const suffix = hour >= 12 ? 'PM' : 'AM';
   const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-  return `${year}.${month}.${day} ${weekday} ${displayHour}:${minute} ${suffix}`;
+  return `${dateText} | ${suffix} ${displayHour}:${minute}`;
+}
+
+function getCountdownParts(dateIso) {
+  const diff = new Date(dateIso).getTime() - Date.now();
+  const safe = Math.max(diff, 0);
+
+  return {
+    total: diff,
+    days: Math.floor(safe / 86400000),
+    hours: Math.floor((safe % 86400000) / 3600000),
+    minutes: Math.floor((safe % 3600000) / 60000),
+    seconds: Math.floor((safe % 60000) / 1000)
+  };
+}
+
+function buildWeddingCalendar(dateIso) {
+  const date = new Date(dateIso);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const eventDay = date.getDate();
+  const firstDay = new Date(year, month, 1).getDay();
+  const lastDate = new Date(year, month + 1, 0).getDate();
+  const weekdays = ['일', '월', '화', '수', '목', '금', '토'];
+  const cells = [];
+
+  weekdays.forEach((label, index) => {
+    cells.push(`
+      <div class="calendar-weekday ${index === 0 ? 'is-sunday' : ''} ${index === 6 ? 'is-saturday' : ''}">
+        ${label}
+      </div>
+    `);
+  });
+
+  for (let index = 0; index < firstDay; index += 1) {
+    cells.push('<div class="calendar-cell is-empty" aria-hidden="true"></div>');
+  }
+
+  for (let day = 1; day <= lastDate; day += 1) {
+    const cellDate = new Date(year, month, day);
+    const weekday = cellDate.getDay();
+    const classes = ['calendar-cell'];
+
+    if (weekday === 0) classes.push('is-sunday');
+    if (weekday === 6) classes.push('is-saturday');
+    if (day === eventDay) classes.push('is-event');
+
+    cells.push(`<div class="${classes.join(' ')}"><span>${day}</span></div>`);
+  }
+
+  while (cells.length % 7 !== 0) {
+    cells.push('<div class="calendar-cell is-empty" aria-hidden="true"></div>');
+  }
+
+  return `
+    <div class="calendar-card">
+      <div class="calendar-head">
+        <div>
+          <span class="calendar-month">${year}.${String(month + 1).padStart(2, '0')}</span>
+          <p class="calendar-summary">${escapeHtml(invitationConfig.event.dateKorean)}</p>
+        </div>
+        <span class="calendar-pill">${countdownLabel(dateIso)}</span>
+      </div>
+      <div class="calendar-grid">
+        ${cells.join('')}
+      </div>
+    </div>
+  `;
 }
 
 function buildVisual(item, slot, extraClass = '') {
@@ -165,7 +242,7 @@ function buildVisual(item, slot, extraClass = '') {
     <div class="${slot}-placeholder ${extraClass}">
       <div>
         <strong>${escapeHtml(item.imageLabel || item.label || item.title || 'Wedding')}</strong>
-        <p>사진을 연결하면 이 자리에 실제 이미지가 보여집니다.</p>
+        <p>사진을 연결하면 이 자리에 실제 이미지가 표시됩니다.</p>
       </div>
     </div>
   `;
@@ -241,6 +318,17 @@ function buildTransport() {
     .join('');
 }
 
+function buildMapFallback(message) {
+  return `
+    <div class="map-fallback">
+      <div>
+        <strong>${escapeHtml(invitationConfig.venue.placeName)}</strong>
+        <p>${escapeHtml(message)}</p>
+      </div>
+    </div>
+  `;
+}
+
 function buildAccounts() {
   return invitationConfig.accounts
     .map(
@@ -277,12 +365,11 @@ function buildAccounts() {
 }
 
 function renderApp() {
-  const invitationUrl = getInvitationUrl();
   const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
   const rsvpLabel = responded ? '응답 다시 보기' : '참석 여부 남기기';
   const rsvpStatus = invitationConfig.rsvp.endpoint
     ? '응답은 연결된 구글 스프레드시트로 바로 전송됩니다.'
-    : '아직 RSVP 웹앱이 연결되지 않아 이 기기 안에만 임시 저장됩니다.';
+    : '아직 RSVP 웹앱이 연결되지 않아 현재 기기에만 임시 저장됩니다.';
 
   app.innerHTML = `
     <div class="page-shell">
@@ -290,10 +377,9 @@ function renderApp() {
         <section class="section reply-first reveal" id="reply-first">
           <span class="mini-label">RSVP FIRST</span>
           <h2 class="reply-title">참석 여부를 먼저 알려주세요</h2>
-          <p class="reply-copy">좌석과 식사 안내를 위해 가장 먼저 응답을 받을 수 있게 상단에 배치했습니다.</p>
+          <p class="reply-copy">좌석과 식순 안내를 위해 가장 먼저 답변을 받을 수 있도록 상단에 배치했습니다.</p>
           <div class="reply-actions">
             <button class="button primary" type="button" data-open-rsvp>${rsvpLabel}</button>
-            <button class="button outline" type="button" data-share>청첩장 공유</button>
           </div>
         </section>
 
@@ -308,24 +394,41 @@ function renderApp() {
               <div class="cover-copy">
                 <p class="cover-overline">YOU'RE INVITED TO</p>
                 <h1 class="cover-title">Our Wedding</h1>
-                <p class="cover-meta">${englishWeddingDate(invitationConfig.event.dateIso)}</p>
+                <p class="cover-meta">${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
                 <p class="cover-location">${escapeHtml(invitationConfig.event.venueEnglish)}</p>
               </div>
             </div>
           </div>
           <div class="cover-actions">
-            <a class="button-link ghost" href="#venue">오시는 길</a>
+            <a class="button-link ghost" href="#venue">예식장 보기</a>
             <button class="button ghost" type="button" data-scroll="#accounts">마음 전하기</button>
           </div>
         </section>
 
-        <section class="section save-date reveal">
-          <span class="date-pill">SAVE THE DATE · ${countdownLabel(invitationConfig.event.dateIso)}</span>
-          <div class="date-lines">
-            <p class="date-main">${escapeHtml(invitationConfig.event.dateKorean)}</p>
-            <p class="copy">${escapeHtml(invitationConfig.event.venueShort)}</p>
-            <p class="copy">${escapeHtml(invitationConfig.event.address)}</p>
+        <section class="section wedding-day reveal" id="wedding-day">
+          <span class="mini-label">WEDDING DAY</span>
+          <h2 class="section-title">결혼식까지 남은 시간</h2>
+          <p class="section-copy">${escapeHtml(invitationConfig.event.dateKorean)}<br>${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
+          ${buildWeddingCalendar(invitationConfig.event.dateIso)}
+          <div class="countdown-grid" id="countdownGrid">
+            <article class="countdown-card">
+              <strong data-countdown="days">0</strong>
+              <span>DAYS</span>
+            </article>
+            <article class="countdown-card">
+              <strong data-countdown="hours">0</strong>
+              <span>HOURS</span>
+            </article>
+            <article class="countdown-card">
+              <strong data-countdown="minutes">0</strong>
+              <span>MINUTES</span>
+            </article>
+            <article class="countdown-card">
+              <strong data-countdown="seconds">0</strong>
+              <span>SECONDS</span>
+            </article>
           </div>
+          <p class="countdown-copy" id="countdownCopy">${escapeHtml(invitationConfig.couple.groomShort)} ♥ ${escapeHtml(invitationConfig.couple.brideShort)} 결혼식까지 기다리고 있습니다.</p>
         </section>
 
         <section class="section section--spaced reveal">
@@ -336,13 +439,13 @@ function renderApp() {
               <small>${escapeHtml(invitationConfig.event.dateLabel)} · 12:30 PM</small>
             </div>
           </div>
-          <p class="note-script">사랑이 별건 것이 아니라<br>그 사람과 함께 늙어가고 싶은 것입니다.<br>저희의 새로운 계절에<br>따뜻한 걸음으로 함께해 주세요.</p>
+          <p class="note-script">벅찬 행복이 아닌<br>그 사람과 매일을 닮아가는 것이<br>사랑의 새로운 계절이라 믿습니다.<br>따스한 걸음으로 함께해 주세요.</p>
         </section>
 
         <section class="section section--spaced reveal">
           <span class="mini-label">GROWING UP</span>
-          <h2 class="section-title">소중한 시절의 우리</h2>
-          <p class="section-copy">샘플처럼 하나의 흐름 속에서 자연스럽게 사진이 이어지도록 구성했습니다.</p>
+          <h2 class="section-title">함께 자라온 시간</h2>
+          <p class="section-copy">필름처럼 하나의 흐름 안에서 자연스럽게 사진이 이어지도록 구성했습니다.</p>
           <div class="story-strip">
             ${buildStory()}
           </div>
@@ -350,7 +453,7 @@ function renderApp() {
 
         <section class="section section--spaced reveal">
           <span class="mini-label">LETTER</span>
-          <h2 class="section-title">진심을 담은 편지</h2>
+          <h2 class="section-title">전하고 싶은 인사</h2>
           <div class="letter-stack">
             ${buildLetters()}
           </div>
@@ -359,42 +462,26 @@ function renderApp() {
         <section class="section section--spaced reveal" id="gallery">
           <span class="mini-label">GALLERY</span>
           <h2 class="section-title">우리의 장면들</h2>
-          <p class="section-copy">카드 여러 장이 아니라 사진이 쌓이듯 이어지는 흐름으로 바꿨습니다.</p>
+          <p class="section-copy">카드가 아닌 사진의 흐름이 이어지는 느낌으로 배치했습니다.</p>
           <div class="gallery-flow">
             ${buildGallery()}
           </div>
         </section>
 
-        <section class="section section--spaced reveal" id="share">
-          <span class="mini-label">SHARE</span>
-          <h2 class="section-title">청첩장 공유하기</h2>
-          <p class="section-copy">실물 청첩장에 넣을 QR 이미지는 별도 파일로 준비하고, 이 화면에서는 모바일 링크 공유와 주소 복사를 바로 할 수 있게 두었습니다.</p>
-          <div class="share-panel">
-            <strong>공유 주소</strong>
-            <p class="share-url copy">${escapeHtml(invitationUrl)}</p>
-            <div class="share-actions">
-              <button class="button primary" type="button" data-share>청첩장 공유하기</button>
-              <button class="button outline" type="button" data-copy="${escapeHtml(invitationUrl)}">주소 복사하기</button>
-            </div>
-          </div>
-        </section>
-
         <section class="section section--spaced reveal" id="venue">
           <span class="mini-label">LOCATION</span>
-          <h2 class="section-title">오시는 길</h2>
+          <h2 class="section-title">예식장 안내</h2>
           <div class="venue-block">
             <div class="map-visual">
-              <div class="map-copy">
-                <div>
-                  <small>${escapeHtml(invitationConfig.venue.badge)}</small>
-                  <strong>Way</strong>
-                </div>
-                <div>
-                  <p>${escapeHtml(invitationConfig.venue.description)}</p>
-                </div>
+              <div class="map-badge">
+                <small>${escapeHtml(invitationConfig.venue.badge)}</small>
+              </div>
+              <div class="map-canvas" id="venueMap">
+                ${buildMapFallback(invitationConfig.venue.map.fallbackMessage)}
               </div>
             </div>
             <p class="venue-address"><strong class="venue-title">${escapeHtml(invitationConfig.venue.title)}</strong><br>${escapeHtml(invitationConfig.venue.hall)}<br>${escapeHtml(invitationConfig.venue.address)}</p>
+            <p class="section-copy">${escapeHtml(invitationConfig.venue.roadAddress)}</p>
             <div class="venue-links">${buildVenueLinks()}</div>
             <div class="transport-list">${buildTransport()}</div>
           </div>
@@ -415,12 +502,12 @@ function renderApp() {
       <div class="sticky-bar">
         <div class="sticky-grid">
           <button class="sticky-button" type="button" data-open-rsvp>
-            <strong>참석여부</strong>
+            <strong>참석 여부</strong>
             <span>먼저 응답</span>
           </button>
           <button class="sticky-button" type="button" data-scroll="#venue">
-            <strong>오시는 길</strong>
-            <span>장소 보기</span>
+            <strong>예식장 보기</strong>
+            <span>주소 확인</span>
           </button>
           <button class="sticky-button" type="button" data-scroll="#accounts">
             <strong>마음 전하기</strong>
@@ -434,60 +521,62 @@ function renderApp() {
           <div class="modal-head">
             <div>
               <span class="mini-label">RSVP</span>
-              <h2 class="modal-title">참석 여부를 알려주세요</h2>
+              <h2 class="modal-title">참석 의사를 전해주세요</h2>
             </div>
             <button class="close-button" type="button" data-close-modal="rsvpModal" aria-label="닫기">×</button>
           </div>
           <p class="rsvp-copy">${escapeHtml(invitationConfig.rsvp.helper)}</p>
           <p class="form-note">${escapeHtml(rsvpStatus)}</p>
-          <form id="rsvpForm" class="form-grid">
-            <div>
-              <label class="field-label">참석 여부</label>
-              <div class="choice-grid">
-                <label class="choice-card">
-                  <input type="radio" name="attendance" value="참석 가능" checked>
-                  <span>참석 가능</span>
-                </label>
-                <label class="choice-card">
-                  <input type="radio" name="attendance" value="조율 필요">
-                  <span>조율 필요</span>
-                </label>
-              </div>
-            </div>
-            <div>
-              <label class="field-label">어느 쪽 하객이신가요?</label>
+          <form id="rsvpForm" class="rsvp-form">
+            <section class="rsvp-block">
+              <label class="field-label">어느 분의 하객이신가요?</label>
               <div class="choice-grid">
                 <label class="choice-card">
                   <input type="radio" name="side" value="신랑측" required>
-                  <span>신랑측</span>
+                  <span>신랑</span>
                 </label>
                 <label class="choice-card">
                   <input type="radio" name="side" value="신부측" required>
-                  <span>신부측</span>
+                  <span>신부</span>
                 </label>
               </div>
-            </div>
-            <div>
-              <label class="field-label" for="guestName">성함</label>
-              <input class="field-input" id="guestName" name="name" type="text" placeholder="성함을 입력해주세요" required>
-            </div>
-            <div>
-              <label class="field-label" for="guestCount">참석 인원</label>
-              <input class="field-input" id="guestCount" name="count" type="number" min="1" value="1" required>
-            </div>
-            <div>
-              <label class="field-label" for="guestMeal">식사 선호</label>
-              <select class="field-select" id="guestMeal" name="meal" required>
-                <option value="">선택해주세요</option>
-                <option value="육류코스">육류코스</option>
-                <option value="생선코스">생선코스</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="guestMessage">축하 메시지</label>
-              <textarea class="field-textarea" id="guestMessage" name="message" placeholder="남기고 싶은 메시지를 적어주세요"></textarea>
-            </div>
-            <button class="button primary" type="submit" id="rsvpSubmitButton">응답 보내기</button>
+            </section>
+
+            <section class="rsvp-block">
+              <label class="field-label">참석하실 수 있나요?</label>
+              <div class="choice-grid">
+                <label class="choice-card">
+                  <input type="radio" name="attendance" value="참석할게요" required checked>
+                  <span>참석할게요</span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="attendance" value="참석이 어려워요" required>
+                  <span>참석이 어려워요</span>
+                </label>
+              </div>
+            </section>
+
+            <section class="rsvp-block">
+              <label class="field-label" for="guestName">성함이 어떻게 되시나요?</label>
+              <input class="field-input" id="guestName" name="name" type="text" placeholder="성함을 입력해 주세요" required>
+            </section>
+
+            <section class="rsvp-block">
+              <label class="field-label" for="guestPhoneLast4">동명이인 체크를 위한 번호를 알려주세요</label>
+              <input
+                class="field-input"
+                id="guestPhoneLast4"
+                name="phoneLast4"
+                type="text"
+                inputmode="numeric"
+                maxlength="4"
+                pattern="[0-9]{4}"
+                placeholder="핸드폰 번호 뒤 4자리"
+                required
+              >
+            </section>
+
+            <button class="button primary rsvp-submit" type="submit" id="rsvpSubmitButton">체크 완료하기</button>
           </form>
         </div>
       </section>
@@ -584,14 +673,6 @@ function syncRsvpLabel() {
   });
 }
 
-function buildSharePayload() {
-  return {
-    title: invitationConfig.site.shareTitle,
-    text: invitationConfig.site.shareText,
-    url: getInvitationUrl()
-  };
-}
-
 function bindActions() {
   document.querySelectorAll('[data-open-rsvp]').forEach((button) => {
     button.addEventListener('click', () => openModal('rsvpModal'));
@@ -618,24 +699,6 @@ function bindActions() {
     });
   });
 
-  document.querySelectorAll('[data-share]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      const payload = buildSharePayload();
-
-      try {
-        if (navigator.share) {
-          await navigator.share(payload);
-        } else {
-          await copyText(payload.url);
-        }
-      } catch (error) {
-        if (error?.name !== 'AbortError') {
-          showToast('공유를 완료하지 못했습니다.');
-        }
-      }
-    });
-  });
-
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       document.querySelectorAll('.modal.is-open').forEach((modal) => closeModal(modal.id));
@@ -655,7 +718,7 @@ function setupGallery() {
             <div class="lightbox-placeholder">
               <div>
                 <strong>${escapeHtml(item.imageLabel)}</strong>
-                <p>사진을 연결하면 확대 보기에서도 같은 이미지가 보여집니다.</p>
+                <p>사진을 연결하면 확대 보기에서도 같은 이미지가 보입니다.</p>
               </div>
             </div>
           `;
@@ -675,6 +738,128 @@ function setupAccounts() {
   });
 }
 
+function loadExternalScript(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-src="${src}"]`);
+    if (existing) {
+      existing.addEventListener('load', resolve, { once: true });
+      existing.addEventListener('error', reject, { once: true });
+      if (existing.dataset.loaded === 'true') resolve();
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.dataset.src = src;
+    script.addEventListener(
+      'load',
+      () => {
+        script.dataset.loaded = 'true';
+        resolve();
+      },
+      { once: true }
+    );
+    script.addEventListener('error', reject, { once: true });
+    document.head.appendChild(script);
+  });
+}
+
+function setVenueMapFallback(message) {
+  const mapNode = document.getElementById('venueMap');
+  if (!mapNode) return;
+  mapNode.innerHTML = buildMapFallback(message);
+}
+
+async function setupVenueMap() {
+  const mapNode = document.getElementById('venueMap');
+  if (!mapNode) return;
+
+  const { map } = invitationConfig.venue;
+  if (map.provider !== 'kakao') {
+    setVenueMapFallback('현재는 카카오맵 연동만 준비되어 있습니다.');
+    return;
+  }
+
+  if (!map.javascriptKey) {
+    setVenueMapFallback('카카오맵 JavaScript 키를 invitationConfig.venue.map.javascriptKey에 넣으면 실제 지도가 표시됩니다.');
+    return;
+  }
+
+  const sdkUrl = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${encodeURIComponent(map.javascriptKey)}&libraries=services`;
+
+  try {
+    await loadExternalScript(sdkUrl);
+  } catch (error) {
+    setVenueMapFallback('카카오맵 SDK를 불러오지 못했습니다. 도메인 등록과 키 설정을 확인해 주세요.');
+    return;
+  }
+
+  if (!window.kakao?.maps?.load || !window.kakao?.maps?.services?.Geocoder) {
+    setVenueMapFallback('카카오맵 SDK 초기화에 실패했습니다.');
+    return;
+  }
+
+  window.kakao.maps.load(() => {
+    const geocoder = new window.kakao.maps.services.Geocoder();
+
+    geocoder.addressSearch(invitationConfig.venue.address, (result, status) => {
+      if (status !== window.kakao.maps.services.Status.OK || !result?.length) {
+        setVenueMapFallback('주소를 지도 좌표로 찾지 못했습니다. 주소 표기를 다시 확인해 주세요.');
+        return;
+      }
+
+      const coords = new window.kakao.maps.LatLng(Number(result[0].y), Number(result[0].x));
+      const kakaoMap = new window.kakao.maps.Map(mapNode, {
+        center: coords,
+        level: 4
+      });
+
+      const marker = new window.kakao.maps.Marker({
+        map: kakaoMap,
+        position: coords
+      });
+
+      const infoWindow = new window.kakao.maps.InfoWindow({
+        content: `
+          <div class="map-info-window">
+            <strong>${escapeHtml(invitationConfig.venue.title)}</strong><br>
+            <span>${escapeHtml(invitationConfig.venue.hall)}</span>
+          </div>
+        `
+      });
+
+      infoWindow.open(kakaoMap, marker);
+    });
+  });
+}
+
+function updateCountdownDisplay() {
+  const parts = getCountdownParts(invitationConfig.event.dateIso);
+  const fields = ['days', 'hours', 'minutes', 'seconds'];
+
+  fields.forEach((key) => {
+    const node = document.querySelector(`[data-countdown="${key}"]`);
+    if (node) node.textContent = String(parts[key]).padStart(key === 'days' ? 1 : 2, '0');
+  });
+
+  const message = document.getElementById('countdownCopy');
+  if (!message) return;
+
+  if (parts.total > 0) {
+    message.textContent = `${invitationConfig.couple.groomShort} ♥ ${invitationConfig.couple.brideShort} 결혼식까지 ${parts.days}일 남았습니다.`;
+    return;
+  }
+
+  message.textContent = `${invitationConfig.couple.groomShort} ♥ ${invitationConfig.couple.brideShort} 결혼식이 시작되었습니다.`;
+}
+
+function setupCountdown() {
+  window.clearInterval(state.countdownTimer);
+  updateCountdownDisplay();
+  state.countdownTimer = window.setInterval(updateCountdownDisplay, 1000);
+}
+
 function buildRsvpPayload(form) {
   const raw = Object.fromEntries(new FormData(form).entries());
 
@@ -682,9 +867,7 @@ function buildRsvpPayload(form) {
     attendance: String(raw.attendance || ''),
     side: String(raw.side || ''),
     name: String(raw.name || '').trim(),
-    count: String(raw.count || '1'),
-    meal: String(raw.meal || ''),
-    message: String(raw.message || '').trim(),
+    phoneLast4: String(raw.phoneLast4 || '').trim(),
     createdAt: new Date().toISOString(),
     invitationUrl: getInvitationUrl(),
     pageUrl: window.location.href,
@@ -704,7 +887,6 @@ async function submitRsvp(payload) {
     method: 'POST',
     mode: invitationConfig.rsvp.mode,
     cache: 'no-store',
-    // Apps Script 웹앱에 preflight 없이 전달되도록 form payload를 사용합니다.
     body: new URLSearchParams(payload)
   });
 
@@ -733,12 +915,14 @@ function setupRsvp() {
       syncRsvpLabel();
       closeModal('rsvpModal');
       form.reset();
-      showToast(result === 'remote' ? '응답이 접수되었습니다.' : '기기 내 임시 저장이 완료되었습니다.');
+      const defaultAttendance = form.querySelector('input[name="attendance"][value="참석할게요"]');
+      if (defaultAttendance) defaultAttendance.checked = true;
+      showToast(result === 'remote' ? '응답이 정상 접수되었습니다.' : '현재 기기에 임시 저장되었습니다.');
     } catch (error) {
       showToast('응답을 보내지 못했습니다.');
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = '응답 보내기';
+      submitButton.textContent = '체크 완료하기';
     }
   });
 }
@@ -749,6 +933,8 @@ function mount() {
   bindActions();
   setupGallery();
   setupAccounts();
+  setupVenueMap();
+  setupCountdown();
   setupRsvp();
   syncRsvpLabel();
 }
