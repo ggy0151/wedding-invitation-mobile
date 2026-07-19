@@ -53,8 +53,8 @@ const invitationConfig = {
   ],
   gallery: [
     { title: 'Groom Family', caption: '신랑 가족의 따뜻한 추억이 담긴 장면입니다.', imageLabel: 'Photo 01', src: './assets/groom-family.jpg' },
-    { title: 'A Warm Scene', caption: '잔잔한 감성의 서브 컷을 채워 넣어보세요.', imageLabel: 'Photo 02', src: '' },
-    { title: 'Our Mood', caption: '두 분의 분위기가 잘 느껴지는 장면을 권합니다.', imageLabel: 'Photo 03', src: '' },
+    { title: 'A Warm Scene', caption: '아치형 프레임 안에서 두 분의 분위기가 자연스럽게 담긴 장면입니다.', imageLabel: 'Photo 02', src: './assets/wedding-photo-02.jpg' },
+    { title: 'Our Mood', caption: '신부의 부드러운 무드가 잘 살아나는 웨딩 포트레이트입니다.', imageLabel: 'Photo 03', src: './assets/wedding-photo-bride-01.jpg' },
     { title: 'The Day', caption: '베뉴, 부케, 반지 컷 등을 이어서 배치할 수 있습니다.', imageLabel: 'Photo 04', src: '' }
   ],
   venue: {
@@ -116,13 +116,13 @@ const invitationConfig = {
       group: '신랑측 마음 전하실 곳',
       hint: '신랑 신윤찬',
       open: true,
-      items: [{ name: '신랑 신윤찬', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
+      items: [{ name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' }]
     },
     {
       group: '신부측 마음 전하실 곳',
       hint: '신부 김지윤',
       open: false,
-      items: [{ name: '신부 김지윤', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
+      items: [{ name: '신부 김지윤', bank: '신한은행', number: '110455998600' }]
     }
   ],
   notice: '예식 구조상 화환은 정중히 사양하며, 보내주시는 축하의 마음만 감사히 받겠습니다.'
@@ -273,7 +273,6 @@ function buildStory() {
           <div class="story-caption">
             <small>${escapeHtml(item.label)}</small>
             <strong>${escapeHtml(item.name)}</strong>
-            <p class="section-copy">${escapeHtml(item.note)}</p>
           </div>
         </article>
       `
@@ -305,7 +304,6 @@ function buildGallery() {
             <div class="gallery-caption">
               <small>Scene ${String(index + 1).padStart(2, '0')}</small>
               <strong>${escapeHtml(item.title)}</strong>
-              <p class="section-copy">${escapeHtml(item.caption)}</p>
             </div>
           </div>
         </button>
@@ -425,7 +423,11 @@ function renderApp() {
           <span class="mini-label">SAVE THE DATE</span>
           <h2 class="wedding-day-title">${escapeHtml(invitationConfig.event.dateKorean)}</h2>
           <p class="wedding-day-copy">${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
-          <p class="wedding-day-place">${escapeHtml(invitationConfig.event.venueShort)} · ${escapeHtml(invitationConfig.venue.hall)}</p>
+          <p class="wedding-day-place">
+            <span class="wedding-day-place-main">${escapeHtml(invitationConfig.event.venueShort)}</span>
+            <span class="wedding-day-place-dot">·</span>
+            <span class="wedding-day-place-hall">${escapeHtml(invitationConfig.venue.hall)}</span>
+          </p>
           <p class="wedding-day-address">${escapeHtml(invitationConfig.event.address)}</p>
           ${buildWeddingCalendar(invitationConfig.event.dateIso)}
           <div class="countdown-grid" id="countdownGrid">
@@ -463,7 +465,6 @@ function renderApp() {
         <section class="section section--spaced reveal">
           <span class="mini-label">GROWING UP</span>
           <h2 class="section-title">함께 자라온 시간</h2>
-          <p class="section-copy">필름처럼 하나의 흐름 안에서 자연스럽게 사진이 이어지도록 구성했습니다.</p>
           <div class="story-strip">
             ${buildStory()}
           </div>
@@ -480,7 +481,6 @@ function renderApp() {
         <section class="section section--spaced reveal" id="gallery">
           <span class="mini-label">GALLERY</span>
           <h2 class="section-title">우리의 장면들</h2>
-          <p class="section-copy">카드가 아닌 사진의 흐름이 이어지는 느낌으로 배치했습니다.</p>
           <div class="gallery-flow">
             ${buildGallery()}
           </div>
