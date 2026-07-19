@@ -5,7 +5,7 @@ const invitationConfig = {
     shareText: '2026년 12월 20일 일요일 오후 12시 30분, 더블트리 바이 힐튼 서울 판교에서 뵙겠습니다.'
   },
   couple: {
-    groomFull: '유윤찬',
+    groomFull: '신윤찬',
     brideFull: '김지윤',
     groomShort: '윤찬',
     brideShort: '지윤'
@@ -26,7 +26,7 @@ const invitationConfig = {
   story: [
     {
       label: 'Groom',
-      name: '신랑 유윤찬',
+      name: '신랑 신윤찬',
       note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
       imageLabel: 'Yoon Chan',
       src: ''
@@ -67,7 +67,7 @@ const invitationConfig = {
     placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     map: {
       provider: 'kakao',
-      javascriptKey: '',
+      javascriptKey: 'de98b2bb05ceb24f4e9d304652a40ecb',
       fallbackMessage: '카카오맵 JavaScript 키를 넣으면 이 영역에 실제 지도가 표시됩니다.'
     },
     transport: [
@@ -99,9 +99,9 @@ const invitationConfig = {
   accounts: [
     {
       group: '신랑측 마음 전하실 곳',
-      hint: '신랑 유윤찬',
+      hint: '신랑 신윤찬',
       open: true,
-      items: [{ name: '신랑 유윤찬', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
+      items: [{ name: '신랑 신윤찬', bank: '계좌 정보 업데이트 예정', number: '추후 입력 예정' }]
     },
     {
       group: '신부측 마음 전하실 곳',
