@@ -20,7 +20,7 @@ const invitationConfig = {
     intro: '소중한 분들을 모시고 저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
-    src: '',
+    src: './assets/cover-wedding-photo-01.jpg',
     label: 'Wedding Portrait'
   },
   story: [
@@ -29,14 +29,14 @@ const invitationConfig = {
       name: '신랑 신윤찬',
       note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
       imageLabel: 'Yoon Chan',
-      src: ''
+      src: './assets/groom-childhood.jpg'
     },
     {
       label: 'Bride',
       name: '신부 김지윤',
       note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
       imageLabel: 'Ji Yoon',
-      src: ''
+      src: './assets/bride-childhood.jpg'
     }
   ],
   letters: [
@@ -52,7 +52,7 @@ const invitationConfig = {
     }
   ],
   gallery: [
-    { title: 'Main Portrait', caption: '대표 사진이나 메인 컷을 넣기 좋은 자리입니다.', imageLabel: 'Photo 01', src: '' },
+    { title: 'Groom Family', caption: '신랑 가족의 따뜻한 추억이 담긴 장면입니다.', imageLabel: 'Photo 01', src: './assets/groom-family.jpg' },
     { title: 'A Warm Scene', caption: '잔잔한 감성의 서브 컷을 채워 넣어보세요.', imageLabel: 'Photo 02', src: '' },
     { title: 'Our Mood', caption: '두 분의 분위기가 잘 느껴지는 장면을 권합니다.', imageLabel: 'Photo 03', src: '' },
     { title: 'The Day', caption: '베뉴, 부케, 반지 컷 등을 이어서 배치할 수 있습니다.', imageLabel: 'Photo 04', src: '' }
@@ -72,14 +72,29 @@ const invitationConfig = {
     },
     transport: [
       {
-        label: 'Venue',
-        title: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
-        copy: '공식 웨딩 안내 기준으로 Grand Ballroom Hall은 1층에 있습니다.'
+        label: 'Bus',
+        title: '220, 310, 370, 누리4, 117 (마을)',
+        copy: '버스 이용 시 위 노선을 통해 호텔 인근 정류장으로 오실 수 있습니다.'
       },
       {
-        label: 'Guide',
-        title: '경기 성남시 분당구 백현로 26',
-        copy: '호텔 정문 입장 후 1층 그랜드볼룸홀 방향 안내를 따라 이동하시면 됩니다.'
+        label: 'Subway',
+        title: '수인분당선 서현역 3번 출구',
+        copy: '지하철 이용 시 서현역 3번 출구에서 이동하시면 됩니다.'
+      },
+      {
+        label: 'Parking',
+        title: '웨딩홀 건물 지하 및 야외 주차 이용 가능',
+        copy: '건물 지하 주차장과 야외 주차장을 모두 이용하실 수 있습니다.'
+      },
+      {
+        label: 'Shuttle',
+        title: '정자역 2번 출구',
+        copy: '11:30 ~ 14:30 15분 간격 운행 (25인승)'
+      },
+      {
+        label: 'Address',
+        title: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
+        copy: '주소: 경기 성남시 분당구 백현로 26'
       }
     ],
     links: [
