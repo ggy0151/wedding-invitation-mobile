@@ -16,7 +16,7 @@ const invitationConfig = {
     dateKorean: '2026년 12월 20일 일요일 오후 12시 30분',
     venueShort: '더블트리 바이 힐튼 서울 판교',
     venueEnglish: 'DOUBLETREE BY HILTON SEOUL PANGYO',
-    address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교',
+    address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     intro: '소중한 분들을 모시고 저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
@@ -59,12 +59,12 @@ const invitationConfig = {
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
-    hall: '1층 그랜드볼룸',
+    hall: '1층 그랜드볼룸홀',
     badge: 'Grand Ballroom / 1F',
     description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다. 실제 위치를 확인할 수 있도록 카카오맵 기반 지도를 연결할 수 있게 준비했습니다.',
     address: '경기 성남시 분당구 백현로 26 더블트리 바이 힐튼 서울 판교',
     roadAddress: '26 Baekhyeon-ro, Bundang-gu, Seongnam-si, Gyeonggi-do 13553',
-    placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸',
+    placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     map: {
       provider: 'kakao',
       javascriptKey: '',
@@ -73,13 +73,13 @@ const invitationConfig = {
     transport: [
       {
         label: 'Venue',
-        title: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸',
-        copy: '공식 웨딩 안내 기준으로 Grand Ballroom은 1층에 있습니다.'
+        title: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
+        copy: '공식 웨딩 안내 기준으로 Grand Ballroom Hall은 1층에 있습니다.'
       },
       {
         label: 'Guide',
         title: '경기 성남시 분당구 백현로 26',
-        copy: '호텔 정문 입장 후 1층 그랜드볼룸 방향 안내를 따라 이동하시면 됩니다.'
+        copy: '호텔 정문 입장 후 1층 그랜드볼룸홀 방향 안내를 따라 이동하시면 됩니다.'
       }
     ],
     links: [
@@ -93,7 +93,8 @@ const invitationConfig = {
     mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
-    helper: '한 분 한 분을 소중히 모실 수 있도록 참석 의사를 미리 남겨주시면 감사하겠습니다.'
+    helper: '한 분 한 분을 소중히 모실 수 있도록 참석 의사를 미리 남겨주시면 감사하겠습니다.',
+    mealNotice: '식사는 동시 예식으로 참석 인원수에 맞게 준비됩니다.'
   },
   accounts: [
     {
@@ -406,9 +407,11 @@ function renderApp() {
         </section>
 
         <section class="section wedding-day reveal" id="wedding-day">
-          <span class="mini-label">WEDDING DAY</span>
-          <h2 class="section-title">결혼식까지 남은 시간</h2>
-          <p class="section-copy">${escapeHtml(invitationConfig.event.dateKorean)}<br>${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
+          <span class="mini-label">SAVE THE DATE</span>
+          <h2 class="wedding-day-title">${escapeHtml(invitationConfig.event.dateKorean)}</h2>
+          <p class="wedding-day-copy">${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
+          <p class="wedding-day-place">${escapeHtml(invitationConfig.event.venueShort)} · ${escapeHtml(invitationConfig.venue.hall)}</p>
+          <p class="wedding-day-address">${escapeHtml(invitationConfig.event.address)}</p>
           ${buildWeddingCalendar(invitationConfig.event.dateIso)}
           <div class="countdown-grid" id="countdownGrid">
             <article class="countdown-card">
@@ -432,14 +435,14 @@ function renderApp() {
         </section>
 
         <section class="section section--spaced reveal">
-          <div class="envelope-visual" aria-hidden="true">
-            <div class="envelope-card">
-              <small>YOU'RE INVITED TO</small>
-              <strong>Our Wedding</strong>
-              <small>${escapeHtml(invitationConfig.event.dateLabel)} · 12:30 PM</small>
-            </div>
+          <div class="wedding-quote-card">
+            <small>INVITATION NOTE</small>
+            <p class="wedding-quote">
+              사랑이 별건 것이 아니라<br>
+              그 사람과 함께 늙어가고 싶은 마음이라고 믿습니다.<br>
+              저희의 새로운 계절에 따뜻한 걸음으로 함께해 주세요.
+            </p>
           </div>
-          <p class="note-script">벅찬 행복이 아닌<br>그 사람과 매일을 닮아가는 것이<br>사랑의 새로운 계절이라 믿습니다.<br>따스한 걸음으로 함께해 주세요.</p>
         </section>
 
         <section class="section section--spaced reveal">
@@ -562,7 +565,13 @@ function renderApp() {
             </section>
 
             <section class="rsvp-block">
-              <label class="field-label" for="guestPhoneLast4">동명이인 체크를 위한 번호를 알려주세요</label>
+              <label class="field-label" for="guestCount">참석 인원을 알려주세요</label>
+              <input class="field-input" id="guestCount" name="count" type="number" inputmode="numeric" min="1" step="1" value="1" required>
+              <p class="rsvp-inline-note">${escapeHtml(invitationConfig.rsvp.mealNotice)}</p>
+            </section>
+
+            <section class="rsvp-block">
+              <label class="field-label" for="guestPhoneLast4">동명이인 체크를 위한 전화번호 뒷 4자리를 입력해 주세요</label>
               <input
                 class="field-input"
                 id="guestPhoneLast4"
@@ -867,6 +876,7 @@ function buildRsvpPayload(form) {
     attendance: String(raw.attendance || ''),
     side: String(raw.side || ''),
     name: String(raw.name || '').trim(),
+    count: String(raw.count || '1').trim(),
     phoneLast4: String(raw.phoneLast4 || '').trim(),
     createdAt: new Date().toISOString(),
     invitationUrl: getInvitationUrl(),

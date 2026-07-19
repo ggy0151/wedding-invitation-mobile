@@ -345,18 +345,46 @@ button {
   margin-top: 36px;
 }
 
-.wedding-day .section-copy {
-  max-width: 320px;
+.wedding-day-title {
+  margin: 18px 0 0;
+  font-family: "Baskerville", "Times New Roman", serif;
+  font-size: clamp(30px, 7.2vw, 40px);
+  font-weight: 400;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+
+.wedding-day-copy,
+.wedding-day-place,
+.wedding-day-address {
+  margin: 10px auto 0;
+  max-width: 330px;
+  color: var(--muted);
+}
+
+.wedding-day-copy {
+  font-size: 16px;
+}
+
+.wedding-day-place {
+  color: var(--text);
+  font-size: 17px;
+}
+
+.wedding-day-address {
+  font-size: 14px;
+  line-height: 1.8;
 }
 
 .calendar-card {
   margin-top: 28px;
-  padding: 24px 18px;
+  padding: 24px 18px 22px;
   border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
-    linear-gradient(145deg, rgba(168, 185, 123, 0.08), rgba(0, 0, 0, 0.08));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+    radial-gradient(circle at top right, rgba(230, 198, 207, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03)),
+    linear-gradient(145deg, rgba(168, 185, 123, 0.09), rgba(0, 0, 0, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: var(--shadow);
   text-align: left;
 }
@@ -371,14 +399,14 @@ button {
 
 .calendar-month {
   display: block;
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 400;
   color: var(--text);
 }
 
 .calendar-summary {
   margin: 6px 0 0;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .calendar-pill {
@@ -405,7 +433,7 @@ button {
 .calendar-cell {
   display: grid;
   place-items: center;
-  min-height: 44px;
+  min-height: 46px;
   font-size: 18px;
 }
 
@@ -445,21 +473,21 @@ button {
 .countdown-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 18px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 .countdown-card {
   padding: 22px 10px 18px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.09);
   box-shadow: var(--shadow);
 }
 
 .countdown-card strong {
   display: block;
-  font-size: clamp(28px, 8vw, 40px);
+  font-size: clamp(30px, 8vw, 42px);
   font-weight: 300;
   color: var(--text);
 }
@@ -473,12 +501,13 @@ button {
 }
 
 .countdown-copy {
-  margin: 18px auto 0;
-  max-width: 320px;
-  font-size: 17px;
+  margin: 20px auto 0;
+  max-width: 340px;
+  font-size: 18px;
+  line-height: 1.75;
 }
 
-.envelope-visual,
+.wedding-quote-card,
 .story-strip,
 .map-visual,
 .gallery-slide,
@@ -487,75 +516,32 @@ button {
   border-radius: 24px;
 }
 
-.envelope-visual {
-  position: relative;
-  width: 206px;
-  aspect-ratio: 1.45;
-  margin: 28px auto 0;
+.wedding-quote-card {
+  margin-top: 6px;
+  padding: 26px 24px;
+  border-radius: 28px;
   background:
-    linear-gradient(145deg, #f9f5f0, #ece3d8 60%, #d8ccc0),
-    #f8f3ee;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
+    linear-gradient(145deg, rgba(230, 198, 207, 0.06), rgba(0, 0, 0, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: var(--shadow);
 }
 
-.envelope-visual::before,
-.envelope-visual::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.envelope-visual::before {
-  top: 0;
-  width: 100%;
-  height: 58%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(220, 208, 197, 0.8));
-  clip-path: polygon(0 0, 100% 0, 50% 80%);
-}
-
-.envelope-visual::after {
-  bottom: 0;
-  width: 100%;
-  height: 62%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(236, 227, 216, 0.95));
-  clip-path: polygon(0 100%, 50% 22%, 100% 100%);
-}
-
-.envelope-card {
-  position: absolute;
-  inset: 18px;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.86);
-  color: #211515;
-}
-
-.envelope-card small {
+.wedding-quote-card small {
+  display: block;
+  color: rgba(248, 232, 222, 0.84);
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.envelope-card strong {
-  font-family: "Snell Roundhand", "Apple Chancery", "Baskerville", serif;
-  font-size: 34px;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.note-script {
-  margin: 30px auto 0;
-  max-width: 320px;
-  font-family: "Nanum Pen Script", "Apple SD Gothic Neo", cursive;
-  font-size: 33px;
-  line-height: 1.58;
-  color: #f4eee8;
+.wedding-quote {
+  margin: 16px 0 0;
+  font-family: "Baskerville", "Times New Roman", serif;
+  font-size: clamp(24px, 6.6vw, 32px);
+  line-height: 1.6;
+  letter-spacing: -0.03em;
+  color: var(--text);
 }
 
 .story-strip {
@@ -946,6 +932,14 @@ button {
 
 .rsvp-copy {
   margin: 12px 0 0;
+}
+
+.rsvp-inline-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: left;
 }
 
 .form-note {
