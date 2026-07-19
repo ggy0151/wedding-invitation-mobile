@@ -67,7 +67,7 @@ const invitationConfig = {
     placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     map: {
       provider: 'kakao',
-      javascriptKey: 'de98b2bb05ceb24f4e9d304652a40ecb',
+      javascriptKey: '57647e2869ea34de2c8417069d9dccca',
       allowedOrigins: [
         'https://ggy0151.github.io',
         'http://localhost:3000',
