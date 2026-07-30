@@ -947,10 +947,19 @@ function setupCountdown() {
   state.countdownTimer = window.setInterval(updateCountdownDisplay, 1000);
 }
 
+function createSubmissionId() {
+  if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+    return window.crypto.randomUUID();
+  }
+
+  return `rsvp-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 function buildRsvpPayload(form) {
   const raw = Object.fromEntries(new FormData(form).entries());
 
   return {
+    submissionId: createSubmissionId(),
     attendance: String(raw.attendance || ''),
     side: String(raw.side || ''),
     name: String(raw.name || '').trim(),
@@ -996,10 +1005,21 @@ function applyRsvpResponse(form, payload) {
 }
 
 async function submitRsvp(payload) {
+  console.info('[RSVP] submit:start', {
+    submissionId: payload.submissionId,
+    endpoint: invitationConfig.rsvp.endpoint,
+    attendance: payload.attendance,
+    side: payload.side,
+    count: payload.count
+  });
+
   if (!invitationConfig.rsvp.endpoint) {
     const drafts = JSON.parse(localStorage.getItem(invitationConfig.rsvp.draftsKey) || '[]');
     drafts.push(payload);
     localStorage.setItem(invitationConfig.rsvp.draftsKey, JSON.stringify(drafts));
+    console.info('[RSVP] submit:stored-locally', {
+      submissionId: payload.submissionId
+    });
     return 'local';
   }
 
@@ -1008,6 +1028,15 @@ async function submitRsvp(payload) {
     mode: invitationConfig.rsvp.mode,
     cache: 'no-store',
     body: new URLSearchParams(payload)
+  });
+
+  console.info('[RSVP] submit:request-complete', {
+    submissionId: payload.submissionId,
+    responseType: response.type,
+    status: response.status,
+    note: invitationConfig.rsvp.mode === 'no-cors'
+      ? 'no-cors 응답은 브라우저에서 본문을 확인할 수 없습니다.'
+      : ''
   });
 
   if (invitationConfig.rsvp.mode !== 'no-cors' && response && !response.ok) {
@@ -1040,6 +1069,10 @@ function setupRsvp() {
       applyRsvpResponse(form, payload);
       showToast(result === 'remote' ? '응답이 정상 접수되었습니다.' : '현재 기기에 임시 저장되었습니다.');
     } catch (error) {
+      console.error('[RSVP] submit:failed', {
+        submissionId: payload.submissionId,
+        error
+      });
       showToast('응답을 보내지 못했습니다.');
     } finally {
       submitButton.disabled = false;
