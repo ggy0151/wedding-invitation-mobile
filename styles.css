@@ -885,9 +885,10 @@ button {
   margin-top: 26px;
 }
 
-.venue-hero {
+.map-visual {
   position: relative;
   min-height: 320px;
+  overflow: hidden;
   background:
     radial-gradient(circle at top, rgba(230, 198, 207, 0.18), transparent 28%),
     linear-gradient(180deg, #171214, #0f0f10 72%);
@@ -895,7 +896,7 @@ button {
   box-shadow: var(--shadow);
 }
 
-.venue-badge {
+.map-badge {
   position: absolute;
   top: 18px;
   left: 18px;
@@ -909,7 +910,7 @@ button {
   backdrop-filter: blur(8px);
 }
 
-.venue-badge small {
+.map-badge small {
   color: var(--accent-strong);
   font-family: var(--font-body);
   font-weight: 500;
@@ -917,7 +918,11 @@ button {
   text-transform: uppercase;
 }
 
-.venue-hero-copy {
+.map-canvas {
+  min-height: 320px;
+}
+
+.map-fallback {
   min-height: 320px;
   display: grid;
   place-items: center;
@@ -925,7 +930,7 @@ button {
   text-align: center;
 }
 
-.venue-hero-copy strong {
+.map-fallback strong {
   display: block;
   font-family: var(--font-display);
   color: var(--accent-strong);
@@ -934,10 +939,24 @@ button {
   letter-spacing: -0.02em;
 }
 
-.venue-hero-copy p {
+.map-fallback p {
   margin: 10px 0 0;
   color: var(--muted);
   line-height: 1.8;
+}
+
+.map-info-window {
+  min-width: 190px;
+  padding: 10px 14px;
+  color: #1f1717;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.map-info-window strong {
+  font-family: var(--font-display);
+  font-size: 15px;
 }
 
 .venue-address {

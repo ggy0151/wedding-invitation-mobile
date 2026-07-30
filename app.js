@@ -97,6 +97,23 @@ const invitationConfig = {
     description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다.\n아래 내비게이션 버튼으로 바로 길안내를 열 수 있습니다.',
     address: '경기 성남시 분당구 백현로 26',
     addressDetail: '더블트리 바이 힐튼 서울 판교',
+    placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
+    map: {
+      provider: 'kakao',
+      javascriptKey: 'de98b2bb05ceb24f4e9d304652a40ecb',
+      allowedOrigins: [
+        'https://ggy0151.github.io',
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'http://localhost:5500',
+        'http://127.0.0.1:5500',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+        'http://localhost:8080',
+        'http://127.0.0.1:8080'
+      ],
+      fallbackMessage: '카카오맵을 불러오는 중입니다.'
+    },
     transport: [
       {
         label: '버스 Bus',
@@ -391,6 +408,17 @@ function buildVenueAddress() {
   `;
 }
 
+function buildMapFallback(message) {
+  return `
+    <div class="map-fallback">
+      <div>
+        <strong>${escapeHtml(invitationConfig.venue.placeName)}</strong>
+        <p>${escapeHtml(message)}</p>
+      </div>
+    </div>
+  `;
+}
+
 function buildAccounts() {
   return invitationConfig.accounts
     .map(
@@ -557,13 +585,12 @@ function renderApp() {
           <span class="mini-label">LOCATION</span>
           <h2 class="section-title">예식장 안내</h2>
           <div class="venue-block">
-            <div class="venue-hero">
-              <div class="venue-badge">
+            <div class="map-visual">
+              <div class="map-badge">
                 <small>${escapeHtml(invitationConfig.venue.badge)}</small>
               </div>
-              <div class="venue-hero-copy">
-                <strong>Way to the Wedding</strong>
-                <p>${nl2br(invitationConfig.venue.description)}</p>
+              <div class="map-canvas" id="venueMap">
+                ${buildMapFallback(invitationConfig.venue.map.fallbackMessage)}
               </div>
             </div>
             <p class="venue-address">${buildVenueAddress()}</p>
@@ -932,6 +959,131 @@ function setupAccounts() {
   });
 }
 
+function loadExternalScript(src) {
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`script[data-src="${src}"]`);
+    if (existing) {
+      existing.addEventListener('load', resolve, { once: true });
+      existing.addEventListener(
+        'error',
+        () => reject(new Error(`Failed to load external script: ${src}`)),
+        { once: true }
+      );
+      if (existing.dataset.loaded === 'true') resolve();
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.dataset.src = src;
+    script.addEventListener(
+      'load',
+      () => {
+        script.dataset.loaded = 'true';
+        resolve();
+      },
+      { once: true }
+    );
+    script.addEventListener(
+      'error',
+      () => reject(new Error(`Failed to load external script: ${src}`)),
+      { once: true }
+    );
+    document.head.appendChild(script);
+  });
+}
+
+function setVenueMapFallback(message) {
+  const mapNode = document.getElementById('venueMap');
+  if (!mapNode) return;
+  mapNode.innerHTML = buildMapFallback(message);
+}
+
+async function setupVenueMap() {
+  const mapNode = document.getElementById('venueMap');
+  if (!mapNode) return;
+
+  const { map } = invitationConfig.venue;
+  const currentOrigin = window.location.origin;
+
+  if (map.provider !== 'kakao') {
+    setVenueMapFallback('현재는 카카오맵 연동만 준비되어 있습니다.');
+    return;
+  }
+
+  if (window.location.protocol === 'file:') {
+    setVenueMapFallback('카카오맵은 배포된 청첩장 주소에서 확인할 수 있습니다.');
+    return;
+  }
+
+  if (!map.javascriptKey) {
+    setVenueMapFallback('카카오맵 JavaScript 키가 설정되지 않았습니다.');
+    return;
+  }
+
+  if (Array.isArray(map.allowedOrigins) && map.allowedOrigins.length > 0 && !map.allowedOrigins.includes(currentOrigin)) {
+    setVenueMapFallback(`현재 접속 주소 ${currentOrigin}이 카카오맵 허용 도메인에 등록되어 있지 않습니다.`);
+    return;
+  }
+
+  const sdkUrl = `https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${encodeURIComponent(map.javascriptKey)}&libraries=services`;
+
+  try {
+    await loadExternalScript(sdkUrl);
+  } catch (error) {
+    console.error('[Kakao Map] SDK load failed', {
+      currentOrigin,
+      message: error instanceof Error ? error.message : String(error)
+    });
+    setVenueMapFallback('카카오맵을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.');
+    return;
+  }
+
+  if (!window.kakao?.maps?.load) {
+    console.error('[Kakao Map] initialization API unavailable');
+    setVenueMapFallback('카카오맵 초기화에 실패했습니다.');
+    return;
+  }
+
+  window.kakao.maps.load(() => {
+    if (!window.kakao?.maps?.services?.Geocoder) {
+      console.error('[Kakao Map] geocoder unavailable');
+      setVenueMapFallback('카카오맵 위치 검색 기능을 불러오지 못했습니다.');
+      return;
+    }
+
+    const geocoder = new window.kakao.maps.services.Geocoder();
+
+    geocoder.addressSearch(invitationConfig.venue.address, (result, status) => {
+      if (status !== window.kakao.maps.services.Status.OK || !result?.length) {
+        setVenueMapFallback('예식장 주소를 지도에서 찾지 못했습니다.');
+        return;
+      }
+
+      const coords = new window.kakao.maps.LatLng(Number(result[0].y), Number(result[0].x));
+      const kakaoMap = new window.kakao.maps.Map(mapNode, {
+        center: coords,
+        level: 4
+      });
+      const marker = new window.kakao.maps.Marker({
+        map: kakaoMap,
+        position: coords
+      });
+      const infoWindow = new window.kakao.maps.InfoWindow({
+        content: `
+          <div class="map-info-window">
+            <strong>${escapeHtml(invitationConfig.venue.title)}</strong><br>
+            <span>${escapeHtml(invitationConfig.venue.hall)}</span>
+          </div>
+        `
+      });
+
+      infoWindow.open(kakaoMap, marker);
+    });
+  });
+}
+
 function updateCountdownDisplay() {
   const parts = getCountdownParts(invitationConfig.event.dateIso);
   const fields = ['days', 'hours', 'minutes', 'seconds'];
@@ -1098,6 +1250,7 @@ function mount() {
   bindActions();
   setupGallery();
   setupAccounts();
+  setupVenueMap();
   setupCountdown();
   setupRsvp();
   syncRsvpLabel();
