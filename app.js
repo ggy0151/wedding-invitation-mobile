@@ -25,18 +25,14 @@ const invitationConfig = {
   },
   story: [
     {
-      label: 'Groom',
-      name: '신랑 신윤찬',
-      note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
-      imageLabel: 'Yoon Chan',
-      src: './assets/groom-childhood.jpg'
-    },
-    {
-      label: 'Bride',
-      name: '신부 김지윤',
-      note: '어릴 적 사진 또는 추억이 담긴 이미지를 연결해 주세요.',
-      imageLabel: 'Ji Yoon',
-      src: './assets/bride-childhood.jpg'
+      label: "Groom's Parents",
+      name: '신랑 가족사진',
+      summary: '안정환 & 유은희의 아들 재찬',
+      noteLines: ['부모님 손글씨 문구 TODO'],
+      imageLabel: 'Groom Family',
+      src: './assets/groom-family.jpg',
+      stickerSrc: './assets/groom-childhood.jpg',
+      stickerLabel: 'Groom Childhood'
     }
   ],
   letters: [
@@ -69,7 +65,18 @@ const invitationConfig = {
     { title: '우리의 순간 15', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 15', src: './assets/KakaoTalk_20260730_214802172_11.jpg' },
     { title: '우리의 순간 16', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 16', src: './assets/KakaoTalk_20260730_214802172_12.jpg' },
     { title: '우리의 순간 17', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 17', src: './assets/KakaoTalk_20260730_214802172_13.jpg' },
-    { title: '우리의 순간 18', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 18', src: './assets/KakaoTalk_20260730_214802172_14.jpg' }
+    { title: '우리의 순간 18', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 18', src: './assets/KakaoTalk_20260730_214802172_14.jpg' },
+    { title: '우리의 순간 19', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 19', src: './assets/KakaoTalk_20260730_221404933.jpg' },
+    { title: '우리의 순간 20', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 20', src: './assets/KakaoTalk_20260730_221404933_01.jpg' },
+    { title: '우리의 순간 21', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 21', src: './assets/KakaoTalk_20260730_221404933_02.jpg' },
+    { title: '우리의 순간 22', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 22', src: './assets/KakaoTalk_20260730_221404933_03.jpg' },
+    { title: '우리의 순간 23', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 23', src: './assets/KakaoTalk_20260730_221404933_05.jpg' },
+    { title: '우리의 순간 24', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 24', src: './assets/KakaoTalk_20260730_221404933_06.jpg' },
+    { title: '우리의 순간 25', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
+    { title: '우리의 순간 26', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 26', src: './assets/KakaoTalk_20260730_221404933_08.jpg' },
+    { title: '우리의 순간 27', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 27', src: './assets/KakaoTalk_20260730_221404933_09.jpg' },
+    { title: '우리의 순간 28', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
+    { title: '우리의 순간 29', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
@@ -121,15 +128,13 @@ const invitationConfig = {
   },
   accounts: [
     {
-      group: '신랑측 마음 전하실 곳',
-      hint: '신랑 신윤찬',
-      open: true,
+      icon: '🤵🏻',
+      group: '신랑 측 계좌번호',
       items: [{ name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' }]
     },
     {
-      group: '신부측 마음 전하실 곳',
-      hint: '신부 김지윤',
-      open: false,
+      icon: '👰🏻',
+      group: '신부 측 계좌번호',
       items: [{ name: '신부 김지윤', bank: '신한은행', number: '110455998600' }]
     }
   ],
@@ -279,11 +284,22 @@ function buildStory() {
   return invitationConfig.story
     .map(
       (item) => `
-        <article class="story-photo">
-          ${buildVisual(item, 'story')}
-          <div class="story-caption">
-            <small>${escapeHtml(item.label)}</small>
-            <strong>${escapeHtml(item.name)}</strong>
+        <article class="family-story-card">
+          <div class="family-story-head">${escapeHtml(item.label)}</div>
+          <div class="family-story-visual">
+            ${buildVisual(item, 'story')}
+            <div class="family-story-caption">
+              <small>${escapeHtml(item.summary || '')}</small>
+              <strong>${escapeHtml(item.name)}</strong>
+            </div>
+            ${
+              item.stickerSrc
+                ? `<div class="family-story-sticker"><img src="${escapeHtml(item.stickerSrc)}" alt="${escapeHtml(item.stickerLabel || item.name)}" loading="lazy"></div>`
+                : ''
+            }
+          </div>
+          <div class="family-story-notes">
+            ${(item.noteLines || []).map((line) => `<div class="family-story-note">${escapeHtml(line)}</div>`).join('')}
           </div>
         </article>
       `
@@ -355,24 +371,20 @@ function buildVenueAddress() {
 function buildAccounts() {
   return invitationConfig.accounts
     .map(
-      (group, index) => `
-        <section class="account-group ${group.open ? 'is-open' : ''}">
-          <button class="account-trigger" type="button" data-account-toggle="${index}" aria-expanded="${group.open ? 'true' : 'false'}">
+      (group) => `
+        <section class="account-group">
+          <div class="account-trigger">
             <div>
-              <small>Account</small>
-              <strong class="account-title">${escapeHtml(group.group)}</strong>
-              <p class="account-copy">${escapeHtml(group.hint)}</p>
+              <strong class="account-title">${escapeHtml(group.icon || '•')} ${escapeHtml(group.group)}</strong>
             </div>
-            <span class="account-symbol">+</span>
-          </button>
-          <div class="account-panel">
+          </div>
+          <div class="account-panel is-static">
             ${group.items
               .map(
                 (item) => `
                   <article class="account-item">
                     <div class="account-line">
-                      <span class="account-bank">${escapeHtml(item.bank)}</span>
-                      <span class="account-number">${escapeHtml(item.number)}</span>
+                      <div class="account-primary">${escapeHtml(item.bank)} ${escapeHtml(item.number)}</div>
                       <strong class="account-name">${escapeHtml(item.name)}</strong>
                     </div>
                     <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사하기</button>
@@ -385,6 +397,15 @@ function buildAccounts() {
       `
     )
     .join('');
+}
+
+function buildAccountActions() {
+  return `
+    <div class="account-actions">
+      <button class="account-share-button account-share-button--share" type="button" data-share-invite>카카오톡 공유하기</button>
+      <button class="account-share-button account-share-button--copy" type="button" data-copy-url>청첩장 주소 복사하기</button>
+    </div>
+  `;
 }
 
 function renderApp() {
@@ -411,8 +432,14 @@ function renderApp() {
             <div class="cover-visual">
               ${buildVisual(invitationConfig.cover, 'cover')}
               <div class="cover-names">
-                <span>신랑 ${escapeHtml(invitationConfig.couple.groomFull)}</span>
-                <span>신부 ${escapeHtml(invitationConfig.couple.brideFull)}</span>
+                <div class="cover-name-card cover-name-card--bride">
+                  <small>신부</small>
+                  <strong>${escapeHtml(invitationConfig.couple.brideFull)}</strong>
+                </div>
+                <div class="cover-name-card cover-name-card--groom">
+                  <small>신랑</small>
+                  <strong>${escapeHtml(invitationConfig.couple.groomFull)}</strong>
+                </div>
               </div>
               <div class="cover-copy">
                 <p class="cover-overline">YOU'RE INVITED TO</p>
@@ -472,8 +499,8 @@ function renderApp() {
         </section>
 
         <section class="section section--spaced reveal">
-          <span class="mini-label">GROWING UP</span>
-          <h2 class="section-title">함께 자라온 시간</h2>
+          <span class="mini-label">FAMILY</span>
+          <h2 class="section-title">가족의 사랑으로 자라온 시간</h2>
           <div class="story-strip">
             ${buildStory()}
           </div>
@@ -518,6 +545,7 @@ function renderApp() {
           <span class="mini-label">HEART</span>
           <h2 class="section-title">마음 전하실 곳</h2>
           <div class="account-wrap">${buildAccounts()}</div>
+          ${buildAccountActions()}
           <p class="notice-copy">${nl2br(invitationConfig.notice)}</p>
         </section>
 
@@ -687,6 +715,28 @@ async function copyText(value) {
   }
 }
 
+async function shareInvitation() {
+  const url = getInvitationUrl();
+
+  try {
+    if (navigator.share) {
+      await navigator.share({
+        title: invitationConfig.site.shareTitle,
+        text: invitationConfig.site.shareText,
+        url
+      });
+      return;
+    }
+
+    await copyText(url);
+    showToast('공유할 수 있는 링크를 복사했어요.');
+  } catch (error) {
+    if (error?.name === 'AbortError') return;
+    await copyText(url);
+    showToast('링크를 복사했어요.');
+  }
+}
+
 function openModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
@@ -768,6 +818,18 @@ function bindActions() {
     });
   });
 
+  document.querySelectorAll('[data-share-invite]').forEach((button) => {
+    button.addEventListener('click', () => {
+      shareInvitation();
+    });
+  });
+
+  document.querySelectorAll('[data-copy-url]').forEach((button) => {
+    button.addEventListener('click', () => {
+      copyText(getInvitationUrl());
+    });
+  });
+
   document.querySelectorAll('[data-lightbox-step]').forEach((button) => {
     button.addEventListener('click', () => {
       moveLightbox(Number(button.dataset.lightboxStep || 0));
@@ -828,16 +890,7 @@ function setupGallery() {
   );
 }
 
-function setupAccounts() {
-  document.querySelectorAll('[data-account-toggle]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const group = button.closest('.account-group');
-      if (!group) return;
-      const open = group.classList.toggle('is-open');
-      button.setAttribute('aria-expanded', String(open));
-    });
-  });
-}
+function setupAccounts() {}
 
 function updateCountdownDisplay() {
   const parts = getCountdownParts(invitationConfig.event.dateIso);
