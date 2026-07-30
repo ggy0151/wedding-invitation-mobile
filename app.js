@@ -544,12 +544,21 @@ function renderApp() {
 
         <section class="section section--spaced reveal">
           <div class="wedding-quote-card">
-            <small>WITH LOVE</small>
-            <p class="wedding-quote">
-              서로의 삶에 다정한 안식처가 되어온 두 사람이<br>
-              같은 날 같은 마음으로<br>
-              소중한 분들을 기다립니다.
-            </p>
+            <small class="wedding-quote-label">With love</small>
+            <div class="wedding-quote">
+              <p>
+                눈을 맞추고 다정함을 나누며<br>
+                평생을 함께하고 싶은 확신을 얻었습니다.
+              </p>
+              <p>
+                매일 더 많이 웃게 해주는 사람과<br>
+                <strong>같은 곳을 바라보며 걸어가 보려 합니다.</strong>
+              </p>
+              <p>
+                귀한 발걸음으로 저희의 시작을<br>
+                함께 밝혀주시면 더없이 행복하겠습니다.
+              </p>
+            </div>
           </div>
         </section>
 
