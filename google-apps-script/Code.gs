@@ -23,6 +23,19 @@ function doGet() {
   });
 }
 
+function setupRsvpSheet() {
+  const sheet = getOrCreateSheet_();
+  const result = {
+    ok: true,
+    spreadsheetId: SPREADSHEET_ID,
+    sheetName: sheet.getName(),
+    lastRow: sheet.getLastRow()
+  };
+
+  console.log(`[RSVP] setup complete ${JSON.stringify(result)}`);
+  return result;
+}
+
 function doPost(e) {
   let submissionId = '';
   const lock = LockService.getScriptLock();

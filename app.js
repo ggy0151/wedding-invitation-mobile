@@ -130,7 +130,7 @@ const invitationConfig = {
     ]
   },
   rsvp: {
-    endpoint: 'https://script.google.com/macros/s/AKfycbyx5W7uEHnIQWOhx2HKfw0J37lrxLwXpwBx9UNvkI1EBL7zL5NGe74s7U7bsJCK_wXi/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbzsQPXagUxjm0fQlSFrztSL9Zz0KTMRtQAJZaRiRlq7QeIsmIyYNFMUDSZ1Y0LzSYrM/exec',
     mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
