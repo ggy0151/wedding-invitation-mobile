@@ -598,7 +598,6 @@ button {
 
 .wedding-quote-card,
 .story-strip,
-.map-visual,
 .gallery-slide,
 .lightbox-visual {
   overflow: hidden;
@@ -764,7 +763,7 @@ button {
   margin-top: 26px;
 }
 
-.map-visual {
+.venue-hero {
   position: relative;
   min-height: 320px;
   background:
@@ -774,7 +773,7 @@ button {
   box-shadow: var(--shadow);
 }
 
-.map-badge {
+.venue-badge {
   position: absolute;
   top: 18px;
   left: 18px;
@@ -788,17 +787,13 @@ button {
   backdrop-filter: blur(8px);
 }
 
-.map-badge small {
+.venue-badge small {
   color: var(--accent-strong);
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
-.map-canvas {
-  min-height: 320px;
-}
-
-.map-fallback {
+.venue-hero-copy {
   min-height: 320px;
   display: grid;
   place-items: center;
@@ -806,7 +801,7 @@ button {
   text-align: center;
 }
 
-.map-fallback strong {
+.venue-hero-copy strong {
   display: block;
   font-family: "Baskerville", "Times New Roman", serif;
   color: var(--accent-strong);
@@ -814,22 +809,10 @@ button {
   font-weight: 400;
 }
 
-.map-fallback p {
+.venue-hero-copy p {
   margin: 10px 0 0;
   color: var(--muted);
   line-height: 1.8;
-}
-
-.map-info-window {
-  padding: 10px 14px;
-  color: #1f1717;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.map-info-window strong {
-  font-family: "Baskerville", "Times New Roman", serif;
-  font-size: 15px;
 }
 
 .venue-address {

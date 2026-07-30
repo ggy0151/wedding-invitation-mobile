@@ -24,8 +24,6 @@ GitHub Pages로 바로 배포할 수 있고, RSVP 응답은 Google Apps Script �
   - 어린 시절 또는 추억 사진 경로
 - `gallery[].src`
   - 갤러리 사진 경로
-- `venue.map.javascriptKey`
-  - 카카오맵 JavaScript 키
 - `accounts`
   - 신랑측, 신부측 계좌 정보
 - `rsvp.endpoint`
@@ -90,27 +88,6 @@ rsvp: {
 }
 ```
 
-## 카카오맵 연결
-
-예식장 섹션은 `더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸` 기준으로 준비되어 있습니다.  
-카카오맵 키가 없으면 안내 문구만 보이고, 키를 넣으면 실제 지도가 표시됩니다.
-
-### 필요한 설정
-
-1. Kakao Developers에서 앱을 생성합니다.
-2. JavaScript 키를 발급받습니다.
-3. 카카오맵 사용 설정을 켭니다.
-4. 플랫폼에 배포 도메인 `https://ggy0151.github.io` 를 등록합니다.
-5. `app.js`의 `venue.map.javascriptKey`에 발급받은 키를 넣습니다.
-
-```js
-map: {
-  provider: 'kakao',
-  javascriptKey: '여기에_카카오맵_JS_KEY',
-  fallbackMessage: '카카오맵 JavaScript 키를 넣으면 이 영역에 실제 지도가 표시됩니다.'
-}
-```
-
 ## QR 코드
 
 실물 청첩장에 넣을 QR 이미지는 별도 파일로 준비되어 있습니다.
@@ -126,4 +103,4 @@ map: {
 ## 로컬 확인
 
 이 프로젝트는 별도 빌드 없이 정적 파일만으로 동작합니다.  
-브라우저에서 `index.html`을 열어 화면 구성을 확인할 수 있고, 최종 RSVP 동작과 지도 동작은 GitHub Pages 배포본에서 다시 한 번 확인하는 것이 가장 안전합니다.
+브라우저에서 `index.html`을 열어 화면 구성을 확인할 수 있고, 최종 RSVP 동작은 GitHub Pages 배포본에서 다시 한 번 확인하는 것이 가장 안전합니다.
