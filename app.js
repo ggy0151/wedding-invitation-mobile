@@ -25,16 +25,29 @@ const invitationConfig = {
   },
   story: [
     {
-      label: "Groom's Parents",
-      name: '신랑 가족사진',
-      summary: '안정환 & 유은희의 아들 재찬',
-      noteLines: ['부모님 손글씨 문구 TODO'],
-      imageLabel: 'Groom Family',
-      src: './assets/groom-family.jpg',
-      stickerSrc: './assets/groom-childhood.jpg',
-      stickerLabel: 'Groom Childhood'
+      label: 'Groom',
+      name: '신랑 신윤찬',
+      note: '어릴 적 사진',
+      imageLabel: 'Yoon Chan',
+      src: './assets/groom-childhood.jpg'
+    },
+    {
+      label: 'Bride',
+      name: '신부 김지윤',
+      note: '어릴 적 사진',
+      imageLabel: 'Ji Yoon',
+      src: './assets/bride-childhood.jpg'
     }
   ],
+  parentsFeature: {
+    label: "Groom's Parents",
+    title: '신랑 가족사진',
+    summary: '부모님 사진',
+    imageLabel: 'Groom Family',
+    src: './assets/groom-family.jpg',
+    letterTitle: '부모님 편지',
+    letterBody: '부모님 손글씨 편지 TODO\n이 영역은 문장을 추가하면 자연스럽게 아래로 늘어납니다.'
+  },
   letters: [
     {
       title: '신랑 신부 인사',
@@ -284,27 +297,39 @@ function buildStory() {
   return invitationConfig.story
     .map(
       (item) => `
-        <article class="family-story-card">
-          <div class="family-story-head">${escapeHtml(item.label)}</div>
-          <div class="family-story-visual">
-            ${buildVisual(item, 'story')}
-            <div class="family-story-caption">
-              <small>${escapeHtml(item.summary || '')}</small>
-              <strong>${escapeHtml(item.name)}</strong>
-            </div>
-            ${
-              item.stickerSrc
-                ? `<div class="family-story-sticker"><img src="${escapeHtml(item.stickerSrc)}" alt="${escapeHtml(item.stickerLabel || item.name)}" loading="lazy"></div>`
-                : ''
-            }
-          </div>
-          <div class="family-story-notes">
-            ${(item.noteLines || []).map((line) => `<div class="family-story-note">${escapeHtml(line)}</div>`).join('')}
+        <article class="story-photo">
+          ${buildVisual(item, 'story')}
+          <div class="story-caption">
+            <small>${escapeHtml(item.label)}</small>
+            <strong>${escapeHtml(item.name)}</strong>
+            <span>${escapeHtml(item.note || '')}</span>
           </div>
         </article>
       `
     )
     .join('');
+}
+
+function buildParentsFeature() {
+  const item = invitationConfig.parentsFeature;
+  if (!item) return '';
+
+  return `
+    <article class="parents-feature-card">
+      <div class="parents-feature-head">${escapeHtml(item.label)}</div>
+      <div class="parents-feature-visual">
+        ${buildVisual(item, 'story')}
+        <div class="parents-feature-caption">
+          <small>${escapeHtml(item.summary || '')}</small>
+          <strong>${escapeHtml(item.title)}</strong>
+        </div>
+      </div>
+      <div class="parents-letter-layer">
+        <div class="parents-letter-title">${escapeHtml(item.letterTitle)}</div>
+        <p class="parents-letter-body copy">${nl2br(item.letterBody || '')}</p>
+      </div>
+    </article>
+  `;
 }
 
 function buildLetters() {
@@ -325,15 +350,16 @@ function buildGallery() {
   return invitationConfig.gallery
     .map(
       (item, index) => `
-        <button class="gallery-button" type="button" data-gallery-index="${index}">
-          <div class="gallery-slide">
+        <a
+          class="gallery-tile gallery-tile--${index % 9 === 0 ? 'featured' : 'default'}"
+          href="${escapeHtml(item.src || '#')}"
+          ${item.src ? 'target="_blank" rel="noopener"' : ''}
+          aria-label="${escapeHtml(item.title)}"
+        >
+          <div class="gallery-tile-frame">
             ${buildVisual(item, 'gallery')}
-            <div class="gallery-caption">
-              <small>Scene ${String(index + 1).padStart(2, '0')}</small>
-              <strong>${escapeHtml(item.title)}</strong>
-            </div>
           </div>
-        </button>
+        </a>
       `
     )
     .join('');
@@ -504,6 +530,9 @@ function renderApp() {
           <div class="story-strip">
             ${buildStory()}
           </div>
+          <div class="parents-feature-wrap">
+            ${buildParentsFeature()}
+          </div>
         </section>
 
         <section class="section section--spaced reveal">
@@ -517,6 +546,7 @@ function renderApp() {
         <section class="section section--spaced reveal" id="gallery">
           <span class="mini-label">GALLERY</span>
           <h2 class="section-title">우리의 장면들</h2>
+          <p class="section-copy">사진을 눌러 원본 이미지를 바로 볼 수 있습니다.</p>
           <div class="gallery-flow">
             ${buildGallery()}
           </div>
