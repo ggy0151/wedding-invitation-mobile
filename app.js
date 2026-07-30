@@ -140,13 +140,15 @@ const invitationConfig = {
   },
   accounts: [
     {
-      icon: '🤵🏻',
-      group: '신랑 측 계좌번호',
+      group: '신랑측 마음 전하실 곳',
+      hint: '신랑 신윤찬',
+      open: true,
       items: [{ name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' }]
     },
     {
-      icon: '👰🏻',
-      group: '신부 측 계좌번호',
+      group: '신부측 마음 전하실 곳',
+      hint: '신부 김지윤',
+      open: false,
       items: [{ name: '신부 김지윤', bank: '신한은행', number: '110455998600' }]
     }
   ],
@@ -318,10 +320,6 @@ function buildParentsFeature() {
       <div class="parents-feature-head">${escapeHtml(item.label)}</div>
       <div class="parents-feature-visual">
         ${buildVisual(item, 'story')}
-        <div class="parents-feature-caption">
-          <small>${escapeHtml(item.summary || '')}</small>
-          <strong>${escapeHtml(item.title)}</strong>
-        </div>
       </div>
       <div class="parents-letter-layer">
         <div class="parents-letter-title">${escapeHtml(item.letterTitle)}</div>
@@ -396,20 +394,24 @@ function buildVenueAddress() {
 function buildAccounts() {
   return invitationConfig.accounts
     .map(
-      (group) => `
-        <section class="account-group">
-          <div class="account-trigger">
+      (group, index) => `
+        <section class="account-group ${group.open ? 'is-open' : ''}">
+          <button class="account-trigger" type="button" data-account-toggle="${index}" aria-expanded="${group.open ? 'true' : 'false'}">
             <div>
-              <strong class="account-title">${escapeHtml(group.icon || '•')} ${escapeHtml(group.group)}</strong>
+              <small>Account</small>
+              <strong class="account-title">${escapeHtml(group.group)}</strong>
+              <p class="account-copy">${escapeHtml(group.hint)}</p>
             </div>
-          </div>
-          <div class="account-panel is-static">
+            <span class="account-symbol">+</span>
+          </button>
+          <div class="account-panel">
             ${group.items
               .map(
                 (item) => `
                   <article class="account-item">
                     <div class="account-line">
-                      <div class="account-primary">${escapeHtml(item.bank)} ${escapeHtml(item.number)}</div>
+                      <span class="account-bank">${escapeHtml(item.bank)}</span>
+                      <span class="account-number">${escapeHtml(item.number)}</span>
                       <strong class="account-name">${escapeHtml(item.name)}</strong>
                     </div>
                     <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사하기</button>
@@ -919,7 +921,16 @@ function setupGallery() {
   );
 }
 
-function setupAccounts() {}
+function setupAccounts() {
+  document.querySelectorAll('[data-account-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const group = button.closest('.account-group');
+      if (!group) return;
+      const open = group.classList.toggle('is-open');
+      button.setAttribute('aria-expanded', String(open));
+    });
+  });
+}
 
 function updateCountdownDisplay() {
   const parts = getCountdownParts(invitationConfig.event.dateIso);
