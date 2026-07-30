@@ -42,7 +42,7 @@ const invitationConfig = {
   letters: [
     {
       title: '신랑 신부 인사',
-      body: '오래도록 아껴온 마음으로\n저희 두 사람이 한날의 약속을 하게 되었습니다.\n귀한 걸음으로 함께해 주시면 감사하겠습니다.',
+      body: '새로이 시작하는 작은 사랑이\n보다 크고 깊은 사랑이 되려고 합니다.\n함께 자리하여 축복해주시면 더 없는 기쁨이겠습니다.',
       signature: '윤찬 ♥ 지윤 드림'
     },
     {
@@ -52,10 +52,24 @@ const invitationConfig = {
     }
   ],
   gallery: [
-    { title: 'Groom Family', caption: '신랑 가족의 따뜻한 추억이 담긴 장면입니다.', imageLabel: 'Photo 01', src: './assets/groom-family.jpg' },
-    { title: 'A Warm Scene', caption: '아치형 프레임 안에서 두 분의 분위기가 자연스럽게 담긴 장면입니다.', imageLabel: 'Photo 02', src: './assets/wedding-photo-02.jpg' },
-    { title: 'Our Mood', caption: '신부의 부드러운 무드가 잘 살아나는 웨딩 포트레이트입니다.', imageLabel: 'Photo 03', src: './assets/wedding-photo-bride-01.jpg' },
-    { title: 'The Day', caption: '베뉴, 부케, 반지 컷 등을 이어서 배치할 수 있습니다.', imageLabel: 'Photo 04', src: '' }
+    { title: '우리의 순간 01', caption: '두 사람의 첫 장면을 담은 웨딩 포트레이트입니다.', imageLabel: 'Scene 01', src: './assets/groom-family.jpg' },
+    { title: '우리의 순간 02', caption: '아치형 프레임 안에서 두 분의 분위기가 자연스럽게 담긴 장면입니다.', imageLabel: 'Scene 02', src: './assets/wedding-photo-02.jpg' },
+    { title: '우리의 순간 03', caption: '신부의 부드러운 무드가 잘 살아나는 웨딩 포트레이트입니다.', imageLabel: 'Scene 03', src: './assets/wedding-photo-bride-01.jpg' },
+    { title: '우리의 순간 04', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 04', src: './assets/KakaoTalk_20260730_214802172.jpg' },
+    { title: '우리의 순간 05', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 05', src: './assets/KakaoTalk_20260730_214802172_01.jpg' },
+    { title: '우리의 순간 06', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 06', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
+    { title: '우리의 순간 07', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 07', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
+    { title: '우리의 순간 08', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 08', src: './assets/KakaoTalk_20260730_214802172_04.jpg' },
+    { title: '우리의 순간 09', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 09', src: './assets/KakaoTalk_20260730_214802172_05.jpg' },
+    { title: '우리의 순간 10', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 10', src: './assets/KakaoTalk_20260730_214802172_06.jpg' },
+    { title: '우리의 순간 11', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 11', src: './assets/KakaoTalk_20260730_214802172_07.jpg' },
+    { title: '우리의 순간 12', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 12', src: './assets/KakaoTalk_20260730_214802172_08.jpg' },
+    { title: '우리의 순간 13', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 13', src: './assets/KakaoTalk_20260730_214802172_09.jpg' },
+    { title: '우리의 순간 14', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 14', src: './assets/KakaoTalk_20260730_214802172_10.jpg' },
+    { title: '우리의 순간 15', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 15', src: './assets/KakaoTalk_20260730_214802172_11.jpg' },
+    { title: '우리의 순간 16', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 16', src: './assets/KakaoTalk_20260730_214802172_12.jpg' },
+    { title: '우리의 순간 17', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 17', src: './assets/KakaoTalk_20260730_214802172_13.jpg' },
+    { title: '우리의 순간 18', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 18', src: './assets/KakaoTalk_20260730_214802172_14.jpg' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
@@ -125,7 +139,10 @@ const invitationConfig = {
 const app = document.querySelector('#app');
 const state = {
   countdownTimer: null,
-  toastTimer: null
+  toastTimer: null,
+  lightboxIndex: 0,
+  lightboxTouchStartX: 0,
+  lightboxTouchStartY: 0
 };
 
 function escapeHtml(value) {
@@ -353,10 +370,10 @@ function buildAccounts() {
               .map(
                 (item) => `
                   <article class="account-item">
-                    <div>
-                      <small>${escapeHtml(item.bank)}</small>
+                    <div class="account-line">
+                      <span class="account-bank">${escapeHtml(item.bank)}</span>
+                      <span class="account-number">${escapeHtml(item.number)}</span>
                       <strong class="account-name">${escapeHtml(item.name)}</strong>
-                      <p class="account-copy">${escapeHtml(item.number)}</p>
                     </div>
                     <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사하기</button>
                   </article>
@@ -445,11 +462,11 @@ function renderApp() {
 
         <section class="section section--spaced reveal">
           <div class="wedding-quote-card">
-            <small>INVITATION NOTE</small>
+            <small>WITH LOVE</small>
             <p class="wedding-quote">
-              사랑이 별건 것이 아니라<br>
-              그 사람과 함께 늙어가고 싶은 마음이라고 믿습니다.<br>
-              저희의 새로운 계절에 따뜻한 걸음으로 함께해 주세요.
+              서로의 삶에 다정한 안식처가 되어온 두 사람이<br>
+              같은 날 같은 마음으로<br>
+              소중한 분들을 기다립니다.
             </p>
           </div>
         </section>
@@ -606,7 +623,15 @@ function renderApp() {
             </div>
             <button class="close-button" type="button" data-close-modal="lightboxModal" aria-label="닫기">×</button>
           </div>
-          <div class="lightbox-visual" id="lightboxVisual"></div>
+          <div class="lightbox-stage">
+            <button class="lightbox-nav lightbox-nav--prev" type="button" data-lightbox-step="-1" aria-label="이전 사진 보기">‹</button>
+            <div class="lightbox-visual" id="lightboxVisual"></div>
+            <button class="lightbox-nav lightbox-nav--next" type="button" data-lightbox-step="1" aria-label="다음 사진 보기">›</button>
+          </div>
+          <div class="lightbox-meta">
+            <span class="lightbox-count" id="lightboxCount">1 / 1</span>
+            <span class="lightbox-hint">좌우로 넘겨보세요</span>
+          </div>
           <p class="lightbox-caption copy" id="lightboxCaption"></p>
         </div>
       </section>
@@ -689,6 +714,34 @@ function syncRsvpLabel() {
   });
 }
 
+function renderLightbox(index) {
+  const total = invitationConfig.gallery.length;
+  if (!total) return;
+
+  const safeIndex = (index + total) % total;
+  const item = invitationConfig.gallery[safeIndex];
+  state.lightboxIndex = safeIndex;
+
+  document.getElementById('lightboxTitle').textContent = item.title;
+  document.getElementById('lightboxCaption').textContent = item.caption;
+  document.getElementById('lightboxCount').textContent = `${safeIndex + 1} / ${total}`;
+  document.getElementById('lightboxVisual').innerHTML = item.src
+    ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">`
+    : `
+        <div class="lightbox-placeholder">
+          <div>
+            <strong>${escapeHtml(item.imageLabel)}</strong>
+            <p>사진을 연결하면 확대 보기에서도 같은 이미지가 보입니다.</p>
+          </div>
+        </div>
+      `;
+}
+
+function moveLightbox(step) {
+  if (!invitationConfig.gallery.length) return;
+  renderLightbox(state.lightboxIndex + step);
+}
+
 function bindActions() {
   document.querySelectorAll('[data-open-rsvp]').forEach((button) => {
     button.addEventListener('click', () => openModal('rsvpModal'));
@@ -715,9 +768,27 @@ function bindActions() {
     });
   });
 
+  document.querySelectorAll('[data-lightbox-step]').forEach((button) => {
+    button.addEventListener('click', () => {
+      moveLightbox(Number(button.dataset.lightboxStep || 0));
+    });
+  });
+
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       document.querySelectorAll('.modal.is-open').forEach((modal) => closeModal(modal.id));
+      return;
+    }
+
+    const lightboxOpen = document.getElementById('lightboxModal')?.classList.contains('is-open');
+    if (!lightboxOpen) return;
+
+    if (event.key === 'ArrowLeft') {
+      moveLightbox(-1);
+    }
+
+    if (event.key === 'ArrowRight') {
+      moveLightbox(1);
     }
   });
 }
@@ -725,22 +796,36 @@ function bindActions() {
 function setupGallery() {
   document.querySelectorAll('[data-gallery-index]').forEach((button) => {
     button.addEventListener('click', () => {
-      const item = invitationConfig.gallery[Number(button.dataset.galleryIndex || 0)];
-      document.getElementById('lightboxTitle').textContent = item.title;
-      document.getElementById('lightboxCaption').textContent = item.caption;
-      document.getElementById('lightboxVisual').innerHTML = item.src
-        ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">`
-        : `
-            <div class="lightbox-placeholder">
-              <div>
-                <strong>${escapeHtml(item.imageLabel)}</strong>
-                <p>사진을 연결하면 확대 보기에서도 같은 이미지가 보입니다.</p>
-              </div>
-            </div>
-          `;
+      renderLightbox(Number(button.dataset.galleryIndex || 0));
       openModal('lightboxModal');
     });
   });
+
+  const visual = document.getElementById('lightboxVisual');
+  if (!visual) return;
+
+  visual.addEventListener(
+    'touchstart',
+    (event) => {
+      const touch = event.touches[0];
+      state.lightboxTouchStartX = touch.clientX;
+      state.lightboxTouchStartY = touch.clientY;
+    },
+    { passive: true }
+  );
+
+  visual.addEventListener(
+    'touchend',
+    (event) => {
+      const touch = event.changedTouches[0];
+      const deltaX = touch.clientX - state.lightboxTouchStartX;
+      const deltaY = touch.clientY - state.lightboxTouchStartY;
+
+      if (Math.abs(deltaX) < 44 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+      moveLightbox(deltaX < 0 ? 1 : -1);
+    },
+    { passive: true }
+  );
 }
 
 function setupAccounts() {

@@ -14,6 +14,9 @@
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
   --safe-bottom: max(18px, env(safe-area-inset-bottom));
   --content-width: 430px;
+  --font-body: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  --font-display: "Cormorant Garamond", "Noto Serif KR", "Times New Roman", serif;
+  --font-accent: "Noto Serif KR", "Cormorant Garamond", "Times New Roman", serif;
 }
 
 * {
@@ -32,7 +35,7 @@ body {
     radial-gradient(circle at 20% 20%, rgba(168, 185, 123, 0.12), transparent 18%),
     linear-gradient(180deg, #0c0a0b 0%, #050506 40%, #09090b 100%);
   color: var(--text);
-  font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  font-family: var(--font-body);
 }
 
 a {
@@ -101,7 +104,9 @@ button {
   border-radius: 999px;
   color: var(--accent-strong);
   font-size: 12px;
-  letter-spacing: 0.22em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -123,8 +128,9 @@ button {
 .account-title,
 .venue-title,
 .calendar-month {
-  font-family: "Baskerville", "Times New Roman", serif;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .reply-title {
@@ -161,6 +167,8 @@ button {
   min-height: 52px;
   padding: 0 22px;
   border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 600;
   text-decoration: none;
   transition: transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
 }
@@ -263,14 +271,14 @@ button {
 .gallery-placeholder strong,
 .lightbox-placeholder strong {
   display: block;
-  font-family: "Baskerville", "Times New Roman", serif;
+  font-family: var(--font-display);
   color: var(--accent-strong);
 }
 
 .cover-placeholder strong {
   font-size: clamp(36px, 11vw, 54px);
-  font-weight: 400;
-  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .cover-placeholder p,
@@ -355,7 +363,9 @@ button {
   margin: 0 0 10px;
   color: rgba(255, 243, 247, 0.98);
   font-size: 12px;
-  letter-spacing: 0.2em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.52);
   text-transform: uppercase;
 }
@@ -364,12 +374,12 @@ button {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-family: "Snell Roundhand", "Apple Chancery", "Baskerville", serif;
-  font-size: clamp(44px, 13vw, 70px);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 0.96;
-  color: #ffe1ea;
+  font-family: var(--font-accent);
+  font-size: clamp(40px, 11.5vw, 58px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+  color: #fff0f4;
   -webkit-text-stroke: 0.5px rgba(72, 28, 43, 0.34);
   text-shadow:
     0 2px 0 rgba(76, 27, 43, 0.28),
@@ -404,14 +414,14 @@ button {
 
 .wedding-day-title {
   margin: 18px 0 0;
-  font-family: "Baskerville", "Times New Roman", serif;
+  font-family: var(--font-display);
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;
   font-size: clamp(21px, 5.4vw, 32px);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.22;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   word-break: keep-all;
   line-break: strict;
   text-wrap: balance;
@@ -619,16 +629,19 @@ button {
   display: block;
   color: rgba(248, 232, 222, 0.84);
   font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
 .wedding-quote {
   margin: 16px 0 0;
-  font-family: "Baskerville", "Times New Roman", serif;
+  font-family: var(--font-accent);
   font-size: clamp(21px, 5.6vw, 29px);
   line-height: 1.72;
-  letter-spacing: -0.03em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--text);
   word-break: keep-all;
 }
@@ -664,6 +677,8 @@ button {
 .transport-list small {
   display: block;
   font-size: 11px;
+  font-family: var(--font-body);
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(248, 232, 222, 0.84);
@@ -717,7 +732,9 @@ button {
 .letter-title {
   color: var(--accent-strong);
   font-size: 13px;
-  letter-spacing: 0.18em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
@@ -741,6 +758,7 @@ button {
 .gallery-button {
   padding: 0;
   text-align: left;
+  cursor: pointer;
 }
 
 .gallery-slide {
@@ -789,6 +807,8 @@ button {
 
 .venue-badge small {
   color: var(--accent-strong);
+  font-family: var(--font-body);
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -803,10 +823,11 @@ button {
 
 .venue-hero-copy strong {
   display: block;
-  font-family: "Baskerville", "Times New Roman", serif;
+  font-family: var(--font-display);
   color: var(--accent-strong);
   font-size: 30px;
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .venue-hero-copy p {
@@ -885,8 +906,9 @@ button {
   display: block;
   margin-top: 8px;
   font-size: 20px;
-  font-family: "Baskerville", "Times New Roman", serif;
-  font-weight: 400;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .account-symbol {
@@ -922,6 +944,38 @@ button {
   border-bottom: 0;
 }
 
+.account-line {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.account-bank,
+.account-number,
+.account-name {
+  font-size: clamp(13px, 3.5vw, 15px);
+  line-height: 1.5;
+}
+
+.account-bank {
+  color: var(--accent-strong);
+}
+
+.account-number {
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+.account-name {
+  margin: 0;
+  flex-shrink: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .account-copy {
   margin: 8px 0 0;
   font-size: 15px;
@@ -933,6 +987,8 @@ button {
   padding: 0 16px;
   border-radius: 999px;
   border: 1px solid var(--line-strong);
+  font-family: var(--font-body);
+  font-weight: 600;
   color: var(--accent-strong);
 }
 
@@ -980,6 +1036,8 @@ button {
 
 .sticky-button strong {
   display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
   font-size: 13px;
 }
 
@@ -987,6 +1045,7 @@ button {
   display: block;
   margin-top: 4px;
   color: var(--muted);
+  font-family: var(--font-body);
   font-size: 11px;
 }
 
@@ -1145,9 +1204,60 @@ button {
   position: relative;
   margin-top: 24px;
   aspect-ratio: 1 / 1.2;
+  overflow: hidden;
+  border-radius: 24px;
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.6)),
     linear-gradient(145deg, #211d1f, #0f0f10 72%);
+  touch-action: pan-y;
+}
+
+.lightbox-stage {
+  position: relative;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: calc(50% + 12px);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(7, 7, 7, 0.58);
+  backdrop-filter: blur(10px);
+  font-size: 28px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav--prev {
+  left: 12px;
+}
+
+.lightbox-nav--next {
+  right: 12px;
+}
+
+.lightbox-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.lightbox-count {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.lightbox-hint {
+  color: var(--muted);
 }
 
 .lightbox-caption {
@@ -1207,5 +1317,32 @@ button {
 
   .calendar-head {
     flex-direction: column;
+  }
+
+  .account-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .account-line {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .account-line::-webkit-scrollbar {
+    display: none;
+  }
+
+  .lightbox-nav {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+
+  .lightbox-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 }
