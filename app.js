@@ -61,35 +61,34 @@ const invitationConfig = {
     }
   ],
   gallery: [
-    { title: '우리의 순간 01', caption: '두 사람의 첫 장면을 담은 웨딩 포트레이트입니다.', imageLabel: 'Scene 01', src: './assets/groom-family.jpg' },
-    { title: '우리의 순간 02', caption: '아치형 프레임 안에서 두 분의 분위기가 자연스럽게 담긴 장면입니다.', imageLabel: 'Scene 02', src: './assets/wedding-photo-02.jpg' },
-    { title: '우리의 순간 03', caption: '신부의 부드러운 무드가 잘 살아나는 웨딩 포트레이트입니다.', imageLabel: 'Scene 03', src: './assets/wedding-photo-bride-01.jpg' },
-    { title: '우리의 순간 04', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 04', src: './assets/KakaoTalk_20260730_214802172.jpg' },
-    { title: '우리의 순간 05', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 05', src: './assets/KakaoTalk_20260730_214802172_01.jpg' },
-    { title: '우리의 순간 06', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 06', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
-    { title: '우리의 순간 07', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 07', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
-    { title: '우리의 순간 08', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 08', src: './assets/KakaoTalk_20260730_214802172_04.jpg' },
-    { title: '우리의 순간 09', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 09', src: './assets/KakaoTalk_20260730_214802172_05.jpg' },
-    { title: '우리의 순간 10', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 10', src: './assets/KakaoTalk_20260730_214802172_06.jpg' },
-    { title: '우리의 순간 11', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 11', src: './assets/KakaoTalk_20260730_214802172_07.jpg' },
-    { title: '우리의 순간 12', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 12', src: './assets/KakaoTalk_20260730_214802172_08.jpg' },
-    { title: '우리의 순간 13', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 13', src: './assets/KakaoTalk_20260730_214802172_09.jpg' },
-    { title: '우리의 순간 14', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 14', src: './assets/KakaoTalk_20260730_214802172_10.jpg' },
-    { title: '우리의 순간 15', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 15', src: './assets/KakaoTalk_20260730_214802172_11.jpg' },
-    { title: '우리의 순간 16', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 16', src: './assets/KakaoTalk_20260730_214802172_12.jpg' },
-    { title: '우리의 순간 17', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 17', src: './assets/KakaoTalk_20260730_214802172_13.jpg' },
-    { title: '우리의 순간 18', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 18', src: './assets/KakaoTalk_20260730_214802172_14.jpg' },
-    { title: '우리의 순간 19', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 19', src: './assets/KakaoTalk_20260730_221404933.jpg' },
-    { title: '우리의 순간 20', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 20', src: './assets/KakaoTalk_20260730_221404933_01.jpg' },
-    { title: '우리의 순간 21', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 21', src: './assets/KakaoTalk_20260730_221404933_02.jpg' },
-    { title: '우리의 순간 22', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 22', src: './assets/KakaoTalk_20260730_221404933_03.jpg' },
-    { title: '우리의 순간 23', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 23', src: './assets/KakaoTalk_20260730_221404933_05.jpg' },
-    { title: '우리의 순간 24', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 24', src: './assets/KakaoTalk_20260730_221404933_06.jpg' },
-    { title: '우리의 순간 25', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
-    { title: '우리의 순간 26', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 26', src: './assets/KakaoTalk_20260730_221404933_08.jpg' },
-    { title: '우리의 순간 27', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 27', src: './assets/KakaoTalk_20260730_221404933_09.jpg' },
-    { title: '우리의 순간 28', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
-    { title: '우리의 순간 29', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' }
+    { title: '우리의 순간', caption: '아치형 프레임 안에서 두 분의 분위기가 자연스럽게 담긴 장면입니다.', imageLabel: 'Scene 02', src: './assets/wedding-photo-02.jpg' },
+    { title: '우리의 순간', caption: '신부의 부드러운 무드가 잘 살아나는 웨딩 포트레이트입니다.', imageLabel: 'Scene 03', src: './assets/wedding-photo-bride-01.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 04', src: './assets/KakaoTalk_20260730_214802172.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 05', src: './assets/KakaoTalk_20260730_214802172_01.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 06', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 07', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 08', src: './assets/KakaoTalk_20260730_214802172_04.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 09', src: './assets/KakaoTalk_20260730_214802172_05.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 10', src: './assets/KakaoTalk_20260730_214802172_06.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 11', src: './assets/KakaoTalk_20260730_214802172_07.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 12', src: './assets/KakaoTalk_20260730_214802172_08.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 13', src: './assets/KakaoTalk_20260730_214802172_09.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 14', src: './assets/KakaoTalk_20260730_214802172_10.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 15', src: './assets/KakaoTalk_20260730_214802172_11.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 16', src: './assets/KakaoTalk_20260730_214802172_12.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 17', src: './assets/KakaoTalk_20260730_214802172_13.jpg' },
+    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 18', src: './assets/KakaoTalk_20260730_214802172_14.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 19', src: './assets/KakaoTalk_20260730_221404933.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 20', src: './assets/KakaoTalk_20260730_221404933_01.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 21', src: './assets/KakaoTalk_20260730_221404933_02.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 22', src: './assets/KakaoTalk_20260730_221404933_03.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 23', src: './assets/KakaoTalk_20260730_221404933_05.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 24', src: './assets/KakaoTalk_20260730_221404933_06.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 26', src: './assets/KakaoTalk_20260730_221404933_08.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 27', src: './assets/KakaoTalk_20260730_221404933_09.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
@@ -102,7 +101,7 @@ const invitationConfig = {
       {
         label: '버스 Bus',
         title: '220, 310, 370, 누리4, 117번(마을)',
-        copy: '버스 이용 시 위 노선을 통해 호텔 인근 정류장으로 오실 수 있습니다.'
+        copy: '버스 이용 시 위 노선을 통해 호텔로 이동하시면 됩니다.'
       },
       {
         label: '지하철 Subway',
@@ -112,12 +111,12 @@ const invitationConfig = {
       {
         label: '주차 Parking',
         title: '웨딩홀 건물 지하 및 야외 주차장 이용 가능',
-        copy: '건물 지하 주차장과 야외 주차장을 모두 이용하실 수 있습니다.'
+        copy: '건물 지하 주차장과 야외 주차장 모두 이용 가능합니다.'
       },
       {
         label: '셔틀 Shuttle',
         title: '정자역 2번 출구',
-        copy: '11:30 ~ 14:30 15분 간격 운행 (25인승)'
+        copy: '11:30 ~ 14:30 15분 간격 운행 (25인승) 예정입니다.'
       },
       {
         label: '주소 Address',
@@ -127,15 +126,15 @@ const invitationConfig = {
     ],
     links: [
       { label: '티맵', href: 'tmap://search?name=더블트리%20바이%20힐튼%20서울%20판교' },
-      { label: '카카오내비', href: 'kakaonavi://search?name=더블트리%20바이%20힐튼%20서울%20판교' },
       { label: '네이버지도', href: 'nmap://search?query=더블트리%20바이%20힐튼%20서울%20판교' }
     ]
   },
   rsvp: {
-    endpoint: 'https://script.google.com/macros/s/AKfycby00lAf9YMSZxxl80UmoOYv-NdgkXbbV_ZlWtlDLDluq1ob8HCa1k6anvO-WhulF4to/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbyx5W7uEHnIQWOhx2HKfw0J37lrxLwXpwBx9UNvkI1EBL7zL5NGe74s7U7bsJCK_wXi/exec',
     mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
+    lastResponseKey: 'wedding_invitation_rsvp_last_response_v1',
     helper: '한 분 한 분을 정성껏 모시고 싶습니다.\n참석 여부를 미리 남겨주시면 감사하겠습니다.',
     mealNotice: '식사는 참석 인원에 맞춰 준비됩니다.'
   },
@@ -964,6 +963,38 @@ function buildRsvpPayload(form) {
   };
 }
 
+function getCachedRsvpResponse() {
+  try {
+    const raw = localStorage.getItem(invitationConfig.rsvp.lastResponseKey);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function cacheRsvpResponse(payload) {
+  localStorage.setItem(invitationConfig.rsvp.lastResponseKey, JSON.stringify(payload));
+}
+
+function applyRsvpResponse(form, payload) {
+  if (!form || !payload) return;
+
+  const fields = ['attendance', 'side'];
+  fields.forEach((name) => {
+    const value = String(payload[name] || '');
+    const radio = form.querySelector(`input[name="${name}"][value="${value}"]`);
+    if (radio) radio.checked = true;
+  });
+
+  const nameField = form.querySelector('input[name="name"]');
+  const countField = form.querySelector('input[name="count"]');
+  const phoneField = form.querySelector('input[name="phoneLast4"]');
+
+  if (nameField) nameField.value = String(payload.name || '');
+  if (countField) countField.value = String(payload.count || '1');
+  if (phoneField) phoneField.value = String(payload.phoneLast4 || '');
+}
+
 async function submitRsvp(payload) {
   if (!invitationConfig.rsvp.endpoint) {
     const drafts = JSON.parse(localStorage.getItem(invitationConfig.rsvp.draftsKey) || '[]');
@@ -991,6 +1022,8 @@ function setupRsvp() {
   const submitButton = document.getElementById('rsvpSubmitButton');
   if (!form || !submitButton) return;
 
+  applyRsvpResponse(form, getCachedRsvpResponse());
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const payload = buildRsvpPayload(form);
@@ -1001,11 +1034,10 @@ function setupRsvp() {
     try {
       const result = await submitRsvp(payload);
       localStorage.setItem(invitationConfig.rsvp.doneKey, 'true');
+      cacheRsvpResponse(payload);
       syncRsvpLabel();
       closeModal('rsvpModal');
-      form.reset();
-      const defaultAttendance = form.querySelector('input[name="attendance"][value="참석할게요"]');
-      if (defaultAttendance) defaultAttendance.checked = true;
+      applyRsvpResponse(form, payload);
       showToast(result === 'remote' ? '응답이 정상 접수되었습니다.' : '현재 기기에 임시 저장되었습니다.');
     } catch (error) {
       showToast('응답을 보내지 못했습니다.');
