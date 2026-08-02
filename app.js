@@ -87,8 +87,6 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '신부의 부드러운 무드가 잘 살아나는 웨딩 포트레이트입니다.', imageLabel: 'Scene 03', src: './assets/wedding-photo-bride-01.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 04', src: './assets/KakaoTalk_20260730_214802172.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 05', src: './assets/KakaoTalk_20260730_214802172_01.jpg' },
-    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 06', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
-    { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 07', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 08', src: './assets/KakaoTalk_20260730_214802172_04.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 09', src: './assets/KakaoTalk_20260730_214802172_05.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 10', src: './assets/KakaoTalk_20260730_214802172_06.jpg' },
@@ -107,7 +105,6 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 23', src: './assets/KakaoTalk_20260730_221404933_05.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 24', src: './assets/KakaoTalk_20260730_221404933_06.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
-    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 26', src: './assets/KakaoTalk_20260730_221404933_08.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 30', src: './assets/SSN00006.JPG' },
@@ -483,8 +480,7 @@ function buildVenueAddress() {
   return `
     <strong class="venue-title">${escapeHtml(invitationConfig.venue.title)}</strong><br>
     <span class="venue-hall">${escapeHtml(invitationConfig.venue.hall)}</span><br>
-    <span class="venue-line">${escapeHtml(invitationConfig.venue.address)}</span><br>
-    <span class="venue-line">${escapeHtml(invitationConfig.venue.addressDetail)}</span>
+    <span class="venue-line">${escapeHtml(invitationConfig.venue.address)}</span>
   `;
 }
 
