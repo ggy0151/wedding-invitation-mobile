@@ -1059,8 +1059,19 @@ button {
 }
 
 .account-wrap {
-  margin-top: 26px;
+  margin-top: 22px;
   text-align: left;
+}
+
+.accounts-notice {
+  margin: 16px auto 0;
+  max-width: 350px;
+  color: var(--muted);
+  font-family: var(--font-soft);
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: -0.025em;
+  word-break: keep-all;
 }
 
 .account-group + .account-group {
@@ -1093,10 +1104,6 @@ button {
 }
 
 .account-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
   padding: 18px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -1105,13 +1112,26 @@ button {
   border-bottom: 0;
 }
 
-.account-line {
-  min-width: 0;
+.account-details {
+  display: grid;
+  gap: 10px;
+}
+
+.account-owner,
+.account-number-row {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: nowrap;
   white-space: nowrap;
+}
+
+.account-number-row .copy-button {
+  width: auto;
+  min-width: 64px;
+  min-height: 34px;
+  padding: 0 13px;
+  font-size: 13px;
 }
 
 .account-bank,
@@ -1524,21 +1544,6 @@ button {
 
   .calendar-head {
     flex-direction: column;
-  }
-
-  .account-item {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .account-line {
-    width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .account-line::-webkit-scrollbar {
-    display: none;
   }
 
   .lightbox-nav {

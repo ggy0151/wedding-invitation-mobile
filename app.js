@@ -171,6 +171,7 @@ const invitationConfig = {
       items: [{ name: '신부 김지윤', bank: '신한은행', number: '110455998600' }]
     }
   ],
+  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는 분들을 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는 따뜻한 축하의 마음에 깊이 감사드립니다.',
   notice: '예식장 안내에 따라 화환은 정중히 사양합니다.\n보내주시는 축하의 마음만 감사히 받겠습니다.'
 };
 
@@ -450,12 +451,16 @@ function buildAccounts() {
               .map(
                 (item) => `
                   <article class="account-item">
-                    <div class="account-line">
-                      <span class="account-bank">${escapeHtml(item.bank)}</span>
-                      <span class="account-number">${escapeHtml(item.number)}</span>
-                      <strong class="account-name">${escapeHtml(item.name)}</strong>
+                    <div class="account-details">
+                      <div class="account-owner">
+                        <span class="account-bank">${escapeHtml(item.bank)}</span>
+                        <strong class="account-name">${escapeHtml(item.name)}</strong>
+                      </div>
+                      <div class="account-number-row">
+                        <span class="account-number">${escapeHtml(item.number)}</span>
+                        <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사</button>
+                      </div>
                     </div>
-                    <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사하기</button>
                   </article>
                 `
               )
@@ -624,6 +629,7 @@ function renderApp() {
         <section class="section section--spaced reveal" id="accounts">
           <span class="mini-label">HEART</span>
           <h2 class="section-title">마음 전하실 곳</h2>
+          <p class="accounts-notice">${nl2br(invitationConfig.accountsNotice)}</p>
           <div class="account-wrap">${buildAccounts()}</div>
           ${buildAccountActions()}
           <p class="notice-copy">${nl2br(invitationConfig.notice)}</p>
