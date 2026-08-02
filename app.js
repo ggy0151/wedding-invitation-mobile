@@ -52,6 +52,24 @@ const invitationConfig = {
     letterTitle: '부모님 편지',
     letterBody: '부모님 손글씨 편지 TODO\n이 영역은 문장을 추가하면 자연스럽게 아래로 늘어납니다.'
   },
+  contacts: [
+    {
+      side: '신랑측',
+      people: [
+        { role: '신랑', name: '신윤찬', phone: '010-5786-9386' },
+        { role: '아버지', name: '신영호', phone: '010-4855-6797' },
+        { role: '어머니', name: '조혜경', phone: '010-4727-6797' }
+      ]
+    },
+    {
+      side: '신부측',
+      people: [
+        { role: '신부', name: '김지윤', phone: '010-5253-6785' },
+        { role: '아버지', name: '김광주', phone: '010-6367-6785' },
+        { role: '어머니', name: '유미경', phone: '010-9311-6785' }
+      ]
+    }
+  ],
   letters: [
     {
       title: '신랑 신부 인사',
@@ -365,6 +383,38 @@ function buildParentsFeature() {
   `;
 }
 
+function buildContacts() {
+  return invitationConfig.contacts
+    .map(
+      (group) => `
+        <section class="contact-group">
+          <div class="contact-group-title">${escapeHtml(group.side)}</div>
+          <div class="contact-list">
+            ${group.people
+              .map((person) => {
+                const phoneLink = String(person.phone || '').replace(/[^0-9+]/g, '');
+                const personLabel = `${person.role} ${person.name}`;
+                return `
+                  <article class="contact-row">
+                    <div class="contact-person">
+                      <div><small>${escapeHtml(person.role)}</small><strong>${escapeHtml(person.name)}</strong></div>
+                      <span class="contact-phone">${escapeHtml(person.phone)}</span>
+                    </div>
+                    <div class="contact-actions">
+                      <a class="contact-action contact-action--call" href="tel:${escapeHtml(phoneLink)}" aria-label="${escapeHtml(personLabel)}에게 전화 걸기">전화</a>
+                      <a class="contact-action contact-action--sms" href="sms:${escapeHtml(phoneLink)}" aria-label="${escapeHtml(personLabel)}에게 문자 보내기">문자</a>
+                    </div>
+                  </article>
+                `;
+              })
+              .join('')}
+          </div>
+        </section>
+      `
+    )
+    .join('');
+}
+
 function buildLetters() {
   return invitationConfig.letters
     .map(
@@ -593,6 +643,13 @@ function renderApp() {
           <div class="parents-feature-wrap">
             ${buildParentsFeature()}
           </div>
+        </section>
+
+        <section class="section section--spaced reveal" id="contact">
+          <span class="mini-label">CONTACT</span>
+          <h2 class="section-title">연락하기</h2>
+          <p class="section-copy">축하의 마음을 전하실 분께 바로 연락하실 수 있습니다.</p>
+          <div class="contact-groups">${buildContacts()}</div>
         </section>
 
         <section class="section section--spaced reveal">
