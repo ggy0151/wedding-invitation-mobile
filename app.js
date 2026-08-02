@@ -45,6 +45,10 @@ const invitationConfig = {
     summary: '부모님 사진',
     imageLabel: 'Groom Family',
     src: './assets/groom-family.jpg',
+    familyLines: [
+      { parents: '신영호 · 조혜경', relation: '의 아들', role: '신랑', name: '윤찬' },
+      { parents: '김광주 · 유미경', relation: '의 딸', role: '신부', name: '지윤' }
+    ],
     letterTitle: '부모님 편지',
     letterBody: '부모님 손글씨 편지 TODO\n이 영역은 문장을 추가하면 자연스럽게 아래로 늘어납니다.'
   },
@@ -335,6 +339,18 @@ function buildParentsFeature() {
       <div class="parents-feature-head">${escapeHtml(item.label)}</div>
       <div class="parents-feature-visual">
         ${buildVisual(item, 'story')}
+      </div>
+      <div class="family-introduction">
+        ${(item.familyLines || [])
+          .map(
+            (line) => `
+              <p class="family-introduction-line">
+                <span>${escapeHtml(line.parents)}${escapeHtml(line.relation)}</span>
+                <strong>${escapeHtml(line.role)} ${escapeHtml(line.name)}</strong>
+              </p>
+            `
+          )
+          .join('')}
       </div>
       <div class="parents-letter-layer">
         <div class="parents-letter-title">${escapeHtml(item.letterTitle)}</div>
