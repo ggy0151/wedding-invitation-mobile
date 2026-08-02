@@ -196,8 +196,7 @@ const invitationConfig = {
       ]
     }
   ],
-  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는 분들을\n 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는 따뜻한 축하의 마음에 깊이 감사드립니다.',
-  notice: '예식장 안내에 따라 화환은 정중히 사양합니다.\n보내주시는 축하의 마음만 감사히 받겠습니다.'
+  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는 분들을\n 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는 따뜻한 축하의 마음에 깊이 감사드립니다.'
 };
 
 const app = document.querySelector('#app');
@@ -701,7 +700,6 @@ function renderApp() {
           <p class="accounts-notice">${nl2br(invitationConfig.accountsNotice)}</p>
           <div class="account-wrap">${buildAccounts()}</div>
           ${buildAccountActions()}
-          <p class="notice-copy">${nl2br(invitationConfig.notice)}</p>
         </section>
 
         <footer class="footer reveal">
