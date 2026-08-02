@@ -747,13 +747,6 @@ button {
   font-size: 16px;
 }
 
-.story-caption span {
-  display: block;
-  margin-top: 6px;
-  color: rgba(248, 232, 222, 0.92);
-  font-size: 12px;
-}
-
 .parents-feature-wrap {
   margin-top: 22px;
 }
@@ -789,12 +782,9 @@ button {
 
 .family-introduction {
   display: grid;
-  gap: 7px;
+  gap: 10px;
   margin-top: 14px;
-  padding: 16px 12px;
-  border: 1px solid rgba(241, 147, 181, 0.12);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.035);
+  padding: 10px 2px 2px;
   color: var(--muted);
   font-family: var(--font-soft);
   text-align: center;
@@ -802,8 +792,8 @@ button {
 
 .family-introduction-line {
   margin: 0;
-  font-size: clamp(14px, 3.8vw, 16px);
-  line-height: 1.65;
+  font-size: clamp(16px, 4.3vw, 19px);
+  line-height: 1.7;
   letter-spacing: -0.03em;
   word-break: keep-all;
 }
@@ -899,14 +889,6 @@ button {
 .contact-person strong {
   color: var(--text);
   font-size: 15px;
-}
-
-.contact-phone {
-  display: block;
-  margin-top: 5px;
-  color: rgba(245, 239, 232, 0.68);
-  font-size: 12px;
-  letter-spacing: 0.02em;
 }
 
 .contact-actions {

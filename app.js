@@ -23,25 +23,23 @@ const invitationConfig = {
     src: './assets/cover-wedding-photo-01.jpg',
     label: 'Wedding Portrait'
   },
+  familyLines: [
+    { parents: '신영호 · 조혜경', relation: '의 아들', role: '신랑', name: '윤찬' },
+    { parents: '김광주 · 유미경', relation: '의 딸', role: '신부', name: '지윤' }
+  ],
   story: [
     {
       label: 'Groom',
       name: '신랑 신윤찬',
-      note: '어릴 적 사진',
       imageLabel: 'Yoon Chan',
       src: './assets/groom-childhood.jpg'
     },
     {
       label: 'Bride',
       name: '신부 김지윤',
-      note: '어릴 적 사진',
       imageLabel: 'Ji Yoon',
       src: './assets/bride-childhood.jpg'
     }
-  ],
-  familyLines: [
-    { parents: '신영호 · 조혜경', relation: '의 아들', role: '신랑', name: '윤찬' },
-    { parents: '김광주 · 유미경', relation: '의 딸', role: '신부', name: '지윤' }
   ],
   parentsFeature: {
     label: "Groom's Parents",
@@ -190,9 +188,9 @@ const invitationConfig = {
       group: '신부측 마음 전하실 곳',
       hint: '신부 김지윤',
       items: [
-        { name: '신부 김지윤', bank: '신한은행', number: '110455998600' },
         { name: '신부 부 김광주', bank: '신한은행', number: '110258239647' },
-        { name: '신부 모 유미경', bank: '경남은행', number: '671210149913' }
+        { name: '신부 모 유미경', bank: '경남은행', number: '671210149913' },
+        { name: '신부 김지윤', bank: '신한은행', number: '110455998600' }
       ]
     }
   ],
@@ -347,7 +345,6 @@ function buildStory() {
           <div class="story-caption">
             <small>${escapeHtml(item.label)}</small>
             <strong>${escapeHtml(item.name)}</strong>
-            <span>${escapeHtml(item.note || '')}</span>
           </div>
         </article>
       `
@@ -405,7 +402,6 @@ function buildContacts() {
                   <article class="contact-row">
                     <div class="contact-person">
                       <div><small>${escapeHtml(person.role)}</small><strong>${escapeHtml(person.name)}</strong></div>
-                      <span class="contact-phone">${escapeHtml(person.phone)}</span>
                     </div>
                     <div class="contact-actions">
                       <a class="contact-action contact-action--call" href="tel:${escapeHtml(phoneLink)}" aria-label="${escapeHtml(personLabel)}에게 전화 걸기">전화</a>
