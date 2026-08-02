@@ -1361,8 +1361,11 @@ button {
 
 .lightbox-visual {
   position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
   margin-top: 8px;
-  aspect-ratio: 1 / 1.2;
+  aspect-ratio: auto;
   overflow: hidden;
   border-radius: 24px;
   background:
@@ -1372,9 +1375,20 @@ button {
 }
 
 .lightbox-sheet {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(calc(100vw - 12px), 600px);
+  height: min(calc(100dvh - 20px), 860px);
+  max-height: none;
   overflow: hidden;
-  padding: 14px 16px 18px;
+  padding: 12px 12px 16px;
   background: #090909;
+}
+
+#lightboxModal {
+  align-items: center;
+  padding: max(10px, env(safe-area-inset-top)) 6px max(10px, env(safe-area-inset-bottom));
 }
 
 .lightbox-head {
@@ -1387,6 +1401,9 @@ button {
 
 .lightbox-stage {
   position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 .lightbox-nav {

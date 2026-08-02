@@ -86,7 +86,6 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 24', src: './assets/KakaoTalk_20260730_221404933_06.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 26', src: './assets/KakaoTalk_20260730_221404933_08.jpg' },
-    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 27', src: './assets/KakaoTalk_20260730_221404933_09.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' }
   ],
