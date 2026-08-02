@@ -143,6 +143,7 @@ const invitationConfig = {
     ],
     links: [
       { label: '티맵', href: 'tmap://search?name=더블트리%20바이%20힐튼%20서울%20판교' },
+      { label: '카카오내비', href: 'kakaonavi://search?name=더블트리%20바이%20힐튼%20서울%20판교' },
       { label: '네이버지도', href: 'nmap://search?query=더블트리%20바이%20힐튼%20서울%20판교' }
     ]
   },
@@ -364,16 +365,16 @@ function buildGallery() {
   return invitationConfig.gallery
     .map(
       (item, index) => `
-        <a
+        <button
           class="gallery-tile gallery-tile--${index % 9 === 0 ? 'featured' : 'default'}"
-          href="${escapeHtml(item.src || '#')}"
-          ${item.src ? 'target="_blank" rel="noopener"' : ''}
+          type="button"
+          data-gallery-index="${index}"
           aria-label="${escapeHtml(item.title)}"
         >
           <div class="gallery-tile-frame">
             ${buildVisual(item, 'gallery')}
           </div>
-        </a>
+        </button>
       `
     )
     .join('');
@@ -710,12 +711,8 @@ function renderApp() {
       </section>
 
       <section class="modal" id="lightboxModal" aria-hidden="true">
-        <div class="modal-sheet">
-          <div class="modal-head">
-            <div>
-              <span class="mini-label">GALLERY</span>
-              <h2 class="modal-title" id="lightboxTitle">사진 보기</h2>
-            </div>
+        <div class="modal-sheet lightbox-sheet">
+          <div class="modal-head lightbox-head">
             <button class="close-button" type="button" data-close-modal="lightboxModal" aria-label="닫기">×</button>
           </div>
           <div class="lightbox-stage">
@@ -725,9 +722,7 @@ function renderApp() {
           </div>
           <div class="lightbox-meta">
             <span class="lightbox-count" id="lightboxCount">1 / 1</span>
-            <span class="lightbox-hint">좌우로 넘겨보세요</span>
           </div>
-          <p class="lightbox-caption copy" id="lightboxCaption"></p>
         </div>
       </section>
 
@@ -815,6 +810,9 @@ function openModal(id) {
 function closeModal(id) {
   const modal = document.getElementById(id);
   if (!modal) return;
+  if (modal.contains(document.activeElement)) {
+    document.activeElement.blur();
+  }
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
   if (!document.querySelector('.modal.is-open')) {
@@ -839,8 +837,6 @@ function renderLightbox(index) {
   const item = invitationConfig.gallery[safeIndex];
   state.lightboxIndex = safeIndex;
 
-  document.getElementById('lightboxTitle').textContent = item.title;
-  document.getElementById('lightboxCaption').textContent = item.caption;
   document.getElementById('lightboxCount').textContent = `${safeIndex + 1} / ${total}`;
   document.getElementById('lightboxVisual').innerHTML = item.src
     ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">`

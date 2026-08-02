@@ -878,10 +878,13 @@ button {
 
 .gallery-tile {
   display: block;
+  width: 100%;
+  padding: 0;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 14px;
   background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
 }
 
 .gallery-tile-frame {
@@ -1374,7 +1377,7 @@ button {
 
 .lightbox-visual {
   position: relative;
-  margin-top: 24px;
+  margin-top: 8px;
   aspect-ratio: 1 / 1.2;
   overflow: hidden;
   border-radius: 24px;
@@ -1382,6 +1385,20 @@ button {
     linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.6)),
     linear-gradient(145deg, #211d1f, #0f0f10 72%);
   touch-action: pan-y;
+}
+
+.lightbox-sheet {
+  overflow: hidden;
+  padding: 14px 16px 18px;
+  background: #090909;
+}
+
+.lightbox-head {
+  justify-content: flex-end;
+}
+
+.lightbox-visual img {
+  object-fit: contain;
 }
 
 .lightbox-stage {
@@ -1415,25 +1432,17 @@ button {
 
 .lightbox-meta {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-top: 14px;
+  margin-top: 10px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .lightbox-count {
-  color: var(--accent-strong);
-  font-weight: 600;
-}
-
-.lightbox-hint {
-  color: var(--muted);
-}
-
-.lightbox-caption {
-  margin-top: 18px;
+  color: rgba(245, 239, 232, 0.72);
+  font-weight: 500;
+  letter-spacing: 0.12em;
 }
 
 .toast {
@@ -1508,9 +1517,4 @@ button {
     font-size: 24px;
   }
 
-  .lightbox-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
 }
