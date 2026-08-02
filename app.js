@@ -109,7 +109,14 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 26', src: './assets/KakaoTalk_20260730_221404933_08.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
-    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' }
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 30', src: './assets/SSN00006.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 31', src: './assets/SSN00096.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 32', src: './assets/SSN00225.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 33', src: './assets/SSN00281.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 34', src: './assets/SSN00344.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 35', src: './assets/SSN00413.JPG' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 36', src: './assets/SSN00524.JPG' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
