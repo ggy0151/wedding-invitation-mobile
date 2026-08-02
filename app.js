@@ -160,13 +160,11 @@ const invitationConfig = {
     {
       group: '신랑측 마음 전하실 곳',
       hint: '신랑 신윤찬',
-      open: true,
       items: [{ name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' }]
     },
     {
       group: '신부측 마음 전하실 곳',
       hint: '신부 김지윤',
-      open: false,
       items: [{ name: '신부 김지윤', bank: '신한은행', number: '110455998600' }]
     }
   ],
@@ -423,16 +421,15 @@ function buildMapFallback(message) {
 function buildAccounts() {
   return invitationConfig.accounts
     .map(
-      (group, index) => `
-        <section class="account-group ${group.open ? 'is-open' : ''}">
-          <button class="account-trigger" type="button" data-account-toggle="${index}" aria-expanded="${group.open ? 'true' : 'false'}">
+      (group) => `
+        <section class="account-group">
+          <div class="account-trigger">
             <div>
               <small>Account</small>
               <strong class="account-title">${escapeHtml(group.group)}</strong>
               <p class="account-copy">${escapeHtml(group.hint)}</p>
             </div>
-            <span class="account-symbol">+</span>
-          </button>
+          </div>
           <div class="account-panel">
             ${group.items
               .map(
@@ -953,17 +950,6 @@ function setupGallery() {
   );
 }
 
-function setupAccounts() {
-  document.querySelectorAll('[data-account-toggle]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const group = button.closest('.account-group');
-      if (!group) return;
-      const open = group.classList.toggle('is-open');
-      button.setAttribute('aria-expanded', String(open));
-    });
-  });
-}
-
 function loadExternalScript(src) {
   return new Promise((resolve, reject) => {
     const existing = document.querySelector(`script[data-src="${src}"]`);
@@ -1254,7 +1240,6 @@ function mount() {
   setupReveal();
   bindActions();
   setupGallery();
-  setupAccounts();
   setupVenueMap();
   setupCountdown();
   setupRsvp();
