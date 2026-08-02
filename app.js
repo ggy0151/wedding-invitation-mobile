@@ -16,7 +16,7 @@ const invitationConfig = {
     dateKorean: '2026년 12월 20일 일요일 오후 12시 30분',
     venueShort: '더블트리 바이 힐튼 서울 판교',
     venueEnglish: 'DOUBLETREE BY HILTON SEOUL PANGYO',
-    address: '경기 성남시 분당구 백현로 26\n더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
+    address: '경기 성남시 분당구 백현로 26',
     intro: '소중한 분들을 모시고\n저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
@@ -50,7 +50,7 @@ const invitationConfig = {
     imageLabel: 'Groom Family',
     src: './assets/groom-family.jpg',
     letterTitle: '부모님 편지',
-    letterBody: '부모님 손글씨 편지 TODO\n이 영역은 문장을 추가하면 자연스럽게 아래로 늘어납니다.'
+    letterBody: '부모님 손글씨 편지 TODO\n'
   },
   contacts: [
     {
@@ -117,7 +117,6 @@ const invitationConfig = {
     badge: 'Grand Ballroom / 1F',
     description: '호텔 1층 그랜드볼룸홀에서 예식을 진행합니다.\n아래 내비게이션 버튼으로 바로 길안내를 열 수 있습니다.',
     address: '경기 성남시 분당구 백현로 26',
-    addressDetail: '더블트리 바이 힐튼 서울 판교',
     placeName: '더블트리 바이 힐튼 서울 판교 1층 그랜드볼룸홀',
     map: {
       provider: 'kakao',
@@ -193,7 +192,7 @@ const invitationConfig = {
       ]
     }
   ],
-  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는 분들을 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는 따뜻한 축하의 마음에 깊이 감사드립니다.',
+  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는 분들을\n 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는 따뜻한 축하의 마음에 깊이 감사드립니다.',
   notice: '예식장 안내에 따라 화환은 정중히 사양합니다.\n보내주시는 축하의 마음만 감사히 받겠습니다.'
 };
 
