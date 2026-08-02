@@ -39,16 +39,16 @@ const invitationConfig = {
       src: './assets/bride-childhood.jpg'
     }
   ],
+  familyLines: [
+    { parents: '신영호 · 조혜경', relation: '의 아들', role: '신랑', name: '윤찬' },
+    { parents: '김광주 · 유미경', relation: '의 딸', role: '신부', name: '지윤' }
+  ],
   parentsFeature: {
     label: "Groom's Parents",
     title: '신랑 가족사진',
     summary: '부모님 사진',
     imageLabel: 'Groom Family',
     src: './assets/groom-family.jpg',
-    familyLines: [
-      { parents: '신영호 · 조혜경', relation: '의 아들', role: '신랑', name: '윤찬' },
-      { parents: '김광주 · 유미경', relation: '의 딸', role: '신부', name: '지윤' }
-    ],
     letterTitle: '부모님 편지',
     letterBody: '부모님 손글씨 편지 TODO\n이 영역은 문장을 추가하면 자연스럽게 아래로 늘어납니다.'
   },
@@ -73,7 +73,7 @@ const invitationConfig = {
   letters: [
     {
       title: '신랑 신부 인사',
-      body: '새로이 시작하는 작은 사랑이\n보다 크고 깊은 사랑이 되려고 합니다.\n함께 자리하여 축복해주시면 더 없는 기쁨이겠습니다.',
+      body: '새로이 시작하는 작은 사랑이\n보다 크고 깊은 사랑이 되려고 합니다.\n함께 자리하여 축복해주시면 \n더 없는 기쁨이겠습니다.',
       signature: '윤찬 ♥ 지윤 드림'
     },
     {
@@ -353,6 +353,23 @@ function buildStory() {
     .join('');
 }
 
+function buildFamilyIntroduction() {
+  return `
+    <div class="family-introduction">
+      ${invitationConfig.familyLines
+        .map(
+          (line) => `
+            <p class="family-introduction-line">
+              <span>${escapeHtml(line.parents)}${escapeHtml(line.relation)}</span>
+              <strong>${escapeHtml(line.role)} ${escapeHtml(line.name)}</strong>
+            </p>
+          `
+        )
+        .join('')}
+    </div>
+  `;
+}
+
 function buildParentsFeature() {
   const item = invitationConfig.parentsFeature;
   if (!item) return '';
@@ -362,18 +379,6 @@ function buildParentsFeature() {
       <div class="parents-feature-head">${escapeHtml(item.label)}</div>
       <div class="parents-feature-visual">
         ${buildVisual(item, 'story')}
-      </div>
-      <div class="family-introduction">
-        ${(item.familyLines || [])
-          .map(
-            (line) => `
-              <p class="family-introduction-line">
-                <span>${escapeHtml(line.parents)}${escapeHtml(line.relation)}</span>
-                <strong>${escapeHtml(line.role)} ${escapeHtml(line.name)}</strong>
-              </p>
-            `
-          )
-          .join('')}
       </div>
       <div class="parents-letter-layer">
         <div class="parents-letter-title">${escapeHtml(item.letterTitle)}</div>
@@ -640,6 +645,7 @@ function renderApp() {
           <div class="story-strip">
             ${buildStory()}
           </div>
+          ${buildFamilyIntroduction()}
           <div class="parents-feature-wrap">
             ${buildParentsFeature()}
           </div>

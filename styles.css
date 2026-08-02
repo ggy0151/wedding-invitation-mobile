@@ -791,9 +791,12 @@ button {
 .family-introduction {
   display: grid;
   gap: 7px;
-  margin-top: 16px;
-  padding: 4px 2px 2px;
-  color: #2b181f;
+  margin-top: 14px;
+  padding: 16px 12px;
+  border: 1px solid rgba(241, 147, 181, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--muted);
   font-family: var(--font-soft);
   text-align: center;
 }
@@ -813,7 +816,7 @@ button {
 
 .family-introduction-line strong {
   margin-left: 7px;
-  color: #1d1015;
+  color: var(--accent-strong);
   font-weight: 700;
 }
 
