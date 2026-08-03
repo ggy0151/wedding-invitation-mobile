@@ -103,6 +103,8 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 25', src: './assets/KakaoTalk_20260730_221404933_07.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 28', src: './assets/KakaoTalk_20260730_221404933_10.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 29', src: './assets/SON00036.JPG' },
+    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 01', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
+    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 02', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 30', src: './assets/SSN00006.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 31', src: './assets/SSN00096.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 32', src: './assets/SSN00225.JPG' },
@@ -110,8 +112,6 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 34', src: './assets/SSN00344.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 35', src: './assets/SSN00413.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 36', src: './assets/SSN00524.JPG' },
-    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 01', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
-    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 02', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
     { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 05', src: './assets/KakaoTalk_20260802_222009937.jpg' },
     { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 06', src: './assets/KakaoTalk_20260802_222054901.jpg' }
   ],
@@ -577,10 +577,6 @@ function buildIntroConfetti() {
 function renderApp() {
   const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
   const rsvpLabel = responded ? '응답 다시 보기' : '참석 여부 남기기';
-  const rsvpStatus = invitationConfig.rsvp.endpoint
-    ? '응답은 연결된 구글 스프레드시트로 바로 전송됩니다.'
-    : '아직 RSVP 웹앱이 연결되지 않아 현재 기기에만 임시 저장됩니다.';
-
   app.innerHTML = `
     <div class="opening-intro" id="openingIntro" aria-hidden="true">
       <div class="intro-glow"></div>
@@ -699,7 +695,7 @@ function renderApp() {
         <section class="section section--spaced reveal" id="contact">
           <span class="mini-label">CONTACT</span>
           <h2 class="section-title">연락하기</h2>
-          <p class="section-copy">축하의 마음을 전하실 분께 바로 연락하실 수 있습니다.</p>
+          <p class="section-copy">축하의 마음을 전하실 분께 연락하실 수 있습니다.</p>
           <div class="contact-groups">${buildContacts()}</div>
         </section>
 
@@ -778,7 +774,6 @@ function renderApp() {
             <button class="close-button" type="button" data-close-modal="rsvpModal" aria-label="닫기">×</button>
           </div>
           <p class="rsvp-copy">${nl2br(invitationConfig.rsvp.helper)}</p>
-          <p class="form-note">${escapeHtml(rsvpStatus)}</p>
           <form id="rsvpForm" class="rsvp-form">
             <section class="rsvp-block">
               <label class="field-label">어느 분의 하객이신가요?</label>

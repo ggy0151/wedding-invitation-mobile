@@ -14,7 +14,7 @@
   --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
   --safe-bottom: max(18px, env(safe-area-inset-bottom));
   --content-width: 430px;
-  --font-body: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  --font-body: "Gowun Batang", "Noto Serif KR", "AppleMyungjo", serif;
   --font-display: "Cormorant Garamond", "Noto Serif KR", "Times New Roman", serif;
   --font-accent: "Noto Serif KR", "Cormorant Garamond", "Times New Roman", serif;
   --font-script: "Allura", "Cormorant Garamond", serif;
@@ -493,7 +493,6 @@ button {
 .lightbox-placeholder p,
 .copy,
 .section-copy,
-.form-note,
 .rsvp-copy,
 .account-copy,
 .footer-copy,
@@ -1548,6 +1547,14 @@ button {
   font-weight: 400;
 }
 
+#rsvpModal .modal-title {
+  max-width: 270px;
+  font-size: 29px;
+  line-height: 1.32;
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
 .close-button {
   width: 42px;
   height: 42px;
@@ -1565,11 +1572,6 @@ button {
   font-size: 14px;
   line-height: 1.7;
   text-align: left;
-}
-
-.form-note {
-  margin: 6px 0 0;
-  font-size: 13px;
 }
 
 .rsvp-form {
