@@ -541,6 +541,37 @@ function buildAccountActions() {
   `;
 }
 
+function buildIntroConfetti() {
+  const pieces = [
+    ['7%', '-0.7s', '3.8s', '32px', '#ffd7e3', '420deg'],
+    ['14%', '-2.1s', '4.4s', '-26px', '#f193b5', '-360deg'],
+    ['21%', '-1.2s', '3.5s', '22px', '#fff1e7', '380deg'],
+    ['29%', '-3.1s', '4.8s', '-34px', '#e8b7c6', '-420deg'],
+    ['37%', '-0.3s', '3.9s', '28px', '#ffd7e3', '460deg'],
+    ['44%', '-2.6s', '4.2s', '-18px', '#f6d8c8', '-390deg'],
+    ['51%', '-1.7s', '3.6s', '36px', '#f193b5', '440deg'],
+    ['59%', '-3.4s', '4.7s', '-30px', '#fff1e7', '-460deg'],
+    ['66%', '-0.9s', '4.1s', '24px', '#ffd7e3', '400deg'],
+    ['73%', '-2.8s', '3.7s', '-22px', '#e8b7c6', '-380deg'],
+    ['81%', '-1.5s', '4.5s', '30px', '#f193b5', '450deg'],
+    ['89%', '-3.7s', '4.9s', '-36px', '#fff1e7', '-430deg'],
+    ['11%', '-3.3s', '5.1s', '18px', '#f6d8c8', '390deg'],
+    ['25%', '-2.4s', '5.3s', '-28px', '#ffd7e3', '-470deg'],
+    ['42%', '-4.1s', '5.5s', '34px', '#e8b7c6', '480deg'],
+    ['56%', '-3.8s', '5.2s', '-24px', '#fff1e7', '-410deg'],
+    ['70%', '-4.5s', '5.6s', '26px', '#ffd7e3', '430deg'],
+    ['85%', '-2.9s', '5.4s', '-32px', '#f193b5', '-450deg']
+  ];
+
+  return pieces
+    .map(
+      ([x, delay, duration, drift, tone, spin]) => `
+        <i style="--x:${x};--delay:${delay};--duration:${duration};--drift:${drift};--tone:${tone};--spin:${spin}"></i>
+      `
+    )
+    .join('');
+}
+
 function renderApp() {
   const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
   const rsvpLabel = responded ? '응답 다시 보기' : '참석 여부 남기기';
@@ -549,6 +580,17 @@ function renderApp() {
     : '아직 RSVP 웹앱이 연결되지 않아 현재 기기에만 임시 저장됩니다.';
 
   app.innerHTML = `
+    <div class="opening-intro" id="openingIntro" aria-hidden="true">
+      <div class="intro-glow"></div>
+      <div class="intro-confetti">${buildIntroConfetti()}</div>
+      <div class="intro-copy">
+        <p class="intro-kicker">YOU'RE INVITED TO</p>
+        <h1 class="intro-title">Our Wedding</h1>
+        <span class="intro-line"></span>
+        <p class="intro-names">YOONCHAN <span>&amp;</span> JIYOON</p>
+        <p class="intro-date">DECEMBER 20, 2026</p>
+      </div>
+    </div>
     <div class="page-shell">
       <main class="page">
         <section class="section reply-first reveal" id="reply-first">
@@ -816,8 +858,73 @@ function renderApp() {
   `;
 }
 
+function setupOpeningIntro() {
+  const intro = document.getElementById('openingIntro');
+  if (!intro) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.body.classList.add('intro-active');
+
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    intro.classList.add('is-leaving');
+    window.setTimeout(() => {
+      document.body.classList.remove('intro-active');
+      intro.remove();
+    }, reducedMotion ? 100 : 760);
+  };
+
+  const timer = window.setTimeout(finish, reducedMotion ? 700 : 2600);
+  intro.addEventListener(
+    'click',
+    () => {
+      window.clearTimeout(timer);
+      finish();
+    },
+    { once: true }
+  );
+}
+
 function setupReveal() {
   const nodes = document.querySelectorAll('.reveal');
+  const itemSelectors = [
+    '.reveal > .mini-label',
+    '.reveal > .section-title',
+    '.reveal > .section-copy',
+    '.reveal > .reply-title',
+    '.reveal > .reply-copy',
+    '.reveal > .reply-actions',
+    '.countdown-card',
+    '.story-photo',
+    '.family-introduction',
+    '.parents-feature-wrap',
+    '.contact-group',
+    '.letter-item',
+    '.gallery-tile',
+    '.map-visual',
+    '.venue-links > *',
+    '.transport-item',
+    '.account-group',
+    '.account-actions > *'
+  ];
+  const items = document.querySelectorAll(itemSelectors.join(','));
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  items.forEach((item) => {
+    item.classList.add('reveal-item');
+    const siblings = Array.from(item.parentElement?.children || []);
+    const siblingIndex = Math.max(0, siblings.indexOf(item));
+    item.style.setProperty('--reveal-delay', `${(siblingIndex % 5) * 75}ms`);
+  });
+
+  if (reducedMotion || !('IntersectionObserver' in window)) {
+    nodes.forEach((node) => node.classList.add('is-visible'));
+    items.forEach((item) => item.classList.add('is-visible'));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -831,6 +938,19 @@ function setupReveal() {
   );
 
   nodes.forEach((node) => observer.observe(node));
+
+  const itemObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        itemObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.08, rootMargin: '0px 0px -4% 0px' }
+  );
+
+  items.forEach((item) => itemObserver.observe(item));
 }
 
 function showToast(message) {
@@ -1325,6 +1445,7 @@ function setupRsvp() {
 
 function mount() {
   renderApp();
+  setupOpeningIntro();
   setupReveal();
   bindActions();
   setupGallery();
