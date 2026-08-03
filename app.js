@@ -81,6 +81,8 @@ const invitationConfig = {
     }
   ],
   gallery: [
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진입니다.', imageLabel: 'New Scene 01', src: './assets/KakaoTalk_20260804_070813031.jpg' },
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진입니다.', imageLabel: 'New Scene 02', src: './assets/KakaoTalk_20260804_070931369.jpg' },
     { title: '우리의 순간', caption: '아치형 프레임 안에서 두 분의 분위기가 자연스럽게 담긴 장면입니다.', imageLabel: 'Scene 02', src: './assets/wedding-photo-02.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 04', src: './assets/KakaoTalk_20260730_214802172.jpg' },
     { title: '우리의 순간', caption: '추가해주신 웨딩 사진을 갤러리로 이어서 감상하실 수 있습니다.', imageLabel: 'Scene 05', src: './assets/KakaoTalk_20260730_214802172_01.jpg' },
@@ -107,7 +109,11 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 33', src: './assets/SSN00281.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 34', src: './assets/SSN00344.JPG' },
     { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 35', src: './assets/SSN00413.JPG' },
-    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 36', src: './assets/SSN00524.JPG' }
+    { title: '우리의 순간', caption: '새로 추가해주신 웨딩 사진을 확대해서 이어 보실 수 있습니다.', imageLabel: 'Scene 36', src: './assets/SSN00524.JPG' },
+    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 01', src: './assets/KakaoTalk_20260730_214802172_02.jpg' },
+    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 02', src: './assets/KakaoTalk_20260730_214802172_03.jpg' },
+    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 05', src: './assets/KakaoTalk_20260802_222009937.jpg' },
+    { title: '우리의 순간', caption: '함께한 순간을 갤러리에서 이어 보실 수 있습니다.', imageLabel: 'Added Scene 06', src: './assets/KakaoTalk_20260802_222054901.jpg' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
