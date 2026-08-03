@@ -182,7 +182,11 @@ const invitationConfig = {
     {
       group: '신랑측 마음 전하실 곳',
       hint: '신랑 신윤찬',
-      items: [{ name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' }]
+      items: [
+        { name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' },
+        { name: '신랑 부 신영호', bank: '우리은행', number: '011-109480-02-001' },
+        { name: '신랑 모 조혜경', bank: '국민은행', number: '43340101229584' }
+      ]
     },
     {
       group: '신부측 마음 전하실 곳',
