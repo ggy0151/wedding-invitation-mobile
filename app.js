@@ -585,7 +585,7 @@ function renderApp() {
         <p class="intro-kicker">YOU'RE INVITED TO</p>
         <h1 class="intro-title">Our Wedding</h1>
         <span class="intro-line"></span>
-        <p class="intro-names">YOONCHAN <span>&amp;</span> JIYOON</p>
+        <p class="intro-names">Yunchan <span>&amp;</span> Jiyun</p>
         <p class="intro-date">DECEMBER 20, 2026</p>
       </div>
     </div>

@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "ChosunIlboMyungjo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
   --bg: #050506;
   --bg-soft: #0d0e0c;
@@ -19,6 +27,8 @@
   --font-accent: "Noto Serif KR", "Cormorant Garamond", "Times New Roman", serif;
   --font-script: "Allura", "Cormorant Garamond", serif;
   --font-soft: "Gowun Batang", "Noto Serif KR", serif;
+  --font-chosun: "ChosunIlboMyungjo", "Noto Serif KR", "Times New Roman", serif;
+  --font-info: "Pretendard Variable", "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
 }
 
 * {
@@ -111,9 +121,9 @@ body.intro-active {
 .intro-title {
   margin: 12px 0 0;
   color: #fff7f8;
-  font-family: var(--font-script);
-  font-size: clamp(64px, 19vw, 92px);
-  font-weight: 400;
+  font-family: var(--font-chosun);
+  font-size: clamp(56px, 16vw, 78px);
+  font-weight: 700;
   line-height: 0.96;
   text-shadow: 0 12px 34px rgba(241, 147, 181, 0.18);
   animation-delay: 0.28s;
@@ -131,8 +141,10 @@ body.intro-active {
 .intro-names {
   margin: 0;
   color: rgba(255, 247, 248, 0.94);
-  font-family: var(--font-display);
+  font-family: var(--font-chosun);
   font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
   letter-spacing: 0.13em;
   animation-delay: 0.58s;
 }
@@ -140,16 +152,18 @@ body.intro-active {
 .intro-names span {
   margin: 0 5px;
   color: var(--accent);
-  font-family: var(--font-script);
-  font-size: 24px;
+  font-family: inherit;
+  font-size: 1em;
+  font-weight: inherit;
   letter-spacing: 0;
 }
 
 .intro-date {
-  margin: 10px 0 0;
+  margin: 14px 0 0;
   color: rgba(210, 200, 192, 0.72);
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-size: 11px;
+  line-height: 1.4;
   letter-spacing: 0.2em;
   animation-delay: 0.7s;
 }
@@ -308,7 +322,7 @@ button {
 .account-title,
 .venue-title,
 .calendar-month {
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-weight: 500;
   letter-spacing: -0.02em;
 }
@@ -545,8 +559,9 @@ button {
 }
 
 .cover-name-card strong {
+  font-family: var(--font-chosun);
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -571,7 +586,7 @@ button {
   margin: 0 0 8px;
   color: rgba(241, 147, 181, 0.94);
   font-size: 14px;
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.52);
@@ -582,9 +597,9 @@ button {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-family: var(--font-script);
-  font-size: clamp(58px, 18vw, 96px);
-  font-weight: 400;
+  font-family: var(--font-chosun);
+  font-size: clamp(46px, 14vw, 68px);
+  font-weight: 700;
   line-height: 0.9;
   letter-spacing: 0;
   color: #f3a0bc;
@@ -599,7 +614,7 @@ button {
   z-index: 1;
   margin: 14px 0 0;
   color: rgba(243, 181, 203, 0.95);
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   letter-spacing: 0.03em;
   text-shadow: 0 3px 16px rgba(0, 0, 0, 0.5);
 }
@@ -624,7 +639,7 @@ button {
 
 .wedding-day-title {
   margin: 18px 0 0;
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;
@@ -645,6 +660,7 @@ button {
   color: var(--muted);
   word-break: keep-all;
   text-wrap: balance;
+  font-family: var(--font-info);
 }
 
 .wedding-day-copy {
@@ -708,6 +724,7 @@ button {
   margin: 6px 0 0;
   font-size: 15px;
   color: rgba(255, 215, 227, 0.82);
+  font-family: var(--font-info);
 }
 
 .calendar-pill {
@@ -723,6 +740,7 @@ button {
   color: var(--accent-strong);
   font-size: 13px;
   letter-spacing: 0.14em;
+  font-family: var(--font-info);
 }
 
 .calendar-grid {
@@ -737,6 +755,7 @@ button {
   place-items: center;
   min-height: 46px;
   font-size: 18px;
+  font-family: var(--font-info);
 }
 
 .calendar-weekday {
@@ -855,10 +874,10 @@ button {
 
 .wedding-quote {
   margin: 16px 0 0;
-  font-family: var(--font-soft);
+  font-family: var(--font-chosun);
   font-size: clamp(15px, 4vw, 17px);
   line-height: 2;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.035em;
   color: var(--text);
   word-break: keep-all;
@@ -939,7 +958,7 @@ button {
 .parents-feature-head {
   margin-bottom: 12px;
   color: #23161b;
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-size: 22px;
   font-weight: 600;
   text-align: center;
@@ -998,7 +1017,7 @@ button {
 
 .parents-letter-title {
   color: #2b181f;
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-size: 24px;
   font-weight: 600;
 }
@@ -1030,7 +1049,7 @@ button {
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
   color: var(--accent-strong);
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-size: 20px;
   font-weight: 600;
 }
@@ -1097,6 +1116,7 @@ button {
 }
 
 .transport-title {
+  font-family: var(--font-info);
   font-size: 14px;
   line-height: 1.45;
   letter-spacing: -0.03em;
@@ -1135,7 +1155,7 @@ button {
 .letter-title {
   color: var(--accent-strong);
   font-size: 13px;
-  font-family: var(--font-body);
+  font-family: var(--font-info);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -1241,7 +1261,7 @@ button {
 
 .map-fallback strong {
   display: block;
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   color: var(--accent-strong);
   font-size: 30px;
   font-weight: 500;
@@ -1264,7 +1284,7 @@ button {
 }
 
 .map-info-window strong {
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-size: 15px;
 }
 
@@ -1273,6 +1293,7 @@ button {
   color: var(--text);
   line-height: 1.9;
   word-break: keep-all;
+  font-family: var(--font-info);
 }
 
 .venue-hall,
@@ -1348,7 +1369,7 @@ button {
   display: block;
   margin-top: 8px;
   font-size: 20px;
-  font-family: var(--font-display);
+  font-family: var(--font-info);
   font-weight: 500;
   letter-spacing: -0.02em;
 }
