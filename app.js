@@ -376,6 +376,10 @@ function buildFamilyIntroduction() {
 }
 
 function buildParentsFeature() {
+  // 신부 가족사진 추가 전까지 부모님 손글씨와 Groom 가족사진 영역을 잠시 숨깁니다.
+  const showParentsFeature = false;
+  if (!showParentsFeature) return '';
+
   const item = invitationConfig.parentsFeature;
   if (!item) return '';
 
