@@ -183,7 +183,6 @@ const invitationConfig = {
   accounts: [
     {
       group: '신랑측 마음 전하실 곳',
-      hint: '신랑 신윤찬',
       items: [
         { name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' },
         { name: '신랑 부 신영호', bank: '우리은행', number: '011-109480-02-001' },
@@ -192,7 +191,6 @@ const invitationConfig = {
     },
     {
       group: '신부측 마음 전하실 곳',
-      hint: '신부 김지윤',
       items: [
         { name: '신부 부 김광주', bank: '신한은행', number: '110258239647' },
         { name: '신부 모 유미경', bank: '경남은행', number: '671210149913' },
@@ -200,7 +198,7 @@ const invitationConfig = {
       ]
     }
   ],
-  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는 분들을\n 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는 따뜻한 축하의 마음에 깊이 감사드립니다.'
+  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는\n분들을 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는\n따뜻한 축하의 마음에 깊이 감사드립니다.'
 };
 
 const app = document.querySelector('#app');
@@ -515,7 +513,6 @@ function buildAccounts() {
             <div>
               <small>Account</small>
               <strong class="account-title">${escapeHtml(group.group)}</strong>
-              <p class="account-copy">${escapeHtml(group.hint)}</p>
             </div>
           </div>
           <div class="account-panel">
@@ -711,8 +708,7 @@ function renderApp() {
 
         <section class="section section--spaced reveal" id="gallery">
           <span class="mini-label">GALLERY</span>
-          <h2 class="section-title">우리의 장면들</h2>
-          <p class="section-copy">사진을 눌러 원본 이미지를 바로 볼 수 있습니다.</p>
+          <h2 class="section-title">우리의 순간들</h2>
           <div class="gallery-flow">
             ${buildGallery()}
           </div>

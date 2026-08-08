@@ -1154,7 +1154,7 @@ button {
 
 .letter-title {
   color: var(--accent-strong);
-  font-size: 13px;
+  font-size: 15px;
   font-family: var(--font-info);
   font-weight: 600;
   letter-spacing: 0.15em;
