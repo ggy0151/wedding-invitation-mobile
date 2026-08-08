@@ -327,9 +327,19 @@ function buildWeddingCalendar(dateIso) {
   `;
 }
 
+const IMAGE_ASSET_VERSION = '20260808-1';
+
+function imageVariant(src, variant) {
+  if (!src || !/^\.\/assets\/[^/]+\.(jpe?g)$/i.test(src)) return src;
+  return `${src.replace('./assets/', `./assets/${variant}/`)}?v=${IMAGE_ASSET_VERSION}`;
+}
+
 function buildVisual(item, slot, extraClass = '') {
   if (item.src) {
-    return `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title || item.name || item.label)}" loading="lazy">`;
+    const variant = slot === 'gallery' ? 'thumbs' : 'display';
+    const loading = slot === 'cover' ? 'eager' : 'lazy';
+    const priority = slot === 'cover' ? ' fetchpriority="high"' : '';
+    return `<img src="${escapeHtml(imageVariant(item.src, variant))}" alt="${escapeHtml(item.title || item.name || item.label)}" loading="${loading}" decoding="async"${priority}>`;
   }
 
   return `
@@ -1042,7 +1052,7 @@ function renderLightbox(index) {
 
   document.getElementById('lightboxCount').textContent = `${safeIndex + 1} / ${total}`;
   document.getElementById('lightboxVisual').innerHTML = item.src
-    ? `<img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.title)}">`
+    ? `<img src="${escapeHtml(imageVariant(item.src, 'display'))}" alt="${escapeHtml(item.title)}" decoding="async">`
     : `
         <div class="lightbox-placeholder">
           <div>
@@ -1451,6 +1461,14 @@ function mount() {
   setupCountdown();
   setupRsvp();
   syncRsvpLabel();
+
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch((error) => {
+        console.warn('[CACHE] service worker registration failed', error);
+      });
+    });
+  }
 }
 
 mount();
