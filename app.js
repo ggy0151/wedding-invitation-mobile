@@ -178,7 +178,7 @@ const invitationConfig = {
     ]
   },
   rsvp: {
-    endpoint: 'https://script.google.com/macros/s/AKfycbzsQPXagUxjm0fQlSFrztSL9Zz0KTMRtQAJZaRiRlq7QeIsmIyYNFMUDSZ1Y0LzSYrM/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbxW7JvIYWkHdJ0nXwdaPR7QHn4Eu6s_2QfAx718y1osivEPz8p5t9P1e5crTAd6vDl2/exec',
     mode: 'no-cors',
     doneKey: 'wedding_invitation_rsvp_done_v2',
     draftsKey: 'wedding_invitation_rsvp_drafts_v2',
@@ -187,7 +187,7 @@ const invitationConfig = {
     mealNotice: '식사는 참석 인원에 맞춰 준비됩니다.'
   },
   guestbook: {
-    endpoint: 'https://script.google.com/macros/s/AKfycbzsQPXagUxjm0fQlSFrztSL9Zz0KTMRtQAJZaRiRlq7QeIsmIyYNFMUDSZ1Y0LzSYrM/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbxW7JvIYWkHdJ0nXwdaPR7QHn4Eu6s_2QfAx718y1osivEPz8p5t9P1e5crTAd6vDl2/exec',
     limit: 6
   },
   accounts: [
