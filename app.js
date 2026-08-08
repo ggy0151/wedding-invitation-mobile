@@ -32,13 +32,19 @@ const invitationConfig = {
       label: 'Groom',
       name: '신랑 신윤찬',
       imageLabel: 'Yoon Chan',
-      src: './assets/groom-childhood.jpg'
+      images: [
+        './assets/groom-childhood.jpg',
+        './assets/groom-childhood2.jpg'
+      ]
     },
     {
       label: 'Bride',
       name: '신부 김지윤',
       imageLabel: 'Ji Yoon',
-      src: './assets/bride-childhood.jpg'
+      images: [
+        './assets/bride-childhood.jpg',
+        './assets/bride-childchood2.jpg'
+      ]
     }
   ],
   parentsFeature: {
@@ -180,6 +186,10 @@ const invitationConfig = {
     helper: '한 분 한 분을 정성껏 모시고 싶습니다.\n참석 여부를 미리 남겨주시면 감사하겠습니다.',
     mealNotice: '식사는 참석 인원에 맞춰 준비됩니다.'
   },
+  guestbook: {
+    endpoint: 'https://script.google.com/macros/s/AKfycbzsQPXagUxjm0fQlSFrztSL9Zz0KTMRtQAJZaRiRlq7QeIsmIyYNFMUDSZ1Y0LzSYrM/exec',
+    limit: 6
+  },
   accounts: [
     {
       group: '신랑측 마음 전하실 곳',
@@ -207,7 +217,8 @@ const state = {
   toastTimer: null,
   lightboxIndex: 0,
   lightboxTouchStartX: 0,
-  lightboxTouchStartY: 0
+  lightboxTouchStartY: 0,
+  guestbookMessages: []
 };
 
 function escapeHtml(value) {
@@ -354,8 +365,16 @@ function buildStory() {
   return invitationConfig.story
     .map(
       (item) => `
-        <article class="story-photo">
-          ${buildVisual(item, 'story')}
+        <article class="story-person">
+          <div class="story-photo story-photo--primary">
+            ${buildVisual({ ...item, src: item.images[0] }, 'story')}
+            <div class="story-caption">
+              <strong>${escapeHtml(item.name)}</strong>
+            </div>
+          </div>
+          <div class="story-photo story-photo--secondary">
+            ${buildVisual({ ...item, src: item.images[1] }, 'story')}
+          </div>
         </article>
       `
     )
@@ -463,6 +482,80 @@ function buildGallery() {
       `
     )
     .join('');
+}
+
+function getGuestbookPreviewMessages() {
+  if (location.protocol !== 'file:') return [];
+
+  return [
+    {
+      id: 'preview-1',
+      name: '민지',
+      message: '두 분의 새로운 시작을 진심으로 축하해요. 오래오래 행복하세요!',
+      createdAt: '2026-08-08T10:30:00+09:00'
+    },
+    {
+      id: 'preview-2',
+      name: '준호',
+      message: '서로를 바라보는 모습처럼 늘 다정하고 웃음 가득한 날들만 있길 바라!',
+      createdAt: '2026-08-07T19:20:00+09:00'
+    },
+    {
+      id: 'preview-3',
+      name: '현정 이모',
+      message: '사랑스러운 두 사람의 결혼을 축복합니다. 예쁜 가정 이루렴.',
+      createdAt: '2026-08-06T14:10:00+09:00'
+    }
+  ];
+}
+
+function formatGuestbookDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: '2-digit',
+    day: '2-digit'
+  }).format(date);
+}
+
+function buildGuestbookMessages(messages) {
+  if (!messages.length) {
+    return `
+      <div class="guestbook-empty">
+        <span>♡</span>
+        <p>첫 번째 축하 메시지를 남겨주세요.</p>
+      </div>
+    `;
+  }
+
+  return messages
+    .map((item) => `
+      <article class="guestbook-card">
+        <div class="guestbook-card-head">
+          <span class="guestbook-avatar" aria-hidden="true">${escapeHtml(String(item.name || '축').trim().slice(0, 1))}</span>
+          <div>
+            <strong>${escapeHtml(item.name)}</strong>
+            <time datetime="${escapeHtml(item.createdAt)}">${escapeHtml(formatGuestbookDate(item.createdAt))}</time>
+          </div>
+        </div>
+        <p>${nl2br(item.message)}</p>
+      </article>
+    `)
+    .join('');
+}
+
+function renderGuestbookMessages(messages) {
+  state.guestbookMessages = messages.slice(0, invitationConfig.guestbook.limit);
+  const container = document.getElementById('guestbookList');
+  if (container) container.innerHTML = buildGuestbookMessages(state.guestbookMessages);
+}
+
+function setGuestbookAvailability(isAvailable, label = '축하 메시지 남기기') {
+  document.querySelectorAll('[data-open-guestbook]').forEach((button) => {
+    button.disabled = !isAvailable;
+    button.textContent = label;
+  });
 }
 
 function buildVenueLinks() {
@@ -706,6 +799,18 @@ function renderApp() {
           </div>
         </section>
 
+        <section class="section section--spaced reveal" id="guestbook">
+          <span class="mini-label">GUESTBOOK</span>
+          <h2 class="section-title guestbook-title">축하의 마음을 남겨주세요</h2>
+          <p class="section-copy">두 사람의 새로운 시작에 따뜻한 한마디를 전해주세요.</p>
+          <div class="guestbook-list" id="guestbookList">
+            ${buildGuestbookMessages(getGuestbookPreviewMessages())}
+          </div>
+          <button class="button outline guestbook-open-button" type="button" data-open-guestbook disabled>
+            축하 메시지 남기기
+          </button>
+        </section>
+
         <section class="section section--spaced reveal" id="gallery">
           <span class="mini-label">GALLERY</span>
           <h2 class="section-title">우리의 순간들</h2>
@@ -838,6 +943,35 @@ function renderApp() {
         </div>
       </section>
 
+      <section class="modal" id="guestbookModal" aria-hidden="true">
+        <div class="modal-sheet guestbook-modal-sheet">
+          <div class="modal-head">
+            <div>
+              <span class="mini-label">GUESTBOOK</span>
+              <h2 class="modal-title">축하 메시지 남기기</h2>
+            </div>
+            <button class="close-button" type="button" data-close-modal="guestbookModal" aria-label="닫기">×</button>
+          </div>
+          <p class="guestbook-modal-copy">소중한 마음을 신랑 신부에게 전해주세요.</p>
+          <form id="guestbookForm" class="guestbook-form">
+            <label class="guestbook-field">
+              <span class="field-label">이름</span>
+              <input class="field-input" name="name" type="text" maxlength="20" placeholder="이름을 입력해 주세요" required>
+            </label>
+            <label class="guestbook-field">
+              <span class="field-label">축하 메시지</span>
+              <textarea class="field-textarea" name="message" rows="5" maxlength="200" placeholder="따뜻한 축하의 마음을 남겨주세요" required></textarea>
+              <small class="guestbook-character-count"><span id="guestbookCharacterCount">0</span> / 200</small>
+            </label>
+            <label class="guestbook-honeypot" aria-hidden="true">
+              웹사이트
+              <input name="website" type="text" tabindex="-1" autocomplete="off">
+            </label>
+            <button class="button primary guestbook-submit" type="submit" id="guestbookSubmitButton">메시지 남기기</button>
+          </form>
+        </div>
+      </section>
+
       <section class="modal" id="lightboxModal" aria-hidden="true">
         <div class="modal-sheet lightbox-sheet">
           <div class="modal-head lightbox-head">
@@ -904,6 +1038,8 @@ function setupReveal() {
     '.contact-group',
     '.letter-item',
     '.gallery-tile',
+    '.guestbook-card',
+    '.guestbook-open-button',
     '.map-visual',
     '.venue-links > *',
     '.transport-item',
@@ -1061,9 +1197,127 @@ function moveLightbox(step) {
   renderLightbox(state.lightboxIndex + step);
 }
 
+function loadGuestbookMessages() {
+  return new Promise((resolve, reject) => {
+    const callbackName = `__weddingGuestbook_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement('script');
+    const timer = window.setTimeout(() => {
+      cleanup();
+      reject(new Error('Guestbook request timed out.'));
+    }, 8000);
+
+    const cleanup = () => {
+      window.clearTimeout(timer);
+      script.remove();
+      delete window[callbackName];
+    };
+
+    window[callbackName] = (payload) => {
+      cleanup();
+      resolve(Array.isArray(payload?.messages) ? payload.messages : []);
+    };
+
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('Guestbook request failed.'));
+    };
+    script.src = `${invitationConfig.guestbook.endpoint}?action=guestbook&limit=${invitationConfig.guestbook.limit}&callback=${encodeURIComponent(callbackName)}`;
+    document.head.appendChild(script);
+  });
+}
+
+async function submitGuestbookMessage(payload) {
+  if (location.protocol === 'file:') return 'preview';
+
+  await fetch(invitationConfig.guestbook.endpoint, {
+    method: 'POST',
+    mode: 'no-cors',
+    cache: 'no-store',
+    body: new URLSearchParams(payload)
+  });
+
+  return 'remote';
+}
+
+function setupGuestbook() {
+  const form = document.getElementById('guestbookForm');
+  const submitButton = document.getElementById('guestbookSubmitButton');
+  const messageField = form?.querySelector('textarea[name="message"]');
+  const characterCount = document.getElementById('guestbookCharacterCount');
+  if (!form || !submitButton || !messageField) return;
+
+  const previewMessages = getGuestbookPreviewMessages();
+  if (previewMessages.length) {
+    renderGuestbookMessages(previewMessages);
+    setGuestbookAvailability(true);
+  } else {
+    setGuestbookAvailability(false, '축하 메시지 불러오는 중...');
+    loadGuestbookMessages()
+      .then((messages) => {
+        renderGuestbookMessages(messages);
+        setGuestbookAvailability(true);
+      })
+      .catch((error) => {
+        console.warn('[GUESTBOOK] load failed', error);
+        renderGuestbookMessages([]);
+        setGuestbookAvailability(false, '축하 메시지 준비 중');
+      });
+  }
+
+  messageField.addEventListener('input', () => {
+    if (characterCount) characterCount.textContent = String(messageField.value.length);
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const raw = Object.fromEntries(new FormData(form).entries());
+    const name = String(raw.name || '').trim();
+    const message = String(raw.message || '').trim();
+    if (!name || message.length < 2) return;
+
+    const payload = {
+      formType: 'guestbook',
+      messageId: createSubmissionId(),
+      name,
+      message,
+      website: String(raw.website || '')
+    };
+
+    submitButton.disabled = true;
+    submitButton.textContent = '마음을 전하는 중...';
+
+    try {
+      const result = await submitGuestbookMessage(payload);
+      renderGuestbookMessages([
+        {
+          id: payload.messageId,
+          name,
+          message,
+          createdAt: new Date().toISOString()
+        },
+        ...state.guestbookMessages
+      ]);
+      form.reset();
+      if (characterCount) characterCount.textContent = '0';
+      closeModal('guestbookModal');
+      showToast(result === 'preview' ? '미리보기에 메시지를 추가했어요.' : '축하 메시지를 남겼어요.');
+    } catch (error) {
+      console.error('[GUESTBOOK] submit failed', error);
+      showToast('메시지를 남기지 못했습니다. 잠시 후 다시 시도해 주세요.');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = '메시지 남기기';
+    }
+  });
+}
+
 function bindActions() {
   document.querySelectorAll('[data-open-rsvp]').forEach((button) => {
     button.addEventListener('click', () => openModal('rsvpModal'));
+  });
+
+  document.querySelectorAll('[data-open-guestbook]').forEach((button) => {
+    button.addEventListener('click', () => openModal('guestbookModal'));
   });
 
   document.querySelectorAll('[data-close-modal]').forEach((button) => {
@@ -1453,6 +1707,7 @@ function mount() {
   setupVenueMap();
   setupCountdown();
   setupRsvp();
+  setupGuestbook();
   syncRsvpLabel();
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {

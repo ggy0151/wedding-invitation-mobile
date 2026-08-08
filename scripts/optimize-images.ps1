@@ -77,6 +77,11 @@ foreach ($variant in $variants) {
 
   foreach ($file in $files) {
     $destination = Join-Path $targetRoot $file.Name
+    if ((Test-Path -LiteralPath $destination) -and
+        (Get-Item -LiteralPath $destination).LastWriteTimeUtc -ge $file.LastWriteTimeUtc) {
+      continue
+    }
+
     $image = [System.Drawing.Image]::FromFile($file.FullName)
     try {
       Set-ExifOrientation -Image $image
