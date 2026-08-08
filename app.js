@@ -140,14 +140,14 @@ const invitationConfig = {
     },
     transport: [
       {
-        label: '버스 Bus',
-        title: '220, 310, 370, 누리4, 117번(마을)',
-        copy: '버스 이용 시 위 노선을 통해 호텔로 이동하시면 됩니다.'
+        label: '지하철 Subway',
+        title: '수인분당선 수내역 1번 출구',
+        copy: '수내역 1번 출구에서 하차 후 도보로 약 20분 소요됩니다.'
       },
       {
-        label: '지하철 Subway',
-        title: '수인분당선 서현역 3번 출구',
-        copy: '지하철 이용 시 서현역 3번 출구에서 이동하시면 됩니다.'
+        label: '버스 Bus',
+        title: '수내역 1번 출구에서 버스 환승',
+        copy: '도보 대신 버스로 환승해 호텔 인근까지 이동하실 수 있습니다.'
       },
       {
         label: '주차 Parking',
@@ -695,12 +695,6 @@ function renderApp() {
           </div>
         </section>
 
-        <section class="section section--spaced reveal" id="contact">
-          <span class="mini-label">CONTACT</span>
-          <p class="section-copy">축하의 마음을 전하실 분께 연락하실 수 있습니다.</p>
-          <div class="contact-groups">${buildContacts()}</div>
-        </section>
-
         <section class="section section--spaced reveal">
           <span class="mini-label">LETTER</span>
           <div class="letter-stack">
@@ -733,6 +727,12 @@ function renderApp() {
             <div class="venue-links">${buildVenueLinks()}</div>
             <div class="transport-list">${buildTransport()}</div>
           </div>
+        </section>
+
+        <section class="section section--spaced reveal" id="contact">
+          <span class="mini-label">CONTACT</span>
+          <p class="section-copy">축하의 마음을 전하실 분께 연락하실 수 있습니다.</p>
+          <div class="contact-groups">${buildContacts()}</div>
         </section>
 
         <section class="section section--spaced reveal" id="accounts">
