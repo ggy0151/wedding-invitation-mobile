@@ -549,13 +549,35 @@ function renderGuestbookMessages(messages) {
   state.guestbookMessages = messages.slice(0, invitationConfig.guestbook.limit);
   const container = document.getElementById('guestbookList');
   if (container) container.innerHTML = buildGuestbookMessages(state.guestbookMessages);
+
+  const toggle = document.querySelector('[data-toggle-guestbook]');
+  const count = document.querySelector('[data-guestbook-count]');
+  if (count) count.textContent = String(state.guestbookMessages.length);
+  if (toggle) {
+    const hasMessages = state.guestbookMessages.length > 0;
+    toggle.hidden = !hasMessages;
+    toggle.disabled = !hasMessages;
+    setGuestbookExpanded(false);
+  }
 }
 
 function setGuestbookAvailability(isAvailable, label = '축하 메시지 남기기') {
   document.querySelectorAll('[data-open-guestbook]').forEach((button) => {
     button.disabled = !isAvailable;
-    button.textContent = label;
+    const labelNode = button.querySelector('[data-guestbook-write-label]');
+    if (labelNode) labelNode.textContent = label;
   });
+}
+
+function setGuestbookExpanded(isExpanded) {
+  const container = document.getElementById('guestbookList');
+  const toggle = document.querySelector('[data-toggle-guestbook]');
+  const label = document.querySelector('[data-guestbook-toggle-label]');
+  if (!container || !toggle || !label) return;
+
+  container.hidden = !isExpanded;
+  toggle.setAttribute('aria-expanded', String(isExpanded));
+  label.textContent = isExpanded ? '축하 메시지 닫기' : '축하 메시지 보기';
 }
 
 function buildVenueLinks() {
@@ -803,12 +825,22 @@ function renderApp() {
           <span class="mini-label">GUESTBOOK</span>
           <h2 class="section-title guestbook-title">축하의 마음을 남겨주세요</h2>
           <p class="section-copy">두 사람의 새로운 시작에 따뜻한 한마디를 전해주세요.</p>
-          <div class="guestbook-list" id="guestbookList">
+          <div class="guestbook-actions">
+            <button class="guestbook-toggle-button" type="button" data-toggle-guestbook aria-controls="guestbookList" aria-expanded="false" hidden disabled>
+              <span class="guestbook-toggle-copy">
+                <span data-guestbook-toggle-label>축하 메시지 보기</span>
+                <span class="guestbook-count" data-guestbook-count>0</span>
+              </span>
+              <span class="guestbook-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <button class="button primary guestbook-open-button" type="button" data-open-guestbook disabled>
+              <span class="guestbook-plus" aria-hidden="true">＋</span>
+              <span data-guestbook-write-label>축하 메시지 남기기</span>
+            </button>
+          </div>
+          <div class="guestbook-list" id="guestbookList" hidden>
             ${buildGuestbookMessages(getGuestbookPreviewMessages())}
           </div>
-          <button class="button outline guestbook-open-button" type="button" data-open-guestbook disabled>
-            축하 메시지 남기기
-          </button>
         </section>
 
         <section class="section section--spaced reveal" id="gallery">
@@ -1277,6 +1309,7 @@ function setupGuestbook() {
         },
         ...state.guestbookMessages
       ]);
+      setGuestbookExpanded(true);
       form.reset();
       if (characterCount) characterCount.textContent = '0';
       closeModal('guestbookModal');
@@ -1298,6 +1331,12 @@ function bindActions() {
 
   document.querySelectorAll('[data-open-guestbook]').forEach((button) => {
     button.addEventListener('click', () => openModal('guestbookModal'));
+  });
+
+  document.querySelectorAll('[data-toggle-guestbook]').forEach((button) => {
+    button.addEventListener('click', () => {
+      setGuestbookExpanded(button.getAttribute('aria-expanded') !== 'true');
+    });
   });
 
   document.querySelectorAll('[data-close-modal]').forEach((button) => {

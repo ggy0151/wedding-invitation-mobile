@@ -4,8 +4,8 @@ const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 const CORE_ASSETS = [
   './',
   './index.html',
-  './styles.css?v=20260808-9',
-  './app.js?v=20260808-14'
+  './styles.css?v=20260808-10',
+  './app.js?v=20260808-15'
 ];
 
 self.addEventListener('install', (event) => {
