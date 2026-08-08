@@ -141,13 +141,13 @@ const invitationConfig = {
     transport: [
       {
         label: '지하철 Subway',
-        title: '수인분당선 수내역 1번 출구',
-        copy: '수내역 1번 출구에서 하차 후 도보로 약 20분 소요됩니다.'
+        title: '수인분당선 수내역 3번 출구 · 도보 약 20분',
+        copy: '수내역 3번 출구에서 호텔까지 도보로 약 20분 소요됩니다.'
       },
       {
-        label: '버스 Bus',
-        title: '수내역 1번 출구에서 버스 환승',
-        copy: '도보 대신 버스로 환승해 호텔 인근까지 이동하실 수 있습니다.'
+        label: '시내버스 Bus',
+        title: '일반 버스 220 · 310 · 370 · 누리 4',
+        copy: '마을 버스 117'
       },
       {
         label: '주차 Parking',
