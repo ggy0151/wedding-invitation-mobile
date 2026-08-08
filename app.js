@@ -81,6 +81,7 @@ const invitationConfig = {
     }
   ],
   gallery: [
+    { title: '우리의 메인 커버', caption: '청첩장 메인 커버 사진입니다.', imageLabel: 'Main Cover', src: './assets/main cover.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 01', src: './assets/KakaoTalk_20260806_072904893.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 02', src: './assets/KakaoTalk_20260806_072904893_01.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 03', src: './assets/KakaoTalk_20260806_072904893_03.jpg' },
@@ -99,7 +100,20 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 16', src: './assets/KakaoTalk_20260806_072904893_16.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 17', src: './assets/KakaoTalk_20260806_072904893_17.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 18', src: './assets/SON00034-1.jpg' },
-    { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 19', src: './assets/SON03236-1.jpg' }
+    { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 19', src: './assets/SON03236-1.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 01', src: './assets/KakaoTalk_20260730_221404933_01.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 02', src: './assets/KakaoTalk_20260730_221404933_02.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 03', src: './assets/KakaoTalk_20260730_221404933_06.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 04', src: './assets/KakaoTalk_20260802_222009937.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 05', src: './assets/KakaoTalk_20260802_222054901.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 06', src: './assets/KakaoTalk_20260804_070813031.jpg' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 07', src: './assets/SSN00006.JPG' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 08', src: './assets/SSN00096.JPG' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 09', src: './assets/SSN00225.JPG' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 10', src: './assets/SSN00281.JPG' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 11', src: './assets/SSN00344.JPG' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 12', src: './assets/SSN00413.JPG' },
+    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 13', src: './assets/SSN00524.JPG' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
@@ -683,14 +697,12 @@ function renderApp() {
 
         <section class="section section--spaced reveal" id="contact">
           <span class="mini-label">CONTACT</span>
-          <h2 class="section-title">연락하기</h2>
           <p class="section-copy">축하의 마음을 전하실 분께 연락하실 수 있습니다.</p>
           <div class="contact-groups">${buildContacts()}</div>
         </section>
 
         <section class="section section--spaced reveal">
           <span class="mini-label">LETTER</span>
-          <h2 class="section-title">전하고 싶은 인사</h2>
           <div class="letter-stack">
             ${buildLetters()}
           </div>
