@@ -1197,33 +1197,13 @@ function moveLightbox(step) {
   renderLightbox(state.lightboxIndex + step);
 }
 
-function loadGuestbookMessages() {
-  return new Promise((resolve, reject) => {
-    const callbackName = `__weddingGuestbook_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    const script = document.createElement('script');
-    const timer = window.setTimeout(() => {
-      cleanup();
-      reject(new Error('Guestbook request timed out.'));
-    }, 8000);
+async function loadGuestbookMessages() {
+  const url = `${invitationConfig.guestbook.endpoint}?action=guestbook&limit=${invitationConfig.guestbook.limit}`;
+  const response = await fetch(url, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Guestbook request failed: HTTP ${response.status}`);
 
-    const cleanup = () => {
-      window.clearTimeout(timer);
-      script.remove();
-      delete window[callbackName];
-    };
-
-    window[callbackName] = (payload) => {
-      cleanup();
-      resolve(Array.isArray(payload?.messages) ? payload.messages : []);
-    };
-
-    script.onerror = () => {
-      cleanup();
-      reject(new Error('Guestbook request failed.'));
-    };
-    script.src = `${invitationConfig.guestbook.endpoint}?action=guestbook&limit=${invitationConfig.guestbook.limit}&callback=${encodeURIComponent(callbackName)}`;
-    document.head.appendChild(script);
-  });
+  const payload = await response.json();
+  return Array.isArray(payload?.messages) ? payload.messages : [];
 }
 
 async function submitGuestbookMessage(payload) {

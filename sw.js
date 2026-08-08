@@ -5,7 +5,7 @@ const CORE_ASSETS = [
   './',
   './index.html',
   './styles.css?v=20260808-9',
-  './app.js?v=20260808-13'
+  './app.js?v=20260808-14'
 ];
 
 self.addEventListener('install', (event) => {
