@@ -358,9 +358,6 @@ function buildStory() {
       (item) => `
         <article class="story-photo">
           ${buildVisual(item, 'story')}
-          <div class="story-caption">
-            <strong>${escapeHtml(item.name)}</strong>
-          </div>
         </article>
       `
     )
