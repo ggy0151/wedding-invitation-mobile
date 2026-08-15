@@ -1155,6 +1155,17 @@ button {
   word-break: keep-all;
 }
 
+.account-copy.transport-copy--strong {
+  margin-top: 4px;
+  font-family: var(--font-info);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
 .story-caption strong,
 .gallery-caption strong {
   margin-top: 0;
@@ -1545,18 +1556,18 @@ button {
   word-break: keep-all;
 }
 
-.account-group + .account-group {
-  margin-top: 14px;
-}
-
 .account-trigger {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 0 0 14px;
+  padding: 0 8px 14px 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
   border-bottom: 1px solid var(--line);
+  cursor: pointer;
   text-align: left;
 }
 
@@ -1572,6 +1583,39 @@ button {
 .account-panel {
   max-height: none;
   overflow: visible;
+}
+
+.account-panel[hidden] {
+  display: none;
+}
+
+.account-chevron {
+  color: var(--accent-strong);
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.account-trigger[aria-expanded='true'] .account-chevron {
+  transform: rotate(180deg);
+}
+
+.account-side {
+  padding-top: 20px;
+}
+
+.account-side + .account-side {
+  margin-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.account-side-title {
+  margin: 0 0 2px;
+  color: var(--text);
+  font-family: var(--font-info);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .account-item {

@@ -113,10 +113,8 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 04', src: './assets/KakaoTalk_20260802_222009937.jpg' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 05', src: './assets/KakaoTalk_20260802_222054901.jpg' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 06', src: './assets/KakaoTalk_20260804_070813031.jpg' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 07', src: './assets/SSN00006.JPG' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 08', src: './assets/SSN00096.JPG' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 09', src: './assets/SSN00225.JPG' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 10', src: './assets/SSN00281.JPG' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 11', src: './assets/SSN00344.JPG' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 12', src: './assets/SSN00413.JPG' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 13', src: './assets/SSN00524.JPG' }
@@ -153,7 +151,8 @@ const invitationConfig = {
       {
         label: '시내버스 Bus',
         title: '일반 버스 220 · 310 · 370 · 누리 4',
-        copy: '마을 버스 117'
+        copy: '마을 버스 117',
+        copyEmphasis: true
       },
       {
         label: '주차 Parking',
@@ -202,9 +201,9 @@ const invitationConfig = {
     {
       group: '신부측 마음 전하실 곳',
       items: [
+        { name: '신부 김지윤', bank: '신한은행', number: '110455998600' },
         { name: '신부 부 김광주', bank: '신한은행', number: '110258239647' },
-        { name: '신부 모 유미경', bank: '경남은행', number: '671210149913' },
-        { name: '신부 김지윤', bank: '신한은행', number: '110455998600' }
+        { name: '신부 모 유미경', bank: '경남은행', number: '671210149913' }
       ]
     }
   ],
@@ -593,7 +592,7 @@ function buildTransport() {
         <article class="transport-item">
           <small>${escapeHtml(item.label)}</small>
           <strong class="transport-title">${escapeHtml(item.title)}</strong>
-          <p class="account-copy">${escapeHtml(item.copy)}</p>
+          <p class="account-copy${item.copyEmphasis ? ' transport-copy--strong' : ''}">${escapeHtml(item.copy)}</p>
         </article>
       `
     )
@@ -620,40 +619,57 @@ function buildMapFallback(message) {
 }
 
 function buildAccounts() {
-  return invitationConfig.accounts
+  const groups = invitationConfig.accounts
     .map(
       (group) => `
-        <section class="account-group">
-          <div class="account-trigger">
-            <div>
-              <small>Account</small>
-              <strong class="account-title">${escapeHtml(group.group)}</strong>
-            </div>
-          </div>
-          <div class="account-panel">
-            ${group.items
-              .map(
-                (item) => `
-                  <article class="account-item">
-                    <div class="account-details">
-                      <div class="account-owner">
-                        <span class="account-bank">${escapeHtml(item.bank)}</span>
-                        <strong class="account-name">${escapeHtml(item.name)}</strong>
-                      </div>
-                      <div class="account-number-row">
-                        <span class="account-number">${escapeHtml(item.number)}</span>
-                        <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사</button>
-                      </div>
+        <section class="account-side">
+          <h3 class="account-side-title">${escapeHtml(group.group)}</h3>
+          ${group.items
+            .map(
+              (item) => `
+                <article class="account-item">
+                  <div class="account-details">
+                    <div class="account-owner">
+                      <span class="account-bank">${escapeHtml(item.bank)}</span>
+                      <strong class="account-name">${escapeHtml(item.name)}</strong>
                     </div>
-                  </article>
-                `
-              )
-              .join('')}
-          </div>
+                    <div class="account-number-row">
+                      <span class="account-number">${escapeHtml(item.number)}</span>
+                      <button class="copy-button" type="button" data-copy="${escapeHtml(item.number)}">복사</button>
+                    </div>
+                  </div>
+                </article>
+              `
+            )
+            .join('')}
         </section>
       `
     )
     .join('');
+
+  return `
+    <section class="account-group">
+      <button class="account-trigger" type="button" data-toggle-accounts aria-controls="accountPanel" aria-expanded="false">
+        <div>
+          <small>Account</small>
+          <strong class="account-title">신랑 · 신부측 계좌번호</strong>
+        </div>
+        <span class="account-chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div class="account-panel" id="accountPanel" hidden>
+        ${groups}
+      </div>
+    </section>
+  `;
+}
+
+function setAccountsExpanded(isExpanded) {
+  const trigger = document.querySelector('[data-toggle-accounts]');
+  const panel = document.getElementById('accountPanel');
+  if (!trigger || !panel) return;
+
+  trigger.setAttribute('aria-expanded', String(isExpanded));
+  panel.hidden = !isExpanded;
 }
 
 function buildAccountActions() {
@@ -1336,6 +1352,12 @@ function bindActions() {
   document.querySelectorAll('[data-toggle-guestbook]').forEach((button) => {
     button.addEventListener('click', () => {
       setGuestbookExpanded(button.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+
+  document.querySelectorAll('[data-toggle-accounts]').forEach((button) => {
+    button.addEventListener('click', () => {
+      setAccountsExpanded(button.getAttribute('aria-expanded') !== 'true');
     });
   });
 
