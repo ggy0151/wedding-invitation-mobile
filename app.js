@@ -152,7 +152,7 @@ const invitationConfig = {
         label: '시내버스 Bus',
         title: '일반 버스 220 · 310 · 370 · 누리 4',
         copy: '마을 버스 117',
-        copyEmphasis: true
+        isBus: true
       },
       {
         label: '주차 Parking',
@@ -589,10 +589,10 @@ function buildTransport() {
   return invitationConfig.venue.transport
     .map(
       (item) => `
-        <article class="transport-item">
+        <article class="transport-item${item.isBus ? ' transport-item--bus' : ''}">
           <small>${escapeHtml(item.label)}</small>
           <strong class="transport-title">${escapeHtml(item.title)}</strong>
-          <p class="account-copy${item.copyEmphasis ? ' transport-copy--strong' : ''}">${escapeHtml(item.copy)}</p>
+          <p class="account-copy">${escapeHtml(item.copy)}</p>
         </article>
       `
     )

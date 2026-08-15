@@ -1155,15 +1155,10 @@ button {
   word-break: keep-all;
 }
 
-.account-copy.transport-copy--strong {
-  margin-top: 4px;
-  font-family: var(--font-info);
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.45;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-  word-break: keep-all;
+.transport-item--bus small,
+.transport-item--bus .transport-title,
+.transport-item--bus .account-copy {
+  font-weight: 400;
 }
 
 .story-caption strong,
