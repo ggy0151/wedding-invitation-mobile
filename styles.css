@@ -1156,7 +1156,6 @@ button {
 }
 
 .transport-item--bus small,
-.transport-item--bus .transport-title,
 .transport-item--bus .account-copy {
   font-weight: 400;
 }

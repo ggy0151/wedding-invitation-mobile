@@ -2,7 +2,8 @@ const invitationConfig = {
   site: {
     liveUrl: 'https://ggy0151.github.io/wedding-invitation-mobile/',
     shareTitle: '윤찬 ♥ 지윤 결혼합니다',
-    shareText: '2026년 12월 20일 일요일 오후 12시 30분, 더블트리 바이 힐튼 서울 판교에서 뵙겠습니다.'
+    shareText: '2026년 12월 20일 일요일 오후 12시 30분, 더블트리 바이 힐튼 서울 판교에서 뵙겠습니다.',
+    shareImageUrl: 'https://ggy0151.github.io/wedding-invitation-mobile/assets/og-share-full.jpg?v=20260815-1'
   },
   couple: {
     groomFull: '신윤찬',
@@ -153,6 +154,11 @@ const invitationConfig = {
         title: '일반 버스 220 · 310 · 370 · 누리 4',
         copy: '마을 버스 117',
         isBus: true
+      },
+      {
+        label: '전세버스 Chartered Bus',
+        title: '창원 출발 전세버스',
+        copy: '탑승 장소: 만남의 광장 앞\n경남 창원시 성산구 원이대로 450\n탑승 시간: 예식 당일 오전 8시'
       },
       {
         label: '주차 Parking',
@@ -591,8 +597,10 @@ function buildTransport() {
       (item) => `
         <article class="transport-item${item.isBus ? ' transport-item--bus' : ''}">
           <small>${escapeHtml(item.label)}</small>
-          <strong class="transport-title">${escapeHtml(item.title)}</strong>
-          <p class="account-copy">${escapeHtml(item.copy)}</p>
+          ${item.isBus
+            ? `<p class="account-copy">${escapeHtml(item.title)}</p>`
+            : `<strong class="transport-title">${escapeHtml(item.title)}</strong>`}
+          <p class="account-copy">${nl2br(item.copy)}</p>
         </article>
       `
     )
@@ -1171,6 +1179,37 @@ async function shareInvitation() {
   const url = getInvitationUrl();
 
   try {
+    if (window.Kakao?.Share) {
+      if (!window.Kakao.isInitialized()) {
+        window.Kakao.init(invitationConfig.venue.map.javascriptKey);
+      }
+
+      await window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: invitationConfig.site.shareTitle,
+          description: invitationConfig.site.shareText,
+          imageUrl: invitationConfig.site.shareImageUrl,
+          imageWidth: 1200,
+          imageHeight: 630,
+          link: {
+            mobileWebUrl: url,
+            webUrl: url
+          }
+        },
+        buttons: [
+          {
+            title: '청첩장 보러 가기',
+            link: {
+              mobileWebUrl: url,
+              webUrl: url
+            }
+          }
+        ]
+      });
+      return;
+    }
+
     if (navigator.share) {
       await navigator.share({
         title: invitationConfig.site.shareTitle,
@@ -1184,6 +1223,22 @@ async function shareInvitation() {
     showToast('공유할 수 있는 링크를 복사했어요.');
   } catch (error) {
     if (error?.name === 'AbortError') return;
+
+    console.warn('[KAKAO SHARE] feed share failed; falling back to link share', error);
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: invitationConfig.site.shareTitle,
+          text: invitationConfig.site.shareText,
+          url
+        });
+        return;
+      } catch (fallbackError) {
+        if (fallbackError?.name === 'AbortError') return;
+      }
+    }
+
     await copyText(url);
     showToast('링크를 복사했어요.');
   }
