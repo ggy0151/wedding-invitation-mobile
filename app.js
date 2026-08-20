@@ -50,23 +50,23 @@ const invitationConfig = {
   ],
   familyArchive: [
     {
-      side: '신랑측 가족',
+      side: '신랑 가족',
       label: "YUNCHAN'S FAMILY",
-      title: '윤찬의 가족',
-      caption: '사랑으로 지켜봐 주신 신랑의 가족입니다.',
+      title: '윤찬이의 가족',
+      caption: '윤찬이가 사랑받으며 자라온 가족의 한 장면입니다.',
       src: './assets/groom-family.jpg'
     },
     {
-      side: '신부측 가족',
+      side: '신부 가족',
       label: "JIYUN'S FAMILY",
-      title: '지윤의 가족',
-      caption: '한결같은 사랑을 보내주신 신부의 가족입니다.',
+      title: '지윤이의 가족',
+      caption: '지윤이가 사랑받으며 자라온 가족의 한 장면입니다.',
       src: './assets/bride family photo.jpg'
     }
   ],
   contacts: [
     {
-      side: '신랑측',
+      side: '신랑 측',
       people: [
         { role: '신랑', name: '신윤찬', phone: '010-5786-9386' },
         { role: '아버지', name: '신영호', phone: '010-4855-6797' },
@@ -74,7 +74,7 @@ const invitationConfig = {
       ]
     },
     {
-      side: '신부측',
+      side: '신부 측',
       people: [
         { role: '신부', name: '김지윤', phone: '010-5253-6785' },
         { role: '아버지', name: '김광주', phone: '010-6367-6785' },
@@ -84,14 +84,14 @@ const invitationConfig = {
   ],
   letters: [
     {
-      title: '신랑 신부 인사',
-      body: '새로이 시작하는 작은 사랑이\n보다 크고 깊은 사랑이 되려고 합니다.\n함께 자리하여 축복해주시면 \n더 없는 기쁨이겠습니다.',
-      signature: '윤찬 ♥ 지윤 드림'
+      title: '두 사람이 전하는 마음',
+      body: '서로의 가장 좋은 친구로 함께해 온 저희가\n이제 부부로서 새로운 길을 시작합니다.\n귀한 걸음으로 함께해 주시고\n앞날을 따뜻하게 축복해 주세요.',
+      signature: '윤찬 · 지윤 드림'
     },
     {
-      title: '양가 부모님 마음',
-      body: '정성으로 키운 두 아이가\n이제 한 가정을 이루려 합니다.\n함께 축복해 주시면 감사하겠습니다.',
-      signature: '양가 부모님 일동'
+      title: '부모가 전하는 마음',
+      body: '사랑으로 키운 두 아이가\n서로를 아끼는 한 가정을 이루려 합니다.\n두 사람의 앞날을 따뜻한 마음으로\n축복해 주시면 감사하겠습니다.',
+      signature: '양가 부모 드림'
     }
   ],
   gallery: [
@@ -204,7 +204,7 @@ const invitationConfig = {
   },
   accounts: [
     {
-      group: '신랑측 마음 전하실 곳',
+      group: '신랑 측 마음 전하실 곳',
       items: [
         { name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' },
         { name: '신랑 부 신영호', bank: '우리은행', number: '011-109480-02-001' },
@@ -212,7 +212,7 @@ const invitationConfig = {
       ]
     },
     {
-      group: '신부측 마음 전하실 곳',
+      group: '신부 측 마음 전하실 곳',
       items: [
         { name: '신부 김지윤', bank: '신한은행', number: '110455998600' },
         { name: '신부 부 김광주', bank: '신한은행', number: '110258239647' },
@@ -227,6 +227,7 @@ const app = document.querySelector('#app');
 const state = {
   countdownTimer: null,
   toastTimer: null,
+  openingTimers: [],
   galleryIndex: 0,
   galleryScrollFrame: null,
   guestbookMessages: []
@@ -663,7 +664,7 @@ function buildAccounts() {
       <button class="account-trigger" type="button" data-toggle-accounts aria-controls="accountPanel" aria-expanded="false">
         <div>
           <small>Account</small>
-          <strong class="account-title">신랑 · 신부측 계좌번호</strong>
+          <strong class="account-title">신랑 · 신부 측 계좌번호</strong>
         </div>
         <span class="account-chevron" aria-hidden="true">⌄</span>
       </button>
@@ -696,6 +697,18 @@ function renderApp() {
   const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
   const rsvpLabel = responded ? '응답 다시 보기' : '참석 여부 남기기';
   app.innerHTML = `
+    <div class="opening-sequence" data-opening aria-hidden="true">
+      <div class="opening-sequence-frame">
+        <span class="opening-sequence-eyebrow">PRIVATE INVITATION</span>
+        <div class="opening-sequence-names">
+          <span>Yunchan</span>
+          <i>&amp;</i>
+          <span>Jiyun</span>
+        </div>
+        <span class="opening-sequence-rule"></span>
+        <p>20 · DECEMBER · 2026</p>
+      </div>
+    </div>
     <div class="page-shell">
       <main class="page">
         <section class="editorial-hero" id="top">
@@ -733,8 +746,8 @@ function renderApp() {
           </header>
           <h2 class="invitation-statement">우리의 이야기가<br>이제 <em>새로운 장면</em>을<br>시작합니다.</h2>
           <div class="invitation-copy-grid">
-            <p class="invitation-lead">눈을 맞추고 다정함을 나누며<br>평생을 함께하고 싶은 확신을 얻었습니다.</p>
-            <p class="invitation-body">매일 더 많이 웃게 해주는 사람과 같은 곳을 바라보며 걸어가 보려 합니다. 귀한 발걸음으로 저희의 시작을 함께 밝혀주시면 더없이 행복하겠습니다.</p>
+            <p class="invitation-lead">서로의 눈을 맞추고 다정한 마음을 나누며,<br>평생을 함께하고 싶은 확신을 얻었습니다.</p>
+            <p class="invitation-body">매일 더 많이 웃게 해 주는 사람과 이제 같은 방향을 바라보며 걸어가려 합니다. 귀한 걸음으로 저희의 새로운 시작을 함께해 주시면 더없이 기쁘겠습니다.</p>
           </div>
           ${buildFamilyIntroduction()}
           <button class="text-action" type="button" data-open-rsvp>
@@ -752,11 +765,7 @@ function renderApp() {
             <p>서로 다른 장면을 지나<br>이제 같은 이야기를 씁니다.</p>
           </div>
           <div class="story-strip">${buildStory()}</div>
-          <section class="family-archive" aria-labelledby="familyArchiveTitle">
-            <div class="family-archive-heading">
-              <span>OUR ROOTS</span>
-              <h3 id="familyArchiveTitle">두 가족의<br>오래된 장면</h3>
-            </div>
+          <section class="family-archive" aria-label="윤찬이와 지윤이의 가족사진">
             <div class="family-archive-list">${buildFamilyArchive()}</div>
           </section>
           <div class="letter-stack">${buildLetters()}</div>
@@ -868,7 +877,7 @@ function renderApp() {
 
         <section class="contact-section reveal" id="contact">
           <header class="folio-head"><span>07</span><span>CONTACT</span></header>
-          <h2 class="section-display">축하의 마음을<br>전하실 분께</h2>
+          <h2 class="section-display">연락하실 곳</h2>
           <div class="contact-groups">${buildContacts()}</div>
         </section>
 
@@ -900,14 +909,14 @@ function renderApp() {
           <div class="modal-head">
             <div>
               <span class="mini-label">RSVP</span>
-              <h2 class="modal-title">참석 의사를 전해주세요</h2>
+              <h2 class="modal-title">참석 여부를 알려주세요</h2>
             </div>
             <button class="close-button" type="button" data-close-modal="rsvpModal" aria-label="닫기">×</button>
           </div>
           <p class="rsvp-copy">${nl2br(invitationConfig.rsvp.helper)}</p>
           <form id="rsvpForm" class="rsvp-form">
             <section class="rsvp-block">
-              <label class="field-label">어느 분의 하객이신가요?</label>
+              <label class="field-label">어느 쪽 하객이신가요?</label>
               <div class="choice-grid">
                 <label class="choice-card">
                   <input type="radio" name="side" value="신랑측" required>
@@ -946,7 +955,7 @@ function renderApp() {
             </section>
 
             <section class="rsvp-block">
-              <label class="field-label" for="guestPhoneLast4">동명이인 체크를 위한 전화번호 뒷 4자리를 입력해 주세요</label>
+              <label class="field-label" for="guestPhoneLast4">확인을 위해 휴대전화 번호 뒤 4자리를 입력해 주세요</label>
               <input
                 class="field-input"
                 id="guestPhoneLast4"
@@ -955,12 +964,12 @@ function renderApp() {
                 inputmode="numeric"
                 maxlength="4"
                 pattern="[0-9]{4}"
-                placeholder="핸드폰 번호 뒤 4자리"
+                placeholder="휴대전화 번호 뒤 4자리"
                 required
               >
             </section>
 
-            <button class="button primary rsvp-submit" type="submit" id="rsvpSubmitButton">체크 완료하기</button>
+            <button class="button primary rsvp-submit" type="submit" id="rsvpSubmitButton">참석 여부 보내기</button>
           </form>
         </div>
       </section>
@@ -1015,13 +1024,9 @@ function setupReveal() {
     '.gallery-intro',
     '.venue-intro',
     '.countdown-card',
-    '.story-photo',
     '.family-introduction',
-    '.family-archive-heading',
-    '.family-portrait',
     '.contact-group',
     '.letter-item',
-    '.gallery-slide',
     '.guestbook-card',
     '.guestbook-open-button',
     '.map-visual',
@@ -1032,9 +1037,14 @@ function setupReveal() {
   ];
   const items = document.querySelectorAll(itemSelectors.join(','));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lightweightMotion = window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
 
   items.forEach((item) => {
     item.classList.add('reveal-item');
+    if (lightweightMotion) {
+      item.classList.add('is-visible');
+      return;
+    }
     const siblings = Array.from(item.parentElement?.children || []);
     const siblingIndex = Math.max(0, siblings.indexOf(item));
     item.style.setProperty('--reveal-delay', `${(siblingIndex % 5) * 75}ms`);
@@ -1060,6 +1070,8 @@ function setupReveal() {
 
   nodes.forEach((node) => observer.observe(node));
 
+  if (lightweightMotion) return;
+
   const itemObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -1072,6 +1084,37 @@ function setupReveal() {
   );
 
   items.forEach((item) => itemObserver.observe(item));
+}
+
+function setupOpeningSequence() {
+  const opening = document.querySelector('[data-opening]');
+  if (!opening) return;
+
+  state.openingTimers.forEach((timer) => window.clearTimeout(timer));
+  state.openingTimers = [];
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 767px), (pointer: coarse)').matches) {
+    opening.remove();
+    return;
+  }
+
+  const root = document.documentElement;
+  const finish = () => {
+    opening.remove();
+    root.classList.remove('intro-active', 'intro-revealing');
+    state.openingTimers = [];
+  };
+
+  root.classList.add('intro-active');
+  window.requestAnimationFrame(() => opening.classList.add('is-playing'));
+
+  state.openingTimers.push(
+    window.setTimeout(() => {
+      root.classList.add('intro-revealing');
+      opening.classList.add('is-leaving');
+    }, 1450),
+    window.setTimeout(finish, 2300)
+  );
 }
 
 function showToast(message) {
@@ -1205,36 +1248,6 @@ function syncRsvpLabel() {
       button.textContent = label;
     }
   });
-}
-
-function setupEditorialMotion() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const heroMedia = document.querySelector('[data-hero-media]');
-  const interludeMedia = document.querySelector('.photo-interlude-media');
-  let ticking = false;
-
-  const update = () => {
-    const scrollY = window.scrollY || 0;
-    const heroProgress = Math.min(scrollY / Math.max(window.innerHeight, 1), 1);
-    if (heroMedia) {
-      heroMedia.style.transform = `translate3d(0, ${heroProgress * 28}px, 0) scale(${1.04 + heroProgress * 0.035})`;
-    }
-
-    if (interludeMedia) {
-      const rect = interludeMedia.parentElement.getBoundingClientRect();
-      const centerOffset = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
-      interludeMedia.style.transform = `translate3d(0, ${Math.max(-18, Math.min(18, centerOffset * -16))}px, 0) scale(1.035)`;
-    }
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(update);
-  }, { passive: true });
-  update();
 }
 
 async function loadGuestbookMessages() {
@@ -1736,15 +1749,15 @@ function setupRsvp() {
       showToast('응답을 보내지 못했습니다.');
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = '체크 완료하기';
+      submitButton.textContent = '참석 여부 보내기';
     }
   });
 }
 
 function mount() {
   renderApp();
+  setupOpeningSequence();
   setupReveal();
-  setupEditorialMotion();
   bindActions();
   setupGallery();
   setupVenueMap();

@@ -94,10 +94,9 @@ h3 {
 
 .hero-media {
   position: absolute;
-  inset: -3%;
+  inset: 0;
   z-index: -3;
   transform: scale(1.04);
-  will-change: transform;
 }
 
 .hero-media img,
@@ -353,7 +352,7 @@ h3 {
 
 .photo-interlude {
   position: relative;
-  height: min(122svh, 960px);
+  height: min(88svh, 760px);
   overflow: hidden;
   background: #0c0b0a;
 }
@@ -368,8 +367,7 @@ h3 {
 
 .photo-interlude-media {
   position: absolute;
-  inset: -3%;
-  will-change: transform;
+  inset: 0;
 }
 
 .photo-interlude-media img {
@@ -476,33 +474,8 @@ h3 {
 
 .family-archive {
   margin-top: 132px;
-  padding-top: 34px;
+  padding-top: 72px;
   border-top: 1px solid var(--gold);
-}
-
-.family-archive-heading {
-  display: grid;
-  grid-template-columns: 31% 1fr;
-  gap: 15px;
-  align-items: start;
-  margin-bottom: 66px;
-}
-
-.family-archive-heading > span {
-  padding-top: 9px;
-  color: var(--gold);
-  font-family: var(--sans);
-  font-size: 8px;
-  letter-spacing: 0.16em;
-}
-
-.family-archive-heading h3 {
-  margin: 0;
-  color: var(--cream);
-  font-size: 31px;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: -0.045em;
 }
 
 .family-archive-list {
@@ -889,11 +862,12 @@ h3 {
   gap: 12px;
   padding: 0 27px 12px;
   overflow-x: auto;
+  overflow-y: hidden;
   overscroll-behavior-inline: contain;
   scroll-padding-inline: 27px;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   scrollbar-width: none;
-  touch-action: pan-x pan-y;
+  touch-action: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -906,7 +880,7 @@ h3 {
   min-width: calc(100% - 46px);
   margin: 0;
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 
 .gallery-slide-frame {
@@ -1537,9 +1511,8 @@ h3 {
   padding-bottom: env(safe-area-inset-bottom);
   grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid rgba(238, 232, 221, 0.13);
-  background: rgba(20, 18, 17, 0.91);
-  box-shadow: 0 -18px 36px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(18px);
+  background: rgba(20, 18, 17, 0.98);
+  box-shadow: 0 -12px 28px rgba(0, 0, 0, 0.16);
   pointer-events: auto;
 }
 
@@ -1785,6 +1758,125 @@ h3 {
   transform: translate(-50%, 0);
 }
 
+.opening-sequence {
+  position: fixed;
+  z-index: 400;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  background: #11100f;
+  color: var(--cream);
+  opacity: 1;
+  place-items: center;
+  pointer-events: none;
+  transition: opacity 720ms cubic-bezier(0.22, 0.72, 0.24, 1);
+  contain: strict;
+}
+
+.opening-sequence.is-leaving {
+  opacity: 0;
+}
+
+.opening-sequence-frame {
+  display: grid;
+  width: min(78vw, 360px);
+  justify-items: center;
+  text-align: center;
+}
+
+.opening-sequence-eyebrow,
+.opening-sequence-frame p {
+  color: var(--gold-bright);
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.opening-sequence-names {
+  display: flex;
+  margin-top: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #f3ede4;
+  font-family: var(--script);
+  font-size: clamp(48px, 14vw, 72px);
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.opening-sequence-names i {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: normal;
+}
+
+.opening-sequence-rule {
+  width: 100%;
+  height: 1px;
+  margin: 24px 0 17px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.72;
+  transform: scaleX(0);
+}
+
+.opening-sequence.is-playing .opening-sequence-eyebrow {
+  animation: opening-word-in 620ms ease 80ms both;
+}
+
+.opening-sequence.is-playing .opening-sequence-names {
+  animation: opening-word-in 760ms cubic-bezier(0.2, 0.72, 0.2, 1) 240ms both;
+}
+
+.opening-sequence.is-playing .opening-sequence-rule {
+  animation: opening-line-in 720ms cubic-bezier(0.2, 0.72, 0.2, 1) 520ms both;
+}
+
+.opening-sequence.is-playing .opening-sequence-frame p {
+  animation: opening-word-in 620ms ease 650ms both;
+}
+
+html.intro-active,
+html.intro-active body {
+  overflow: hidden;
+}
+
+html.intro-active .hero-media {
+  transform: scale(1.085);
+}
+
+html.intro-active .hero-masthead,
+html.intro-active .hero-copy,
+html.intro-active .hero-scroll {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+html.intro-revealing .hero-media {
+  transform: scale(1.04);
+  transition: transform 1350ms cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+
+html.intro-revealing .hero-masthead,
+html.intro-revealing .hero-copy,
+html.intro-revealing .hero-scroll {
+  opacity: 1;
+  transform: none;
+  transition: opacity 820ms ease, transform 920ms cubic-bezier(0.2, 0.72, 0.2, 1);
+}
+
+html.intro-revealing .hero-masthead {
+  transition-delay: 130ms;
+}
+
+html.intro-revealing .hero-scroll {
+  transition-delay: 220ms;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -1814,6 +1906,42 @@ h3 {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes opening-word-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes opening-line-in {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (min-width: 768px) and (pointer: fine) {
+  .sticky-grid {
+    background: rgba(20, 18, 17, 0.92);
+    backdrop-filter: blur(12px);
+  }
+}
+
+@media (max-width: 767px), (pointer: coarse) {
+  .reveal {
+    transform: none;
+    transition: opacity 480ms ease;
+  }
+
+  .reveal-item,
+  .reveal-item.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .story-caption {
+    background: rgba(17, 15, 13, 0.9);
+    backdrop-filter: none;
+  }
+}
+
 @media (min-width: 560px) {
   .page-shell {
     box-shadow: 0 0 90px rgba(0, 0, 0, 0.5);
@@ -1822,89 +1950,89 @@ h3 {
 
 @media (max-width: 559px) {
   .hero-masthead {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .hero-kicker {
-    font-size: 9px;
-  }
-
-  .hero-korean {
-    font-size: 13px;
-  }
-
-  .hero-date {
-    font-size: 13px;
-  }
-
-  .hero-scroll {
-    font-size: 8px;
-  }
-
-  .folio-head {
     font-size: 10px;
   }
 
+  .hero-korean {
+    font-size: 14px;
+  }
+
+  .hero-date {
+    font-size: 14px;
+  }
+
+  .hero-scroll {
+    font-size: 9px;
+  }
+
+  .folio-head {
+    font-size: 11px;
+  }
+
   .folio-head span:first-child {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .invitation-lead,
   .invitation-body {
-    font-size: 14px;
-    line-height: 2;
+    font-size: 16px;
+    line-height: 1.95;
   }
 
   .family-introduction-line {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .family-introduction-line strong,
   .text-action {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .photo-caption {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .story-heading-wrap > p,
   .family-portrait-caption p {
-    font-size: 11px;
+    font-size: 13px;
   }
 
-  .family-archive-heading > span,
   .family-portrait-caption > span {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .family-portrait-caption strong {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .letter-title {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .letter-body {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 2;
   }
 
   .ceremony-lockup strong {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .ceremony-lockup span,
   .calendar-summary {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .calendar-weekday {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .calendar-cell {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .calendar-pill {
@@ -1912,125 +2040,136 @@ h3 {
   }
 
   .countdown-card span {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .countdown-copy {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .gallery-intro p {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .venue-intro > div p,
   .map-badge,
   .transport-item small {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .map-fallback p,
   .venue-links .button-link {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .transport-title,
   .transport-item--bus .account-copy:first-of-type {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .transport-item .account-copy {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .guestbook-section .section-copy,
   .guestbook-card > p {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .guestbook-toggle-button {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .guestbook-card-head strong {
-    font-size: 14px;
+    font-size: 15px;
   }
 
   .guestbook-card-head time {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .contact-group-title {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .contact-person small {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .contact-person strong {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .contact-action {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .accounts-notice {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .account-trigger small,
   .copy-button {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .account-title {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .account-side-title {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .account-bank {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .account-name {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .account-share-button {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .footer-copy {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .sticky-button span {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .sticky-button strong {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .mini-label,
   .rsvp-inline-note,
   .guestbook-character-count {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .rsvp-copy,
   .guestbook-modal-copy,
   .field-label {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .choice-card span {
-    font-size: 12px;
+    min-height: 52px;
+    font-size: 14px;
+  }
+
+  .field-input,
+  .field-textarea {
+    font-size: 16px;
+  }
+
+  .button.primary {
+    min-height: 56px;
+    font-size: 15px;
   }
 }
 
