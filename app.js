@@ -21,8 +21,8 @@ const invitationConfig = {
     intro: '소중한 분들을 모시고\n저희의 새로운 시작을 함께 나누고자 합니다.'
   },
   cover: {
-    src: './assets/main cover.jpg',
-    label: 'Wedding Portrait'
+    src: './assets/KakaoTalk_20260806_072904893_07.jpg',
+    label: 'Wedding Portrait beneath the Arch'
   },
   familyLines: [
     { parents: '신영호 · 조혜경', relation: '의 아들', role: '신랑', name: '윤찬' },
@@ -32,7 +32,7 @@ const invitationConfig = {
     {
       label: 'Groom',
       name: '신랑 신윤찬',
-      imageLabel: 'Yoon Chan',
+      imageLabel: 'Yunchan',
       images: [
         './assets/groom-childhood.jpg',
         './assets/groom-childhood2.jpg'
@@ -41,22 +41,29 @@ const invitationConfig = {
     {
       label: 'Bride',
       name: '신부 김지윤',
-      imageLabel: 'Ji Yoon',
+      imageLabel: 'Jiyun',
       images: [
         './assets/bride-childhood.jpg',
         './assets/bride-childchood2.jpg'
       ]
     }
   ],
-  parentsFeature: {
-    label: "Groom's Parents",
-    title: '신랑 가족사진',
-    summary: '부모님 사진',
-    imageLabel: 'Groom Family',
-    src: './assets/groom-family.jpg',
-    letterTitle: '부모님 편지',
-    letterBody: '부모님 손글씨 편지 TODO\n'
-  },
+  familyArchive: [
+    {
+      side: '신랑측 가족',
+      label: "YUNCHAN'S FAMILY",
+      title: '윤찬의 가족',
+      caption: '사랑으로 지켜봐 주신 신랑의 가족입니다.',
+      src: './assets/groom-family.jpg'
+    },
+    {
+      side: '신부측 가족',
+      label: "JIYUN'S FAMILY",
+      title: '지윤의 가족',
+      caption: '한결같은 사랑을 보내주신 신부의 가족입니다.',
+      src: './assets/bride family photo.jpg'
+    }
+  ],
   contacts: [
     {
       side: '신랑측',
@@ -220,9 +227,8 @@ const app = document.querySelector('#app');
 const state = {
   countdownTimer: null,
   toastTimer: null,
-  lightboxIndex: 0,
-  lightboxTouchStartX: 0,
-  lightboxTouchStartY: 0,
+  galleryIndex: 0,
+  galleryScrollFrame: null,
   guestbookMessages: []
 };
 
@@ -341,7 +347,7 @@ function buildWeddingCalendar(dateIso) {
   `;
 }
 
-const IMAGE_ASSET_VERSION = '20260808-1';
+const IMAGE_ASSET_VERSION = '20260820-2';
 
 function imageVariant(src, variant) {
   if (!src || !/^\.\/assets\/[^/]+\.(jpe?g)$/i.test(src)) return src;
@@ -403,26 +409,25 @@ function buildFamilyIntroduction() {
   `;
 }
 
-function buildParentsFeature() {
-  // 신부 가족사진 추가 전까지 부모님 손글씨와 Groom 가족사진 영역을 잠시 숨깁니다.
-  const showParentsFeature = false;
-  if (!showParentsFeature) return '';
-
-  const item = invitationConfig.parentsFeature;
-  if (!item) return '';
-
-  return `
-    <article class="parents-feature-card">
-      <div class="parents-feature-head">${escapeHtml(item.label)}</div>
-      <div class="parents-feature-visual">
-        ${buildVisual(item, 'story')}
-      </div>
-      <div class="parents-letter-layer">
-        <div class="parents-letter-title">${escapeHtml(item.letterTitle)}</div>
-        <p class="parents-letter-body copy">${nl2br(item.letterBody || '')}</p>
-      </div>
-    </article>
-  `;
+function buildFamilyArchive() {
+  return invitationConfig.familyArchive
+    .map(
+      (item, index) => `
+        <figure class="family-portrait family-portrait--${index % 2 === 0 ? 'groom' : 'bride'}">
+          <div class="family-portrait-image">
+            ${buildVisual(item, 'story')}
+          </div>
+          <figcaption class="family-portrait-caption">
+            <span>${String(index + 1).padStart(2, '0')} · ${escapeHtml(item.label)}</span>
+            <div>
+              <strong>${escapeHtml(item.title)}</strong>
+              <p>${escapeHtml(item.caption)}</p>
+            </div>
+          </figcaption>
+        </figure>
+      `
+    )
+    .join('');
 }
 
 function buildContacts() {
@@ -474,16 +479,15 @@ function buildGallery() {
   return invitationConfig.gallery
     .map(
       (item, index) => `
-        <button
-          class="gallery-tile gallery-tile--${index % 9 === 0 ? 'featured' : 'default'}"
-          type="button"
-          data-gallery-index="${index}"
-          aria-label="${escapeHtml(item.title)}"
-        >
-          <div class="gallery-tile-frame">
+        <figure class="gallery-slide" data-gallery-slide aria-label="${escapeHtml(item.title)} ${index + 1}번째 사진">
+          <div class="gallery-slide-frame">
             ${buildVisual(item, 'gallery')}
           </div>
-        </button>
+          <figcaption class="gallery-slide-caption">
+            <span>${String(index + 1).padStart(2, '0')}</span>
+            <p>${escapeHtml(item.title)}</p>
+          </figcaption>
+        </figure>
       `
     )
     .join('');
@@ -538,7 +542,6 @@ function buildGuestbookMessages(messages) {
     .map((item) => `
       <article class="guestbook-card">
         <div class="guestbook-card-head">
-          <span class="guestbook-avatar" aria-hidden="true">${escapeHtml(String(item.name || '축').trim().slice(0, 1))}</span>
           <div>
             <strong>${escapeHtml(item.name)}</strong>
             <time datetime="${escapeHtml(item.createdAt)}">${escapeHtml(formatGuestbookDate(item.createdAt))}</time>
@@ -689,243 +692,206 @@ function buildAccountActions() {
   `;
 }
 
-function buildIntroConfetti() {
-  const pieces = [
-    ['7%', '-0.7s', '3.8s', '32px', '#ffd7e3', '420deg'],
-    ['14%', '-2.1s', '4.4s', '-26px', '#f193b5', '-360deg'],
-    ['21%', '-1.2s', '3.5s', '22px', '#fff1e7', '380deg'],
-    ['29%', '-3.1s', '4.8s', '-34px', '#e8b7c6', '-420deg'],
-    ['37%', '-0.3s', '3.9s', '28px', '#ffd7e3', '460deg'],
-    ['44%', '-2.6s', '4.2s', '-18px', '#f6d8c8', '-390deg'],
-    ['51%', '-1.7s', '3.6s', '36px', '#f193b5', '440deg'],
-    ['59%', '-3.4s', '4.7s', '-30px', '#fff1e7', '-460deg'],
-    ['66%', '-0.9s', '4.1s', '24px', '#ffd7e3', '400deg'],
-    ['73%', '-2.8s', '3.7s', '-22px', '#e8b7c6', '-380deg'],
-    ['81%', '-1.5s', '4.5s', '30px', '#f193b5', '450deg'],
-    ['89%', '-3.7s', '4.9s', '-36px', '#fff1e7', '-430deg'],
-    ['11%', '-3.3s', '5.1s', '18px', '#f6d8c8', '390deg'],
-    ['25%', '-2.4s', '5.3s', '-28px', '#ffd7e3', '-470deg'],
-    ['42%', '-4.1s', '5.5s', '34px', '#e8b7c6', '480deg'],
-    ['56%', '-3.8s', '5.2s', '-24px', '#fff1e7', '-410deg'],
-    ['70%', '-4.5s', '5.6s', '26px', '#ffd7e3', '430deg'],
-    ['85%', '-2.9s', '5.4s', '-32px', '#f193b5', '-450deg']
-  ];
-
-  return pieces
-    .map(
-      ([x, delay, duration, drift, tone, spin]) => `
-        <i style="--x:${x};--delay:${delay};--duration:${duration};--drift:${drift};--tone:${tone};--spin:${spin}"></i>
-      `
-    )
-    .join('');
-}
-
 function renderApp() {
   const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
   const rsvpLabel = responded ? '응답 다시 보기' : '참석 여부 남기기';
   app.innerHTML = `
-    <div class="opening-intro" id="openingIntro" aria-hidden="true">
-      <div class="intro-glow"></div>
-      <div class="intro-confetti">${buildIntroConfetti()}</div>
-      <div class="intro-copy">
-        <p class="intro-kicker">YOU'RE INVITED TO</p>
-        <h1 class="intro-title">Our Wedding</h1>
-        <span class="intro-line"></span>
-        <p class="intro-names">Yunchan <span>&amp;</span> Jiyun</p>
-        <p class="intro-date">DECEMBER 20, 2026</p>
-      </div>
-    </div>
     <div class="page-shell">
       <main class="page">
-        <section class="section reply-first reveal" id="reply-first">
-          <span class="mini-label">RSVP FIRST</span>
-          <h2 class="reply-title">참석 여부를 먼저 알려주세요</h2>
-          <p class="reply-copy">${nl2br('소중한 걸음을 더 정성스럽게 준비할 수 있도록\n참석 여부를 먼저 여쭙습니다.')}</p>
-          <div class="reply-actions">
-            <button class="button primary" type="button" data-open-rsvp>${rsvpLabel}</button>
+        <section class="editorial-hero" id="top">
+          <div class="hero-media" data-hero-media>
+            ${buildVisual(invitationConfig.cover, 'cover')}
           </div>
-        </section>
-
-        <section class="section cover reveal" id="top">
-          <div class="cover-frame">
-            <div class="cover-visual">
-              ${buildVisual(invitationConfig.cover, 'cover')}
-              <div class="cover-names">
-                <div class="cover-name-card cover-name-card--bride">
-                  <small>신부</small>
-                  <strong>${escapeHtml(invitationConfig.couple.brideFull)}</strong>
-                </div>
-                <div class="cover-name-card cover-name-card--groom">
-                  <small>신랑</small>
-                  <strong>${escapeHtml(invitationConfig.couple.groomFull)}</strong>
-                </div>
-              </div>
-              <div class="cover-copy">
-                <p class="cover-overline">YOU'RE INVITED TO</p>
-                <h1 class="cover-title">Our Wedding</h1>
-                <p class="cover-meta">${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
-                <p class="cover-location">${escapeHtml(invitationConfig.event.venueEnglish)}</p>
-              </div>
+          <div class="hero-shade" aria-hidden="true"></div>
+          <div class="hero-masthead">
+            <span>PRIVATE INVITATION</span>
+            <span>PANGYO · 2026</span>
+          </div>
+          <div class="hero-copy">
+            <p class="hero-kicker">TOGETHER WITH THEIR FAMILIES</p>
+            <h1 class="hero-names">
+              <span>Yunchan</span>
+              <i>×</i>
+              <span>Jiyun</span>
+            </h1>
+            <p class="hero-korean">${escapeHtml(invitationConfig.couple.groomFull)} · ${escapeHtml(invitationConfig.couple.brideFull)}</p>
+            <div class="hero-date">
+              <span>2026. 12. 20</span>
+              <b></b>
+              <span>SUNDAY · 12:30 PM</span>
             </div>
           </div>
-          <div class="cover-actions">
-            <a class="button-link ghost" href="#venue">예식장 보기</a>
-            <button class="button ghost" type="button" data-scroll="#accounts">마음 전하기</button>
-          </div>
+          <button class="hero-scroll" type="button" data-scroll="#invitation" aria-label="초대의 글로 이동">
+            <span>SCROLL TO DISCOVER</span><i aria-hidden="true"></i>
+          </button>
         </section>
 
-        <section class="section wedding-day reveal" id="wedding-day">
-          <span class="mini-label">SAVE THE DATE</span>
-          <h2 class="wedding-day-title">${escapeHtml(invitationConfig.event.dateKorean)}</h2>
-          <p class="wedding-day-copy">${escapeHtml(formatEnglishDate(invitationConfig.event.dateIso))}</p>
-          <p class="wedding-day-place">
-            <span class="wedding-day-place-main">${escapeHtml(invitationConfig.event.venueShort)}</span>
-            <span class="wedding-day-place-dot">·</span>
-            <span class="wedding-day-place-hall">${escapeHtml(invitationConfig.venue.hall)}</span>
-          </p>
-          <p class="wedding-day-address">${nl2br(invitationConfig.event.address)}</p>
-          ${buildWeddingCalendar(invitationConfig.event.dateIso)}
-          <div class="countdown-grid" id="countdownGrid">
-            <article class="countdown-card">
-              <strong data-countdown="days">0</strong>
-              <span>DAYS</span>
-            </article>
-            <article class="countdown-card">
-              <strong data-countdown="hours">0</strong>
-              <span>HOURS</span>
-            </article>
-            <article class="countdown-card">
-              <strong data-countdown="minutes">0</strong>
-              <span>MINUTES</span>
-            </article>
-            <article class="countdown-card">
-              <strong data-countdown="seconds">0</strong>
-              <span>SECONDS</span>
-            </article>
-          </div>
-          <p class="countdown-copy" id="countdownCopy">${escapeHtml(invitationConfig.couple.groomShort)} ♥ ${escapeHtml(invitationConfig.couple.brideShort)} 결혼식까지 기다리고 있습니다.</p>
-        </section>
-
-        <section class="section section--spaced reveal">
-          <div class="wedding-quote-card">
-            <small class="wedding-quote-label">With love</small>
-            <div class="wedding-quote">
-              <p>
-                눈을 맞추고 다정함을 나누며<br>
-                평생을 함께하고 싶은 확신을 얻었습니다.
-              </p>
-              <p>
-                매일 더 많이 웃게 해주는 사람과<br>
-                <strong>같은 곳을 바라보며 걸어가 보려 합니다.</strong>
-              </p>
-              <p>
-                귀한 발걸음으로 저희의 시작을<br>
-                함께 밝혀주시면 더없이 행복하겠습니다.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section section--spaced reveal">
-          <span class="mini-label">FAMILY</span>
-          <h2 class="section-title">가족의 사랑으로 자라온 시간</h2>
-          <div class="story-strip">
-            ${buildStory()}
+        <section class="editorial-section invitation-section reveal" id="invitation">
+          <header class="folio-head">
+            <span>01</span>
+            <span>THE INVITATION</span>
+          </header>
+          <h2 class="invitation-statement">우리의 이야기가<br>이제 <em>새로운 장면</em>을<br>시작합니다.</h2>
+          <div class="invitation-copy-grid">
+            <p class="invitation-lead">눈을 맞추고 다정함을 나누며<br>평생을 함께하고 싶은 확신을 얻었습니다.</p>
+            <p class="invitation-body">매일 더 많이 웃게 해주는 사람과 같은 곳을 바라보며 걸어가 보려 합니다. 귀한 발걸음으로 저희의 시작을 함께 밝혀주시면 더없이 행복하겠습니다.</p>
           </div>
           ${buildFamilyIntroduction()}
-          <div class="parents-feature-wrap">
-            ${buildParentsFeature()}
-          </div>
+          <button class="text-action" type="button" data-open-rsvp>
+            <span data-rsvp-label>${rsvpLabel}</span><i aria-hidden="true">↗</i>
+          </button>
         </section>
 
-        <section class="section section--spaced reveal">
-          <span class="mini-label">LETTER</span>
-          <div class="letter-stack">
-            ${buildLetters()}
+        <section class="editorial-section story-section reveal" id="story">
+          <header class="folio-head">
+            <span>02</span>
+            <span>BEFORE WE MET</span>
+          </header>
+          <div class="story-heading-wrap">
+            <h2 class="section-display">사랑으로 자라온<br>두 사람의 시간</h2>
+            <p>서로 다른 장면을 지나<br>이제 같은 이야기를 씁니다.</p>
           </div>
+          <div class="story-strip">${buildStory()}</div>
+          <section class="family-archive" aria-labelledby="familyArchiveTitle">
+            <div class="family-archive-heading">
+              <span>OUR ROOTS</span>
+              <h3 id="familyArchiveTitle">두 가족의<br>오래된 장면</h3>
+            </div>
+            <div class="family-archive-list">${buildFamilyArchive()}</div>
+          </section>
+          <div class="letter-stack">${buildLetters()}</div>
         </section>
 
-        <section class="section section--spaced reveal" id="guestbook">
-          <span class="mini-label">GUESTBOOK</span>
-          <h2 class="section-title guestbook-title">축하의 마음을 남겨주세요</h2>
-          <p class="section-copy">두 사람의 새로운 시작에 따뜻한 한마디를 전해주세요.</p>
-          <div class="guestbook-actions">
-            <button class="guestbook-toggle-button" type="button" data-toggle-guestbook aria-controls="guestbookList" aria-expanded="false" hidden disabled>
-              <span class="guestbook-toggle-copy">
-                <span data-guestbook-toggle-label>축하 메시지 보기</span>
-                <span class="guestbook-count" data-guestbook-count>0</span>
-              </span>
-              <span class="guestbook-chevron" aria-hidden="true">⌄</span>
-            </button>
-            <button class="button primary guestbook-open-button" type="button" data-open-guestbook disabled>
-              <span class="guestbook-plus" aria-hidden="true">＋</span>
-              <span data-guestbook-write-label>축하 메시지 남기기</span>
-            </button>
+        <section class="wedding-day reveal" id="wedding-day">
+          <header class="folio-head folio-head--light">
+            <span>03</span>
+            <span>THE WEDDING DAY</span>
+          </header>
+          <div class="date-editorial">
+            <span class="date-year">2026</span>
+            <div class="date-main">
+              <span>DECEMBER</span>
+              <strong>20</strong>
+              <span>SUNDAY</span>
+            </div>
           </div>
-          <div class="guestbook-list" id="guestbookList" hidden>
-            ${buildGuestbookMessages(getGuestbookPreviewMessages())}
+          <div class="ceremony-lockup">
+            <p class="ceremony-time">12:30 <small>PM</small></p>
+            <div>
+              <strong>GRAND BALLROOM</strong>
+              <span>${escapeHtml(invitationConfig.event.venueEnglish)}</span>
+              <span>${escapeHtml(invitationConfig.venue.hall)} · ${escapeHtml(invitationConfig.event.address)}</span>
+            </div>
           </div>
+          ${buildWeddingCalendar(invitationConfig.event.dateIso)}
+          <div class="countdown-grid" id="countdownGrid">
+            <article class="countdown-card"><strong data-countdown="days">0</strong><span>DAYS</span></article>
+            <article class="countdown-card"><strong data-countdown="hours">0</strong><span>HOURS</span></article>
+            <article class="countdown-card"><strong data-countdown="minutes">0</strong><span>MIN</span></article>
+            <article class="countdown-card"><strong data-countdown="seconds">0</strong><span>SEC</span></article>
+          </div>
+          <p class="countdown-copy" id="countdownCopy">${escapeHtml(invitationConfig.couple.groomShort)} · ${escapeHtml(invitationConfig.couple.brideShort)} 결혼식까지 기다리고 있습니다.</p>
+          <button class="button primary" type="button" data-open-rsvp><span data-rsvp-label>${rsvpLabel}</span></button>
         </section>
 
-        <section class="section section--spaced reveal" id="gallery">
-          <span class="mini-label">GALLERY</span>
-          <h2 class="section-title">우리의 순간들</h2>
-          <div class="gallery-flow">
-            ${buildGallery()}
-          </div>
+        <section class="photo-interlude reveal" aria-label="캘린더 다음에 이어지는 두 사람의 웨딩 사진">
+          <div class="photo-interlude-media">${buildVisual(invitationConfig.gallery[16], 'story')}</div>
+          <p class="photo-script">In every light, together.</p>
+          <span class="photo-caption">YUNCHAN &amp; JIYUN · A PORTRAIT OF US</span>
         </section>
 
-        <section class="section section--spaced reveal" id="venue">
-          <span class="mini-label">LOCATION</span>
-          <h2 class="section-title">예식장 안내</h2>
-          <div class="venue-block">
-            <div class="map-visual">
-              <div class="map-badge">
-                <small>${escapeHtml(invitationConfig.venue.badge)}</small>
-              </div>
-              <div class="map-canvas" id="venueMap">
-                ${buildMapFallback(invitationConfig.venue.map.fallbackMessage)}
+        <section class="gallery-section reveal" id="gallery">
+          <header class="folio-head gallery-head">
+            <span>04</span>
+            <span>PORTRAIT ARCHIVE</span>
+          </header>
+          <div class="gallery-intro">
+            <h2>Our story,<br>in photographs.</h2>
+            <p>사진을 좌우로 밀어<br>한 장씩 보실 수 있습니다.</p>
+          </div>
+          <div class="gallery-flow" role="region" aria-label="웨딩 사진 슬라이드">
+            <div class="gallery-track" id="galleryTrack" tabindex="0">
+              ${buildGallery()}
+            </div>
+            <div class="gallery-controls">
+              <p class="gallery-progress" aria-live="polite"><strong id="galleryCurrent">01</strong><span>/</span><span>${String(invitationConfig.gallery.length).padStart(2, '0')}</span></p>
+              <p class="gallery-swipe-hint">SWIPE</p>
+              <div class="gallery-arrows">
+                <button type="button" data-gallery-step="-1" aria-label="이전 사진">←</button>
+                <button type="button" data-gallery-step="1" aria-label="다음 사진">→</button>
               </div>
             </div>
-            <p class="venue-address">${buildVenueAddress()}</p>
+          </div>
+        </section>
+
+        <section class="venue-section reveal" id="venue">
+          <header class="folio-head folio-head--light">
+            <span>05</span>
+            <span>ARRIVAL &amp; LOCATION</span>
+          </header>
+          <div class="venue-intro">
+            <p class="venue-city">PANGYO<br>GYEONGGI</p>
+            <div>
+              <h2>${escapeHtml(invitationConfig.venue.title)}</h2>
+              <p>${escapeHtml(invitationConfig.venue.hall)}</p>
+              <p>${escapeHtml(invitationConfig.venue.address)}</p>
+            </div>
+          </div>
+          <div class="venue-block">
+            <div class="map-visual">
+              <div class="map-badge"><small>${escapeHtml(invitationConfig.venue.badge)}</small></div>
+              <div class="map-canvas" id="venueMap">${buildMapFallback(invitationConfig.venue.map.fallbackMessage)}</div>
+            </div>
             <div class="venue-links">${buildVenueLinks()}</div>
             <div class="transport-list">${buildTransport()}</div>
           </div>
         </section>
 
-        <section class="section section--spaced reveal" id="contact">
-          <span class="mini-label">CONTACT</span>
-          <p class="section-copy">축하의 마음을 전하실 분께 연락하실 수 있습니다.</p>
+        <section class="guestbook-section reveal" id="guestbook">
+          <header class="folio-head">
+            <span>06</span>
+            <span>NOTES FOR US</span>
+          </header>
+          <h2 class="section-display">두 사람에게<br>따뜻한 마음을 남겨주세요.</h2>
+          <p class="section-copy">보내주신 한마디를 오래도록 간직하겠습니다.</p>
+          <div class="guestbook-actions">
+            <button class="guestbook-toggle-button" type="button" data-toggle-guestbook aria-controls="guestbookList" aria-expanded="false" hidden disabled>
+              <span class="guestbook-toggle-copy"><span data-guestbook-toggle-label>축하 메시지 보기</span><span class="guestbook-count" data-guestbook-count>0</span></span>
+              <span class="guestbook-chevron" aria-hidden="true">⌄</span>
+            </button>
+            <button class="button primary guestbook-open-button" type="button" data-open-guestbook disabled>
+              <span data-guestbook-write-label>축하 메시지 남기기</span><span aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="guestbook-list" id="guestbookList" hidden>${buildGuestbookMessages(getGuestbookPreviewMessages())}</div>
+        </section>
+
+        <section class="contact-section reveal" id="contact">
+          <header class="folio-head"><span>07</span><span>CONTACT</span></header>
+          <h2 class="section-display">축하의 마음을<br>전하실 분께</h2>
           <div class="contact-groups">${buildContacts()}</div>
         </section>
 
-        <section class="section section--spaced reveal" id="accounts">
-          <span class="mini-label">HEART</span>
-          <h2 class="section-title">마음 전하실 곳</h2>
+        <section class="accounts-section reveal" id="accounts">
+          <header class="folio-head"><span>08</span><span>WITH GRATITUDE</span></header>
+          <h2 class="section-display">마음 전하실 곳</h2>
           <p class="accounts-notice">${nl2br(invitationConfig.accountsNotice)}</p>
           <div class="account-wrap">${buildAccounts()}</div>
           ${buildAccountActions()}
         </section>
 
         <footer class="footer reveal">
-          <p class="footer-copy">${escapeHtml(invitationConfig.couple.groomShort)} · ${escapeHtml(invitationConfig.couple.brideShort)} wedding invitation</p>
+          <p class="footer-script">Yunchan &amp; Jiyun</p>
+          <p class="footer-copy">DECEMBER 20, 2026 · PANGYO</p>
+          <button class="footer-top" type="button" data-scroll="#top">BACK TO TOP ↑</button>
         </footer>
       </main>
 
       <div class="sticky-bar">
         <div class="sticky-grid">
-          <button class="sticky-button" type="button" data-open-rsvp>
-            <strong>참석 여부</strong>
-            <span>먼저 응답</span>
-          </button>
-          <button class="sticky-button" type="button" data-scroll="#venue">
-            <strong>예식장 보기</strong>
-            <span>주소 확인</span>
-          </button>
-          <button class="sticky-button" type="button" data-scroll="#accounts">
-            <strong>마음 전하기</strong>
-            <span>계좌 보기</span>
-          </button>
+          <button class="sticky-button" type="button" data-open-rsvp><span>01</span><strong>RSVP</strong></button>
+          <button class="sticky-button" type="button" data-scroll="#venue"><span>02</span><strong>LOCATION</strong></button>
+          <button class="sticky-button" type="button" data-scroll="#accounts"><span>03</span><strong>GIFT</strong></button>
         </div>
       </div>
 
@@ -1028,72 +994,34 @@ function renderApp() {
         </div>
       </section>
 
-      <section class="modal" id="lightboxModal" aria-hidden="true">
-        <div class="modal-sheet lightbox-sheet">
-          <div class="modal-head lightbox-head">
-            <button class="close-button" type="button" data-close-modal="lightboxModal" aria-label="닫기">×</button>
-          </div>
-          <div class="lightbox-stage">
-            <button class="lightbox-nav lightbox-nav--prev" type="button" data-lightbox-step="-1" aria-label="이전 사진 보기">‹</button>
-            <div class="lightbox-visual" id="lightboxVisual"></div>
-            <button class="lightbox-nav lightbox-nav--next" type="button" data-lightbox-step="1" aria-label="다음 사진 보기">›</button>
-          </div>
-          <div class="lightbox-meta">
-            <span class="lightbox-count" id="lightboxCount">1 / 1</span>
-          </div>
-        </div>
-      </section>
-
       <div class="toast" id="toast"></div>
     </div>
   `;
-}
-
-function setupOpeningIntro() {
-  const intro = document.getElementById('openingIntro');
-  if (!intro) return;
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.body.classList.add('intro-active');
-
-  let finished = false;
-  const finish = () => {
-    if (finished) return;
-    finished = true;
-    intro.classList.add('is-leaving');
-    window.setTimeout(() => {
-      document.body.classList.remove('intro-active');
-      intro.remove();
-    }, reducedMotion ? 100 : 760);
-  };
-
-  const timer = window.setTimeout(finish, reducedMotion ? 700 : 2600);
-  intro.addEventListener(
-    'click',
-    () => {
-      window.clearTimeout(timer);
-      finish();
-    },
-    { once: true }
-  );
 }
 
 function setupReveal() {
   const nodes = document.querySelectorAll('.reveal');
   const itemSelectors = [
     '.reveal > .mini-label',
+    '.reveal > .folio-head',
     '.reveal > .section-title',
+    '.reveal > .section-display',
     '.reveal > .section-copy',
-    '.reveal > .reply-title',
-    '.reveal > .reply-copy',
-    '.reveal > .reply-actions',
+    '.invitation-statement',
+    '.invitation-copy-grid',
+    '.story-heading-wrap',
+    '.date-editorial',
+    '.ceremony-lockup',
+    '.gallery-intro',
+    '.venue-intro',
     '.countdown-card',
     '.story-photo',
     '.family-introduction',
-    '.parents-feature-wrap',
+    '.family-archive-heading',
+    '.family-portrait',
     '.contact-group',
     '.letter-item',
-    '.gallery-tile',
+    '.gallery-slide',
     '.guestbook-card',
     '.guestbook-open-button',
     '.map-visual',
@@ -1270,34 +1198,43 @@ function syncRsvpLabel() {
   const label = responded ? '응답 다시 보기' : '참석 여부 남기기';
   document.querySelectorAll('[data-open-rsvp]').forEach((button) => {
     if (button.classList.contains('sticky-button')) return;
-    button.textContent = label;
+    const labelNode = button.querySelector('[data-rsvp-label]');
+    if (labelNode) {
+      labelNode.textContent = label;
+    } else {
+      button.textContent = label;
+    }
   });
 }
 
-function renderLightbox(index) {
-  const total = invitationConfig.gallery.length;
-  if (!total) return;
+function setupEditorialMotion() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const safeIndex = (index + total) % total;
-  const item = invitationConfig.gallery[safeIndex];
-  state.lightboxIndex = safeIndex;
+  const heroMedia = document.querySelector('[data-hero-media]');
+  const interludeMedia = document.querySelector('.photo-interlude-media');
+  let ticking = false;
 
-  document.getElementById('lightboxCount').textContent = `${safeIndex + 1} / ${total}`;
-  document.getElementById('lightboxVisual').innerHTML = item.src
-    ? `<img src="${escapeHtml(imageVariant(item.src, 'display'))}" alt="${escapeHtml(item.title)}" decoding="async">`
-    : `
-        <div class="lightbox-placeholder">
-          <div>
-            <strong>${escapeHtml(item.imageLabel)}</strong>
-            <p>사진을 연결하면 확대 보기에서도 같은 이미지가 보입니다.</p>
-          </div>
-        </div>
-      `;
-}
+  const update = () => {
+    const scrollY = window.scrollY || 0;
+    const heroProgress = Math.min(scrollY / Math.max(window.innerHeight, 1), 1);
+    if (heroMedia) {
+      heroMedia.style.transform = `translate3d(0, ${heroProgress * 28}px, 0) scale(${1.04 + heroProgress * 0.035})`;
+    }
 
-function moveLightbox(step) {
-  if (!invitationConfig.gallery.length) return;
-  renderLightbox(state.lightboxIndex + step);
+    if (interludeMedia) {
+      const rect = interludeMedia.parentElement.getBoundingClientRect();
+      const centerOffset = (rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight;
+      interludeMedia.style.transform = `translate3d(0, ${Math.max(-18, Math.min(18, centerOffset * -16))}px, 0) scale(1.035)`;
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  }, { passive: true });
+  update();
 }
 
 async function loadGuestbookMessages() {
@@ -1449,64 +1386,74 @@ function bindActions() {
     });
   });
 
-  document.querySelectorAll('[data-lightbox-step]').forEach((button) => {
-    button.addEventListener('click', () => {
-      moveLightbox(Number(button.dataset.lightboxStep || 0));
-    });
-  });
-
   window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       document.querySelectorAll('.modal.is-open').forEach((modal) => closeModal(modal.id));
-      return;
-    }
-
-    const lightboxOpen = document.getElementById('lightboxModal')?.classList.contains('is-open');
-    if (!lightboxOpen) return;
-
-    if (event.key === 'ArrowLeft') {
-      moveLightbox(-1);
-    }
-
-    if (event.key === 'ArrowRight') {
-      moveLightbox(1);
     }
   });
 }
 
 function setupGallery() {
-  document.querySelectorAll('[data-gallery-index]').forEach((button) => {
+  const track = document.getElementById('galleryTrack');
+  const slides = Array.from(document.querySelectorAll('[data-gallery-slide]'));
+  const current = document.getElementById('galleryCurrent');
+  const buttons = Array.from(document.querySelectorAll('[data-gallery-step]'));
+  if (!track || !slides.length || !current) return;
+
+  const updateGalleryState = () => {
+    const trackCenter = track.scrollLeft + track.clientWidth / 2;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+      const distance = Math.abs(trackCenter - slideCenter);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    state.galleryIndex = closestIndex;
+    current.textContent = String(closestIndex + 1).padStart(2, '0');
+    buttons.forEach((button) => {
+      const step = Number(button.dataset.galleryStep || 0);
+      button.disabled = (step < 0 && closestIndex === 0) || (step > 0 && closestIndex === slides.length - 1);
+    });
+    state.galleryScrollFrame = null;
+  };
+
+  const goToSlide = (index) => {
+    const targetIndex = Math.max(0, Math.min(slides.length - 1, index));
+    track.scrollTo({
+      left: slides[targetIndex].offsetLeft - slides[0].offsetLeft,
+      behavior: 'smooth'
+    });
+  };
+
+  buttons.forEach((button) => {
     button.addEventListener('click', () => {
-      renderLightbox(Number(button.dataset.galleryIndex || 0));
-      openModal('lightboxModal');
+      goToSlide(state.galleryIndex + Number(button.dataset.galleryStep || 0));
     });
   });
 
-  const visual = document.getElementById('lightboxVisual');
-  if (!visual) return;
+  track.addEventListener('scroll', () => {
+    if (state.galleryScrollFrame) return;
+    state.galleryScrollFrame = window.requestAnimationFrame(updateGalleryState);
+  }, { passive: true });
 
-  visual.addEventListener(
-    'touchstart',
-    (event) => {
-      const touch = event.touches[0];
-      state.lightboxTouchStartX = touch.clientX;
-      state.lightboxTouchStartY = touch.clientY;
-    },
-    { passive: true }
-  );
+  track.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      goToSlide(state.galleryIndex - 1);
+    }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      goToSlide(state.galleryIndex + 1);
+    }
+  });
 
-  visual.addEventListener(
-    'touchend',
-    (event) => {
-      const touch = event.changedTouches[0];
-      const deltaX = touch.clientX - state.lightboxTouchStartX;
-      const deltaY = touch.clientY - state.lightboxTouchStartY;
-
-      if (Math.abs(deltaX) < 44 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-      moveLightbox(deltaX < 0 ? 1 : -1);
-    },
-    { passive: true }
-  );
+  updateGalleryState();
 }
 
 function loadExternalScript(src) {
@@ -1796,8 +1743,8 @@ function setupRsvp() {
 
 function mount() {
   renderApp();
-  setupOpeningIntro();
   setupReveal();
+  setupEditorialMotion();
   bindActions();
   setupGallery();
   setupVenueMap();

@@ -1,11 +1,11 @@
-const CACHE_VERSION = 'wedding-rsvp-v1';
+const CACHE_VERSION = 'wedding-editorial-v4';
 const CORE_CACHE = `${CACHE_VERSION}-core`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 const CORE_ASSETS = [
   './',
   './index.html',
-  './styles.css?v=20260818-1',
-  './app.js?v=20260818-2'
+  './styles.css?v=20260820-3',
+  './app.js?v=20260820-3'
 ];
 
 self.addEventListener('install', (event) => {
@@ -18,7 +18,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => key.startsWith('wedding-rsvp-') && ![CORE_CACHE, IMAGE_CACHE].includes(key))
+          .filter((key) => (key.startsWith('wedding-rsvp-') || key.startsWith('wedding-editorial-')) && ![CORE_CACHE, IMAGE_CACHE].includes(key))
           .map((key) => caches.delete(key))
       )
     )
