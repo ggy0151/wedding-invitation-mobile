@@ -53,14 +53,14 @@ const invitationConfig = {
       side: '신랑 가족',
       label: "YUNCHAN'S FAMILY",
       title: '윤찬이의 가족',
-      caption: '윤찬이가 사랑받으며 자라온 가족의 한 장면입니다.',
+      caption: '사랑으로 함께해 온 소중한 가족입니다.',
       src: './assets/groom-family.jpg'
     },
     {
       side: '신부 가족',
       label: "JIYUN'S FAMILY",
       title: '지윤이의 가족',
-      caption: '지윤이가 사랑받으며 자라온 가족의 한 장면입니다.',
+      caption: '사랑으로 함께해 온 소중한 가족입니다.',
       src: './assets/bride family photo.jpg'
     }
   ],
@@ -85,12 +85,12 @@ const invitationConfig = {
   letters: [
     {
       title: '두 사람이 전하는 마음',
-      body: '서로의 가장 좋은 친구로 함께해 온 저희가\n이제 부부로서 새로운 길을 시작합니다.\n귀한 걸음으로 함께해 주시고\n앞날을 따뜻하게 축복해 주세요.',
+      body: '서로의 가장 좋은 친구로 함께해 \n온 저희가 이제 부부로서 \n새로운 길을 시작합니다.\n귀한 걸음으로 함께해 주시고\n앞날을 따뜻하게 축복해 주세요.',
       signature: '윤찬 · 지윤 드림'
     },
     {
       title: '부모가 전하는 마음',
-      body: '사랑으로 키운 두 아이가\n서로를 아끼는 한 가정을 이루려 합니다.\n두 사람의 앞날을 따뜻한 마음으로\n축복해 주시면 감사하겠습니다.',
+      body: '사랑으로 키운 두 아이가 서로를\n 아끼는 한 가정을 이루려 합니다.\n두 사람의 앞날을 따뜻한 마음으로 \n축복해 주시면 감사하겠습니다.',
       signature: '양가 부모 드림'
     }
   ],
@@ -207,7 +207,7 @@ const invitationConfig = {
       group: '신랑 측 마음 전하실 곳',
       items: [
         { name: '신랑 신윤찬', bank: '국민은행', number: '075210660157' },
-        { name: '신랑 부 신영호', bank: '우리은행', number: '011-109480-02-001' },
+        { name: '신랑 부 신영호', bank: '우리은행', number: '01110948002001' },
         { name: '신랑 모 조혜경', bank: '국민은행', number: '43340101229584' }
       ]
     },
@@ -220,7 +220,7 @@ const invitationConfig = {
       ]
     }
   ],
-  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는\n분들을 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, 보내주시는\n따뜻한 축하의 마음에 깊이 감사드립니다.'
+  accountsNotice: '참석이 어려워 직접 축하를 전하지 못하시는\n분들을 위해 계좌번호를 기재하였습니다.\n너그러운 마음으로 양해 부탁드리며, \n보내주시는 따뜻한 축하의 마음에 \n깊이 감사드립니다.'
 };
 
 const app = document.querySelector('#app');
@@ -480,14 +480,10 @@ function buildGallery() {
   return invitationConfig.gallery
     .map(
       (item, index) => `
-        <figure class="gallery-slide" data-gallery-slide aria-label="${escapeHtml(item.title)} ${index + 1}번째 사진">
+        <figure class="gallery-slide" data-gallery-slide aria-label="웨딩 사진 ${index + 1}">
           <div class="gallery-slide-frame">
             ${buildVisual(item, 'gallery')}
           </div>
-          <figcaption class="gallery-slide-caption">
-            <span>${String(index + 1).padStart(2, '0')}</span>
-            <p>${escapeHtml(item.title)}</p>
-          </figcaption>
         </figure>
       `
     )
@@ -810,14 +806,6 @@ function renderApp() {
         </section>
 
         <section class="gallery-section reveal" id="gallery">
-          <header class="folio-head gallery-head">
-            <span>04</span>
-            <span>PORTRAIT ARCHIVE</span>
-          </header>
-          <div class="gallery-intro">
-            <h2>Our story,<br>in photographs.</h2>
-            <p>사진을 좌우로 밀어<br>한 장씩 보실 수 있습니다.</p>
-          </div>
           <div class="gallery-flow" role="region" aria-label="웨딩 사진 슬라이드">
             <div class="gallery-track" id="galleryTrack" tabindex="0">
               ${buildGallery()}
@@ -969,6 +957,21 @@ function renderApp() {
               >
             </section>
 
+            <section class="rsvp-block">
+              <label class="field-label">창원 전세버스를 이용하시나요?</label>
+              <div class="choice-grid">
+                <label class="choice-card">
+                  <input type="radio" name="charteredBus" value="탑승할게요" required>
+                  <span>탑승할게요</span>
+                </label>
+                <label class="choice-card">
+                  <input type="radio" name="charteredBus" value="탑승하지 않아요" required>
+                  <span>탑승하지 않아요</span>
+                </label>
+              </div>
+              <p class="rsvp-inline-note">창원 출발 전세버스 탑승 여부를 선택해 주세요.</p>
+            </section>
+
             <button class="button primary rsvp-submit" type="submit" id="rsvpSubmitButton">참석 여부 보내기</button>
           </form>
         </div>
@@ -1021,7 +1024,6 @@ function setupReveal() {
     '.story-heading-wrap',
     '.date-editorial',
     '.ceremony-lockup',
-    '.gallery-intro',
     '.venue-intro',
     '.countdown-card',
     '.family-introduction',
@@ -1638,6 +1640,7 @@ function buildRsvpPayload(form) {
     name: String(raw.name || '').trim(),
     count: String(raw.count || '1').trim(),
     phoneLast4: String(raw.phoneLast4 || '').trim(),
+    charteredBus: String(raw.charteredBus || ''),
     createdAt: new Date().toISOString(),
     invitationUrl: getInvitationUrl(),
     pageUrl: window.location.href,
@@ -1661,7 +1664,7 @@ function cacheRsvpResponse(payload) {
 function applyRsvpResponse(form, payload) {
   if (!form || !payload) return;
 
-  const fields = ['attendance', 'side'];
+  const fields = ['attendance', 'side', 'charteredBus'];
   fields.forEach((name) => {
     const value = String(payload[name] || '');
     const radio = form.querySelector(`input[name="${name}"][value="${value}"]`);
@@ -1683,7 +1686,8 @@ async function submitRsvp(payload) {
     endpoint: invitationConfig.rsvp.endpoint,
     attendance: payload.attendance,
     side: payload.side,
-    count: payload.count
+    count: payload.count,
+    charteredBus: payload.charteredBus
   });
 
   if (!invitationConfig.rsvp.endpoint) {

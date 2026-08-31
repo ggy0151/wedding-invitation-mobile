@@ -13,7 +13,8 @@ const HEADERS = [
   'pageUrl',
   'userAgent',
   'submissionId',
-  'respondentId'
+  'respondentId',
+  'charteredBus'
 ];
 const GUESTBOOK_HEADERS = ['messageId', 'createdAt', 'name', 'message'];
 
@@ -84,7 +85,8 @@ function doPost(e) {
       side: payload.side,
       name: payload.name,
       count: payload.count,
-      phoneLast4: payload.phoneLast4
+      phoneLast4: payload.phoneLast4,
+      charteredBus: payload.charteredBus
     })}`);
 
     lock.waitLock(10000);
@@ -233,7 +235,8 @@ function upsertRsvp_(sheet, payload) {
     payload.pageUrl || '',
     payload.userAgent || '',
     payload.submissionId || '',
-    payload.respondentId || ''
+    payload.respondentId || '',
+    payload.charteredBus || ''
   ];
   const existingRow = findExistingRow_(
     sheet,

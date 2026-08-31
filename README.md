@@ -68,6 +68,9 @@ GitHub Pages로 바로 배포할 수 있고, RSVP 응답은 Google Apps Script �
 - `invitationUrl`
 - `pageUrl`
 - `userAgent`
+- `submissionId`
+- `respondentId`
+- `charteredBus`
 
 ### 2. 웹앱으로 배포
 
@@ -114,6 +117,9 @@ rsvp: {
 - `invitationUrl`
 - `pageUrl`
 - `userAgent`
+- `submissionId`
+- `respondentId`
+- `charteredBus`
 
 ### 6. 실제 결과를 어디서 확인하나
 

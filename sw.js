@@ -1,11 +1,11 @@
-const CACHE_VERSION = 'wedding-editorial-v6';
+const CACHE_VERSION = 'wedding-editorial-v8';
 const CORE_CACHE = `${CACHE_VERSION}-core`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 const CORE_ASSETS = [
   './',
   './index.html',
-  './styles.css?v=20260820-5',
-  './app.js?v=20260820-5'
+  './styles.css?v=20260831-2',
+  './app.js?v=20260831-2'
 ];
 
 self.addEventListener('install', (event) => {
