@@ -809,7 +809,7 @@ function renderApp() {
         </section>
 
         <section class="photo-interlude reveal" aria-label="캘린더 다음에 이어지는 두 사람의 웨딩 사진">
-          <div class="photo-interlude-media">${buildVisual(invitationConfig.gallery[10], 'story')}</div>
+          <div class="photo-interlude-media">${buildVisual(invitationConfig.gallery[16], 'story')}</div>
           <p class="photo-script">In every light, together.</p>
           <span class="photo-caption">YUNCHAN &amp; JIYUN · A PORTRAIT OF US</span>
         </section>
