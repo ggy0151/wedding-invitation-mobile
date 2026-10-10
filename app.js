@@ -96,6 +96,15 @@ const invitationConfig = {
   ],
   gallery: [
     { title: '우리의 메인 커버', caption: '청첩장 메인 커버 사진입니다.', imageLabel: 'Main Cover', src: './assets/main cover.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 01', src: './assets/SON01968.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 02', src: './assets/SON02502.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 03', src: './assets/SON02548.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 04', src: './assets/SON02642.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 05', src: './assets/SON02808.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 06', src: './assets/SON03012.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 07', src: './assets/SON03114.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 08', src: './assets/SON03304.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 09', src: './assets/SON03458.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 01', src: './assets/KakaoTalk_20260806_072904893.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 02', src: './assets/KakaoTalk_20260806_072904893_01.jpg' },
     { title: '우리의 순간', caption: '보정된 웨딩 사진입니다.', imageLabel: 'Retouched Scene 03', src: './assets/KakaoTalk_20260806_072904893_03.jpg' },
@@ -121,15 +130,6 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 04', src: './assets/KakaoTalk_20260802_222009937.jpg' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 05', src: './assets/KakaoTalk_20260802_222054901.jpg' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 06', src: './assets/KakaoTalk_20260804_070813031.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 01', src: './assets/SON01968.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 02', src: './assets/SON02502.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 03', src: './assets/SON02548.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 04', src: './assets/SON02642.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 05', src: './assets/SON02808.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 06', src: './assets/SON03012.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 07', src: './assets/SON03114.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 08', src: './assets/SON03304.jpg' },
-    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 09', src: './assets/SON03458.jpg' },
     { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 01', src: './assets/KakaoTalk_20261010_183141529_01.jpg' },
     { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 02', src: './assets/KakaoTalk_20261010_183141529_02.jpg' },
     { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 03', src: './assets/KakaoTalk_20261010_183141529_03.jpg' },
@@ -809,7 +809,7 @@ function renderApp() {
         </section>
 
         <section class="photo-interlude reveal" aria-label="캘린더 다음에 이어지는 두 사람의 웨딩 사진">
-          <div class="photo-interlude-media">${buildVisual(invitationConfig.gallery[16], 'story')}</div>
+          <div class="photo-interlude-media">${buildVisual({ src: './assets/KakaoTalk_20260806_072904893_16.jpg', title: '우리의 순간' }, 'story')}</div>
           <p class="photo-script">In every light, together.</p>
           <span class="photo-caption">YUNCHAN &amp; JIYUN · A PORTRAIT OF US</span>
         </section>
@@ -1423,6 +1423,22 @@ function setupGallery() {
   const current = document.getElementById('galleryCurrent');
   const buttons = Array.from(document.querySelectorAll('[data-gallery-step]'));
   if (!track || !slides.length || !current) return;
+
+  slides.forEach((slide) => {
+    const image = slide.querySelector('.gallery-slide-frame img');
+    if (!image) return;
+
+    const markLandscape = () => {
+      if (image.naturalWidth <= image.naturalHeight) return;
+      const frame = image.closest('.gallery-slide-frame');
+      if (!frame) return;
+      frame.classList.add('is-landscape');
+      frame.style.setProperty('--gallery-backdrop', `url("${image.currentSrc || image.src}")`);
+    };
+
+    if (image.complete) markLandscape();
+    else image.addEventListener('load', markLandscape, { once: true });
+  });
 
   const updateGalleryState = () => {
     const trackCenter = track.scrollLeft + track.clientWidth / 2;
