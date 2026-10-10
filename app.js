@@ -121,11 +121,20 @@ const invitationConfig = {
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 04', src: './assets/KakaoTalk_20260802_222009937.jpg' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 05', src: './assets/KakaoTalk_20260802_222054901.jpg' },
     { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 06', src: './assets/KakaoTalk_20260804_070813031.jpg' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 08', src: './assets/SSN00096.JPG' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 09', src: './assets/SSN00225.JPG' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 11', src: './assets/SSN00344.JPG' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 12', src: './assets/SSN00413.JPG' },
-    { title: '우리의 순간', caption: '기존 갤러리에 함께했던 웨딩 사진입니다.', imageLabel: 'Previous Scene 13', src: './assets/SSN00524.JPG' }
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 01', src: './assets/SON01968.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 02', src: './assets/SON02502.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 03', src: './assets/SON02548.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 04', src: './assets/SON02642.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 05', src: './assets/SON02808.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 06', src: './assets/SON03012.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 07', src: './assets/SON03114.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 08', src: './assets/SON03304.jpg' },
+    { title: '우리의 순간', caption: '스튜디오에서 촬영한 웨딩 사진입니다.', imageLabel: 'Studio 09', src: './assets/SON03458.jpg' },
+    { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 01', src: './assets/KakaoTalk_20261010_183141529_01.jpg' },
+    { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 02', src: './assets/KakaoTalk_20261010_183141529_02.jpg' },
+    { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 03', src: './assets/KakaoTalk_20261010_183141529_03.jpg' },
+    { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 04', src: './assets/KakaoTalk_20261010_183141529_04.jpg' },
+    { title: '우리의 순간', caption: '보정된 제주 스냅 사진입니다.', imageLabel: 'Jeju Snap 05', src: './assets/KakaoTalk_20261010_183141529_08.jpg' }
   ],
   venue: {
     title: '더블트리 바이 힐튼 서울 판교',
@@ -348,7 +357,7 @@ function buildWeddingCalendar(dateIso) {
   `;
 }
 
-const IMAGE_ASSET_VERSION = '20260820-2';
+const IMAGE_ASSET_VERSION = '20261010-1';
 
 function imageVariant(src, variant) {
   if (!src || !/^\.\/assets\/[^/]+\.(jpe?g)$/i.test(src)) return src;
