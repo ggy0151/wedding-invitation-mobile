@@ -35,8 +35,9 @@ function doGet(e) {
   return jsonResponse_({
     ok: true,
     message: 'Wedding RSVP endpoint is running.',
-    version: 'rsvp-v4',
-    sheetName: SHEET_NAME
+    version: 'rsvp-v5',
+    sheetName: SHEET_NAME,
+    fields: HEADERS.slice()
   });
 }
 

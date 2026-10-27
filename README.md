@@ -80,6 +80,15 @@ GitHub Pages로 바로 배포할 수 있고, RSVP 응답은 Google Apps Script �
 4. 접근 권한은 `Anyone` 또는 `Anyone with the link`로 설정합니다.
 5. 발급된 `/exec` 주소를 복사합니다.
 
+이미 웹앱을 사용 중인 상태에서 `Code.gs`를 수정했다면 기존 주소를 그대로 유지해야 합니다.
+
+1. `배포 > 배포 관리`로 들어갑니다.
+2. 현재 웹앱 배포의 편집 버튼을 누릅니다.
+3. 버전에서 `새 버전`을 선택합니다.
+4. `배포`를 눌러 변경 내용을 반영합니다.
+
+배포 후 `/exec` 주소를 열었을 때 `version`이 `rsvp-v5`이고 `fields`에 `charteredBus`가 표시되어야 전세버스 응답이 시트에 저장됩니다.
+
 ### 3. 청첩장 코드에 연결
 
 `app.js`의 `invitationConfig.rsvp.endpoint`에 `/exec` 주소를 넣으면 됩니다.
