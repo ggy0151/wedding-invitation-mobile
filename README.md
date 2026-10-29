@@ -1,6 +1,6 @@
 # wedding-invitation-mobile
 
-윤찬 ♥ 지윤 모바일 청첩장 정적 사이트입니다.  
+윤찬 ♥ 지윤 모바일 청첩장 사이트입니다.  
 GitHub Pages로 바로 배포할 수 있고, RSVP 응답은 Google Apps Script 웹앱을 통해 구글 스프레드시트에 쌓이도록 구성했습니다.
 
 ## 파일 구성
