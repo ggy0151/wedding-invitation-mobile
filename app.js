@@ -1783,6 +1783,19 @@ function setupRsvp() {
   });
 }
 
+function setupRsvpAutoOpen() {
+  const responded = localStorage.getItem(invitationConfig.rsvp.doneKey) === 'true';
+  if (responded) return;
+
+  const openingIsVisible = Boolean(document.querySelector('[data-opening]'));
+  const delay = openingIsVisible ? 2350 : 350;
+
+  window.setTimeout(() => {
+    if (document.querySelector('.modal.is-open')) return;
+    openModal('rsvpModal');
+  }, delay);
+}
+
 function mount() {
   renderApp();
   setupOpeningSequence();
@@ -1794,6 +1807,7 @@ function mount() {
   setupRsvp();
   setupGuestbook();
   syncRsvpLabel();
+  setupRsvpAutoOpen();
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     window.addEventListener('load', () => {
